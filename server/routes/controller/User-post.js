@@ -33,5 +33,27 @@ async (req, res) => {
 
 
 })
+UserPost.get('/getpost',
+async (req, res) => {
+        
+  try {
+    const UserPost = db.collection("UserPost");
+    const response = await UserPost.get();
+    let responseArr = [];
+
+    //loop for each data in user
+    response.forEach(doc => {
+      responseArr.push(doc.data());
+    });
+    res.send(responseArr);
+  }
+  catch(error){
+    res.send(error)
+  }
+
+
+})
+
+
 
 exports.PostRecipe = UserPost;
