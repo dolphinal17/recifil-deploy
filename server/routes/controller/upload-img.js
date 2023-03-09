@@ -73,8 +73,4 @@ uploadImg.get('/upload', (req, res) => {
 ///
 
 
-
-
-
-
 exports.ImgController = uploadImg;
