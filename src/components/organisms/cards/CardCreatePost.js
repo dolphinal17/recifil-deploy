@@ -13,7 +13,7 @@ const CardCreatePost = ( { open, onClose } ) => {
         }} className='sm:max-w-[440px] max-w-[340px] border-solid border-[1px] rounded-[5px] px-5 py-4 bg-[#FFFFFF] overflow-y-scroll scrollbar-none'>
             <div className='flex justify-between items-center'>
                 <h1 className='text-[16px] font-[600] text-[#000000]'>Create new post</h1>
-                <FontAwesomeIcon onClick={onClose} icon={faXmark} className='text-[16px] font-[500] text-[#949494]'/>
+                <FontAwesomeIcon onClick={onClose} icon={faXmark} className='text-[16px] font-[500] text-[#949494] cursor-pointer'/>
             </div>
             <div className='pt-[20px]'>
                 <textarea typeof='text' placeholder='About recipe' className='p-[20px] sm:w-[400px] w-[300px] h-[150px] bg-[#F2F1F0] resize-none mb-[12px] focus:outline-none placeholder-[#949494] text-[16px] font-[500]'></textarea>
