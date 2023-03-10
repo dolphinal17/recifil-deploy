@@ -48,7 +48,7 @@ const Library = () => {
                 </ul>
             </div>
             {/* recipe grid */}
-            <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center'>
+            <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10'>
 
             {
                     info.map((val, id) => {

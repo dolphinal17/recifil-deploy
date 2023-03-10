@@ -1,10 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Discimg from '../organisms/others/DiscImgWText'
 import styles from '../../style';
 import { RecipeCard, Navbar, DiscImgWText } from '../organisms/organisms.js'
+import { collection, query, getDocs, limit } from 'firebase/firestore'
+import { db } from '../../config/firebase';
+import { Link } from 'react-router-dom';
+
+
 
 
 const Discover = () => {
+
+  const [info , setInfo] = useState([]);
+
+    const RecipeData = async () => {
+        const q = query(collection(db, "recipes"), limit(4));
+
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id:doc.id,
+        }));
+        setInfo(data);
+    };
+
+    useEffect(() => {
+        RecipeData();
+    }, []);
+
   return (
     <div>
       <div className={`${styles.boxWidth}`}>
@@ -13,35 +36,29 @@ const Discover = () => {
         <div className={`${styles.container}`}>
           <DiscImgWText/>
 
-          <div className='w-full flex flex-col gap-[0.5rem]'>
+          <div className='w-full flex flex-col gap-[0.5rem] my-10'>
             {/* header */}
             <div className='w-full flex justify-between items-center px-[1rem] laptop:px-0'>
               <span className='text-base laptop:text-2xl font-normal laptop:font-medium text-mainBlack'>Famous Filipino Recipes</span>
 
-              <span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>Explore More</span>
+              <Link to='/library'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>Explore More</span></Link>
             </div>
 
             {/* recipes */}
-            <div className='w-full flex flex-wrap gap-[0.5rem] tablet:gap-[1rem] justify-center'>
-              <RecipeCard 
-                  image="https://i.pinimg.com/236x/56/b2/18/56b2183fd66c8a8d9c7eabc92b3a33f7.jpg"
-                  name="Ampalaya"
-              />
-
-              <RecipeCard 
-                  image="https://i.pinimg.com/236x/ed/0d/29/ed0d2931c988277eac062f30dfa99443.jpg"
-                  name="Adobong Manok"
-              />
-
-              <RecipeCard 
-                  image="https://i.pinimg.com/236x/6e/fd/bf/6efdbf7d16f7dc058b83b51448149e67.jpg"
-                  name="Bulalo"
-              />
-              
-              <RecipeCard 
-                  image="https://i.pinimg.com/236x/ec/95/8f/ec958f900835a42319e14de1a8c46984.jpg"
-                  name="Sisig"
-              />
+            <div className='w-full flex flex-wrap gap-[0.5rem] tablet:gap-[2rem] justify-center'>
+                {
+                    info.map((val, id) => {
+                        return(
+                        <Link to={"/recipeview/"+val.id}>    
+                        <RecipeCard
+                            key={val.id}
+                            image={val.image}
+                            name={val.title}
+                        />
+                        </Link>
+                        )
+                    })
+                }
             </div>
           </div>
           
