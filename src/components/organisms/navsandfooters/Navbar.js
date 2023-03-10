@@ -18,7 +18,7 @@ const Navbar = () => {
           </div>
           <div className='flex flex-row items-center'>
               <FontAwesomeIcon icon={faBell} className='mr-5 text-primary text-[20px]' />
-                <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[35px] h-[35px] rounded-full object-cover' />
+                <Link to='/profile'><img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[35px] h-[35px] rounded-full object-cover' /></Link>
               <BtnLogout />
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styles from '../../style'
 import { CardPost, RecipeCard, Navbar, CardCreatePost } from '../organisms/organisms.js'
 import CreatePost from '../../assets/create-post.png'
+import { Link } from 'react-router-dom'
 
 function Socials() {
     const [openModal, setOpenModal] = useState(false)
@@ -41,11 +42,11 @@ function Socials() {
                 <div className='hidden laptop:block'>
                     <div className='flex justify-between px-[0.5rem] mb-[0.5rem]'>
                         <label className='text-sm font-medium text-mainBlack'>Recipes from App</label>
-                        <label className='text-sm font-medium text-secondary cursor-pointer'>All</label>
+                        <Link to='/library'><label className='text-sm font-medium text-secondary cursor-pointer'>All</label></Link>
                     </div>
 
                     {/* recipes */}
-                    <div className='flex flex-col gap-[0.5rem]'>
+                    <div className='flex flex-col gap-[0.5rem] mb-10'>
                         <RecipeCard 
                             image="https://i.pinimg.com/236x/56/b2/18/56b2183fd66c8a8d9c7eabc92b3a33f7.jpg"
                             name="Ampalaya"

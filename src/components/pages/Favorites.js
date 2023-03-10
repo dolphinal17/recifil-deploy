@@ -32,7 +32,7 @@ const Favorites = () => {
                 </ul>
             </div>
             {/* recipe grid */}
-            <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center'>
+            <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
                 <RecipeCard 
                     image="https://i.pinimg.com/236x/56/b2/18/56b2183fd66c8a8d9c7eabc92b3a33f7.jpg"
                     name="Ampalaya"
