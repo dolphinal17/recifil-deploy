@@ -96,8 +96,8 @@ const Landing = () => {
             </div>
             <div>
                 <div className='col-span-1 p-[2rem]'>
-                    <h1 className=' text-textMainBlack font-[600] sm:text-[28px] text-[1rem]'>Extra feature on mobile, dagdagan nalang.</h1>
-                    <h2 className='text-textFadeBlack text-[16px] font-[400] sm:pr-[3.5rem]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque viverra felis mauris. In eu velit a diam sagittis posuere. Aliquam.</h2>
+                    <h1 className=' text-textMainBlack font-[600] sm:text-[28px] text-[1rem]'>Elevate your cooking with a single snap</h1>
+                    <h2 className='text-textFadeBlack text-[16px] font-[400] sm:pr-[3.5rem]'>Scan recipe ingredients and let us do the work for you, unlock a world of delicious possibilities.</h2>
                 </div>
             </div>
           </div>
