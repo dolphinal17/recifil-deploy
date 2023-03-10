@@ -1,14 +1,16 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styles from '../../../style'
 import { Navbar } from '../organisms.js'
-import { BtnServing } from '../../atoms/atoms.js'
+import { BtnServing, PreLoader } from '../../atoms/atoms.js'
 import { SearchBarWBG } from '../../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../config/firebase'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc } from '@firebase/firestore'
+
+
 
 
 const CardRecipesView = () => {
@@ -29,7 +31,7 @@ const CardRecipesView = () => {
         fetchRecipe();
     }, [params.id]);
     if (loading) {
-        return <PreLoader />;
+        return <PreLoader/>;
     }
 
   return (
