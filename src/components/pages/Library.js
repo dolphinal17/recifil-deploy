@@ -4,6 +4,7 @@ import { RecipeCard, Navbar } from '../organisms/organisms.js'
 import { SearchBarWBG } from '../molecules/molecules.js'
 import { db } from '../../config/firebase'
 import { collection, query, getDocs } from 'firebase/firestore'
+import { Link } from 'react-router-dom'
 
 const Library = () => {
 
@@ -52,10 +53,12 @@ const Library = () => {
             {
                     info.map((val, id) => {
                         return(
-                        <RecipeCard 
-                            image={val.image}
-                            name={val.title}
-                        />
+                        <Link to={"/recipeview/"+val.id}> 
+                            <RecipeCard 
+                                image={val.image}
+                                name={val.title}
+                            />
+                        </Link>
                         )
                     })
                 }

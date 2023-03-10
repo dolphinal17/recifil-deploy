@@ -6,7 +6,32 @@ import { SearchBarWBG } from '../../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
+import { useParams } from 'react-router-dom'
+import { db } from '../../../config/firebase'
+import { doc, getDoc } from 'firebase/firestore'
+
+
 const CardRecipesView = () => {
+
+    const params = useParams();
+    const [info, setInfo] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        async function fetchRecipe() {
+            const docRef = doc(db, "recipes", params.id)
+            const docSnap = await getDoc(docRef)
+            if (docSnap.exists()){
+                setInfo(docSnap.data())
+                setLoading(false)
+            } 
+        }
+        fetchRecipe();
+    }, [params.id]);
+    if (loading) {
+        return <PreLoader />;
+    }
+
   return (
     <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -21,7 +46,7 @@ const CardRecipesView = () => {
                     {/* recipe image, author, name, ratings, heart, about */}
                     <div className='flex flex-col gap-[0.5rem] sm:flex-row sm:gap-[1rem]'>
                         {/* recipe image */}
-                        <img src='https://i.pinimg.com/236x/d0/1f/83/d01f833028a69c2b8cc6a2350bad4597.jpg' className='flex-none w-[14rem] h-[14rem] object-cover border border-4 border-secondary rounded-md'></img>
+                        <img src={info.image} className='flex-none w-[14rem] h-[14rem] object-cover border-4 border-secondary rounded-md'></img>
                     
 
                         {/* recipe author, name, ratings and about */}
@@ -32,7 +57,7 @@ const CardRecipesView = () => {
                                 <div className='flex justify-between items-center'>
                                     <div className='flex flex-col gap-[0.25rem]'>
                                         <span className='text-sm font-normal laptop:font-medium text-secondary'>From App</span>
-                                        <span className='text-2xl font-medium text-primary'>Nilagang Baboy</span>
+                                        <span className='text-2xl font-medium text-primary'>{info.title}</span>
                                     </div>
 
                                     <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
@@ -63,9 +88,7 @@ const CardRecipesView = () => {
                                 <span className='text-sm font-normal laptop:font-medium text-primary'>About</span>
 
                                 <div className='flex-auto scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
-                                    <p className='text-sm font-thin laptop:font-light text-primary max-h-[6rem]'>Nilagang Baboy or Pork Nilaga is translated as boiled pork in Filipino. This is a soup dish commonly served for lunch or dinner on regular days. Nilagang Baboy is eaten with steamed white rice and is best served with patis (fish sauce) and siling labuyo (birds  eye chili).
-                                    Nilagang Baboy or Pork Nilaga is translated as boiled pork in Filipino. This is a soup dish commonly served for lunch or dinner on regular days. Nilagang Baboy is eaten with steamed white rice and is best served with patis (fish sauce) and siling labuyo (birds  eye chili).
-                                    </p>
+                                <p className='text-sm font-thin laptop:font-light text-primary max-h-[6rem]'>{info.desc}</p>
                                 </div>
                             </div>
                         </div>
@@ -78,14 +101,11 @@ const CardRecipesView = () => {
                         {/* steps list */}
                         <div className='flex scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                             <ul className='flex flex-col gap-[0.25rem] max-h-[8.5rem]'>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
-                                <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]'><span className='text-sm font-light laptop:font-normal text-secondary'>Step 1</span>Pour water in the pot and add pork meat and simmer it until the meat is tender.</li>
+                                {
+                                    info.steps.map((steps, i) => (
+                                        <li className='text-sm font-thin laptop:font-light text-primary flex flex-col gap-[0.125rem]' key={i}>{steps}</li>
+                                    ))
+                                }
                             </ul>
                         </div>                        
                     </div>
@@ -131,36 +151,40 @@ const CardRecipesView = () => {
                                     {/* integral ingredients */}
                                     <div className='flex flex-col gap-[0.25rem] laptop:gap-[0.5rem]'>
                                         {/* title */}
-                                        <div className='flex justify-start gap-[0.25rem]'>
+                                        {/* <div className='flex justify-start gap-[0.25rem]'>
                                             <span className='text-sm font-light laptop:font-normal text-mainBlack'>Integral Ingredients</span>
 
                                             <FontAwesomeIcon icon={faCircleInfo} className='text-secondary/60 text-[0.5rem]' />
-                                        </div>
+                                        </div> */}
 
                                         {/* ingredients */}
                                         <ul className='flex flex-col gap-[0.125rem] laptop:gap-[0.25rem]'>
-                                            <li className='text-sm font-thin laptop:font-light text-mainBlack'>Pork</li>
+                                            {
+                                                info.ingredients.map((ingredients, i) => (
+                                                    <li className='text-sm font-thin laptop:font-light text-mainBlack' key={i}>{ingredients}</li>
+                                                ))
+                                            }
                                         </ul>
                                     </div>
 
                                     {/* not integral ingredients */}
-                                    <div className='flex flex-col gap-[0.25rem] laptop:gap-[0.5rem]'>
+                                    {/* <div className='flex flex-col gap-[0.25rem] laptop:gap-[0.5rem]'> */}
                                         {/* title */}
-                                        <div className='flex justify-start gap-[0.25rem]'>
+                                        {/* <div className='flex justify-start gap-[0.25rem]'>
                                             <span className='text-sm font-light laptop:font-normal text-mainBlack'>Not Integral Ingredients</span>
 
                                             <FontAwesomeIcon icon={faCircleInfo} className='text-secondary/60 text-[0.5rem]' />
-                                        </div>
+                                        </div> */}
 
                                         {/* ingredients */}
-                                        <ul className='flex flex-col gap-[0.125rem] laptop:gap-[0.25rem]'>
+                                        {/* <ul className='flex flex-col gap-[0.125rem] laptop:gap-[0.25rem]'>
                                             <li className='text-sm font-thin laptop:font-light text-mainBlack'>Red Onion</li>
                                             <li className='text-sm font-thin laptop:font-light text-mainBlack'>Petchay</li>
                                             <li className='text-sm font-thin laptop:font-light text-mainBlack'>Corn</li>
                                             <li className='text-sm font-thin laptop:font-light text-mainBlack'>Riped Banana</li>
                                             <li className='text-sm font-thin laptop:font-light text-mainBlack'>Sitaw</li>
-                                        </ul>
-                                    </div>
+                                        </ul> */}
+                                    {/* </div> */}
                                 </div>
                             </div>
                         </div>

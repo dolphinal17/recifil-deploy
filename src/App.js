@@ -116,7 +116,7 @@ function App() {
               }
             />
             
-            <Route path="/recipeview" element={<CardRecipesView/>} />
+            <Route path="/recipeview/:id" element={<CardRecipesView/>} />
             <Route path="/recipeviewws" element={<CardRecipeView/>} />
             <Route path="loadings" element={<PreLoader />} />
         </Routes>
