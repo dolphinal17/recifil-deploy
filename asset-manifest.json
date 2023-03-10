@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/recifil-deploy/static/css/main.e51fdb14.css",
-    "main.js": "/recifil-deploy/static/js/main.3d5b0122.js",
+    "main.css": "/recifil-deploy/static/css/main.c7cc8e91.css",
+    "main.js": "/recifil-deploy/static/js/main.53e6e2d1.js",
     "static/media/recifil-logo.png": "/recifil-deploy/static/media/recifil-logo.72fc0821225ce31b4c69.png",
     "static/media/image1.png": "/recifil-deploy/static/media/image1.4a4afab66d5bd782218c.png",
     "static/media/mainimg.jpg": "/recifil-deploy/static/media/mainimg.5e32690d6b4f19b1a097.jpg",
     "static/media/create-post.png": "/recifil-deploy/static/media/create-post.42717be331d5bed32ad7.png",
     "index.html": "/recifil-deploy/index.html",
-    "main.e51fdb14.css.map": "/recifil-deploy/static/css/main.e51fdb14.css.map",
-    "main.3d5b0122.js.map": "/recifil-deploy/static/js/main.3d5b0122.js.map"
+    "main.c7cc8e91.css.map": "/recifil-deploy/static/css/main.c7cc8e91.css.map",
+    "main.53e6e2d1.js.map": "/recifil-deploy/static/js/main.53e6e2d1.js.map"
   },
   "entrypoints": [
-    "static/css/main.e51fdb14.css",
-    "static/js/main.3d5b0122.js"
+    "static/css/main.c7cc8e91.css",
+    "static/js/main.53e6e2d1.js"
   ]
 }
