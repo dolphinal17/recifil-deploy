@@ -7,7 +7,7 @@ const { user } = require('firebase-functions/v1/auth');
 
 const SignUp = Router();
 
-SignUp.post('/signup/user',
+SignUp.post('/',
 signupdata.registerdata,
 validationResultSchema,
  async (req, res) => {

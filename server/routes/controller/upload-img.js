@@ -24,7 +24,7 @@ const storage = getStorage(firebaseApp);
 
 
 const upload = multer({ storage: multer.memoryStorage() });
-uploadImg.post('/upload',upload.single("filename"), async (req,res)=>{
+uploadImg.post('/',upload.single("filename"), async (req,res)=>{
     console.log("Upload is Running")
     try {
         

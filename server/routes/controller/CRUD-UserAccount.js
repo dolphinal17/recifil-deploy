@@ -56,7 +56,7 @@ async (req, res) => {
 ///
 
 //Update user firstname by ID in the data collection!!
-rootrouter.post('/user/Update_UserProfile',
+rootrouter.post('/Update_UserProfile',
 Profile.UserUpdate,
 validationResultSchema,
 async(req, res) =>{
@@ -82,7 +82,7 @@ async(req, res) =>{
 
 
 //Read All data in the collection!!
-rootrouter.get('/user/View_all_User',async(req, res) => {
+rootrouter.get('/',async(req, res) => {
   try {
     const UserRef = db.collection("users");
     const response = await UserRef.get();
@@ -99,7 +99,7 @@ rootrouter.get('/user/View_all_User',async(req, res) => {
 })
 
 //Read one data by ID in the collection!!
-rootrouter.get('/user/View_User/:id',async(req, res) => {
+rootrouter.get('/View_User/:id',async(req, res) => {
       try {
         
         const UserRef = db.collection("users").doc(req.params.id);
@@ -113,7 +113,7 @@ rootrouter.get('/user/View_User/:id',async(req, res) => {
 
 
 //Delete user by ID in the data collection!!
-rootrouter.delete('/user/Delete_Users/:id',async(req, res) => {
+rootrouter.delete('/Delete_Users/:id',async(req, res) => {
   try {
     const response = await db.collection("users").doc(req.params.id).delete();
     //res.send(response);
