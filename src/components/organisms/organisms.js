@@ -15,6 +15,7 @@ import CardRecipesView from "./cards/CardRecipesView";
 import ProfileMenu from "./menu/ProfileMenu";
 import DiscImgWText from "./others/DiscImgWText";
 import Comment from "./others/Comment";
+import ForgotPassword from "./forms/ForgotPassword";
 
 export {
     CardSuggRecipeBasket,
@@ -33,5 +34,6 @@ export {
     CardRecipesView,
     ProfileMenu, 
     DiscImgWText,
-    Comment
+    Comment,
+    ForgotPassword
 }

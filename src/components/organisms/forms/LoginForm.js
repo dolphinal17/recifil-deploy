@@ -107,7 +107,7 @@ export default function LoginForm() {
                 <h5 className='text-secondary text-xs font-light tablet:font-normal ml-1'>Remember me</h5>
             </div>
 
-            <h5 className='text-secondary text-xs cursor-pointer font-light tablet:font-normal'>forgot your password?</h5>
+            <Link to='/forgotpassword'><h5 className='text-secondary text-xs cursor-pointer font-light tablet:font-normal'>forgot your password?</h5></Link>
         </div>
         
         {/* button login and sign-up link*/}

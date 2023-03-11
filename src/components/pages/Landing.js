@@ -3,7 +3,7 @@ import styles from '../../style'
 import { LandingNavbar, LandingFooter } from '../organisms/organisms.js'
 import Image1 from '../../assets/image1.png'
 import { useAuth } from '../../context/UserAuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Landing = () => {
 
@@ -44,7 +44,7 @@ const Landing = () => {
                 </div>
                 
                 <div className='flex items-center'>
-                    <button className='laptop:text-[18px] sm:text-[14px] text-[10px] text-primary font-[400] laptop:w-[146px] sm:w-[100px] w-[50px] laptop:h-[49px] sm:h-[30px] h-[20px] rounded-[10px] bg-gradient-to-r from-secondary to-[#59981A]'>Start</button>
+                    <Link to='/login'><button className='laptop:text-[18px] sm:text-[14px] text-[10px] text-primary font-[400] laptop:w-[146px] sm:w-[100px] w-[50px] laptop:h-[49px] sm:h-[30px] h-[20px] rounded-[10px] bg-gradient-to-r from-secondary to-[#59981A]'>Start</button></Link>
                 </div>
             </div>
           </div>

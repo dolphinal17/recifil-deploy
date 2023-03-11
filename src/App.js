@@ -8,7 +8,7 @@ import { auth } from './config/firebase';
 
 // here to import components like pages
 import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile} from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, CardRecipeView } from './components/organisms/organisms.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, CardRecipeView, ForgotPassword } from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 
@@ -35,6 +35,7 @@ function App() {
             <Route path="/" element={<Landing/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<Signup/>} />
+            <Route path="/forgotpassword" element={<ForgotPassword/>} />
 
             <Route
               exact

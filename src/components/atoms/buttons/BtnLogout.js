@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/UserAuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-
-const BtnLogout = () => {
+const BtnLogout = (props) => {
 
     const { logout } = useAuth();
     const navigate = useNavigate();
@@ -14,11 +15,7 @@ const BtnLogout = () => {
     }
 
   return (
-    <button 
-        className='text-[#B2D33D] w-[5rem] h-[2.5rem] ml-[2rem] font-[500] rounded-md bg-white'
-        type='button'
-        onClick={handleLogout}
-    >Log Out</button>
+    <FontAwesomeIcon type='button' onClick={handleLogout} icon={faRightFromBracket} classname={props.className}/>
   )
 }
 

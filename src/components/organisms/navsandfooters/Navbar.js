@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../../assets/recifil-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { BtnLogout } from '../../atoms/atoms.js';
 
@@ -13,13 +13,17 @@ const Navbar = () => {
       <div className='flex justify-center bg-secondary'> 
         <div className='max-w-[80rem] w-full flex justify-between p-[1rem]'> 
           <div className='flex flex-row items-center'>
-              <img src={Logo} className='w-[3.75rem] ml-1' />
-              <h4 className='text-primary text-[20px] font-[500] mx-1'>ReciFil</h4>
+          <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FNewLogoPrimary.png?alt=media&token=177edd6d-7543-4fc2-9cce-d39f3a5218a6" className='w-[1rem] tablet:w-[1.5rem] ml-1' />
+              <h4 className='text-primary text-base tablet:text-2xl font-[500] mx-1'>ReciFil</h4>
           </div>
-          <div className='flex flex-row items-center'>
-              <FontAwesomeIcon icon={faBell} className='mr-5 text-primary text-[20px]' />
-                <Link to='/profile'><img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[35px] h-[35px] rounded-full object-cover' /></Link>
-              <BtnLogout />
+          <div className='flex flex-row items-center gap-[1rem]'>
+              <FontAwesomeIcon icon={faBell} className=' text-primary text-base tablet:text-2xl cursor-pointer' />
+
+              <BtnLogout 
+                className='text-primary text-base tablet:text-[4rem] cursor-pointer'
+              />
+
+              <Link to='/profile'><img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[1.25rem] h-[1.25rem] tablet:w-[35px] tablet:h-[35px] rounded-full object-cover cursor-pointer' /></Link>
           </div>
         </div>
       </div>
