@@ -10,7 +10,7 @@ const { db } = require ('../../firebase/index')
 const UserPost = Router();
 
 
-UserPost.post('/user/PostRecipe',
+UserPost.post('/',
 async (req, res) => {
         
   try{

@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log('"/home" root is for landing page');
     app.use('/user',rootrouter.routersignup)
-    app.use(UserPost.PostRecipe)
+    app.use('/postrecipe',UserPost.PostRecipe)
     app.use('/user/UploadProfile',uploadImg.ImgController)
     app.use('/user/signup',SignUp.UserAccount)
     console.log('Server running in the Port: ' + PORT)
