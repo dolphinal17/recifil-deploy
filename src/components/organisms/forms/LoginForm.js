@@ -97,6 +97,13 @@ export default function LoginForm() {
                 value={user.password}
                 name='password'
                 onChange={UserHandler}
+                onPaste={(e)=>{
+                  e.preventDefault()
+                  return false;
+                }} onCopy={(e)=>{
+                  e.preventDefault()
+                  return false;
+                }}
             />
         </div>
 

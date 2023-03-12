@@ -147,6 +147,13 @@ export default function SignUpForm() {
                 name="password"
                 value={user.password}
                 onChange={UserHandler}
+                onPaste={(e)=>{
+                    e.preventDefault()
+                    return false;
+                }} onCopy={(e)=>{
+                e.preventDefault()
+                return false;
+                }}
             />
 
             {/* confirm password */}
@@ -157,6 +164,13 @@ export default function SignUpForm() {
                 name="confirmPassword"
                 value={user.confirmPassword}
                 onChange={UserHandler}
+                onPaste={(e)=>{
+                    e.preventDefault()
+                    return false;
+                }} onCopy={(e)=>{
+                e.preventDefault()
+                return false;
+                }}
             />
         </div>
 
