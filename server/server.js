@@ -9,6 +9,9 @@ const SignUp = require ('./routes/controller/Signup-Auth')
 const app = express()
 app.use(express.json()) 
 app.use(express.urlencoded({ extended: true }))
+app.get('/', (req, res) => {
+    res.send('Hello Maria')
+})
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
