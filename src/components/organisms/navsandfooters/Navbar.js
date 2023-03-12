@@ -1,9 +1,10 @@
 import React from 'react';
-import Logo from '../../../assets/recifil-logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { BtnLogout } from '../../atoms/atoms.js';
+import DropdownProfile from '../../molecules/DropdownProfile.js';
+
 
 
 const Navbar = () => {
@@ -19,11 +20,8 @@ const Navbar = () => {
           <div className='flex flex-row items-center gap-[1rem]'>
               <FontAwesomeIcon icon={faBell} className=' text-primary text-base tablet:text-2xl cursor-pointer' />
 
-              <BtnLogout 
-                className='text-primary text-base tablet:text-[4rem] cursor-pointer'
-              />
-
-              <Link to='/profile'><img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[1.25rem] h-[1.25rem] tablet:w-[35px] tablet:h-[35px] rounded-full object-cover cursor-pointer' /></Link>
+              <DropdownProfile/>
+              
           </div>
         </div>
       </div>

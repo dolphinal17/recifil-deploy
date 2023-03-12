@@ -12,7 +12,6 @@ import LandingNavbar from "./navsandfooters/LandingNavbar";
 import LandingFooter from "./navsandfooters/LandingFooter";
 import CardRecipeView from "./cards/CardRecipeView";
 import CardRecipesView from "./cards/CardRecipesView";
-import ProfileMenu from "./menu/ProfileMenu";
 import DiscImgWText from "./others/DiscImgWText";
 import Comment from "./others/Comment";
 import ForgotPassword from "./forms/ForgotPassword";
@@ -32,7 +31,6 @@ export {
     LandingFooter,
     CardRecipeView,
     CardRecipesView,
-    ProfileMenu, 
     DiscImgWText,
     Comment,
     ForgotPassword

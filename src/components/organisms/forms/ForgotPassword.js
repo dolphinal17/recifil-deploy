@@ -8,7 +8,7 @@ export default function ForgotPassword() {
             <div className='flex items-center gap-[0.5rem] tablet:gap-[1rem] mb-[2rem] tablet:mb-[4rem]'>
                 <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FNewLogoSecondary.png?alt=media&token=0c0d1f96-61bb-405a-99b1-9e8a51974677" className='w-[1rem] tablet:w-[2rem]'></img>
 
-                <span className='text-base tablet:text-2xl font-normal tablet:font-medium text-mainBlack'>Recifil</span>
+                <span className='text-base tablet:text-2xl font-normal tablet:font-medium text-mainBlack'>ReciFil</span>
             </div>
 
             <p className='text-sm font-light tablet:font-normal text-mainBlack'>Enter email address associated with your account and we'll send you a link to reset your password.</p>
