@@ -42,7 +42,7 @@ const Profile = () => {
 
                         {/* option list */}
                         <ul className='flex flex-col gap-[0.5rem] laptop:gap-[1rem]'>
-                            <li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary'><FontAwesomeIcon icon={faPenToSquare} className='text-secondary text-sm'/>Edit Profile</li>
+                            <Link to='/upload'><li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary'><FontAwesomeIcon icon={faPenToSquare} className='text-secondary text-sm'/>Edit Profile</li></Link>
                             <Link to='/favorites'><li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary'><FontAwesomeIcon icon={faHeart} className='text-secondary text-sm'/>Favorites</li></Link>
                             <Link to='/basket'><li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary'><FontAwesomeIcon icon={faBasketShopping} className='text-secondary text-sm'/>Basket</li></Link>
                             <li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary'><FontAwesomeIcon icon={faGear} className='text-secondary text-sm'/>Settings</li>

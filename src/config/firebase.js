@@ -35,5 +35,6 @@ export async function upload(file, currentuser, setLoading) {
   updateProfile(currentuser, {photoURL});
 
   setLoading(false);
-  alert("Uploaded File!");
+  
+  window.location.reload(true)
 }
