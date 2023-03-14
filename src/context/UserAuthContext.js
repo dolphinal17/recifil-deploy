@@ -36,12 +36,7 @@ const UserAuthContext = ({ children }) => {
           displayName: firstname + ' ' + lastname,
           photoURL:''
         }).then(() => {
-          sendEmailVerification(auth.currentUser).then(() => {
-              logout()
-          });
-      }).catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
+          sendEmailVerification(auth.currentUser)
       }).catch((error) => {
           const errorCode = error.code;
         }) 

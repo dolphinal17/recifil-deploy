@@ -4,6 +4,8 @@ import { InputBox } from '../../molecules/molecules.js'
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../../../context/UserAuthContext.js'
 import { Link, useNavigate } from 'react-router-dom'
+import { sendEmailVerification } from 'firebase/auth'
+
 
 export default function LoginForm() {
 
@@ -25,11 +27,11 @@ export default function LoginForm() {
       })
     }
 
-    useEffect(() => {
-      if (currentuser) {
-        navigate('/discover');
-      }
-    }, [currentuser, navigate]);
+    // useEffect(() => {
+    //   if (currentuser) {
+    //     navigate('/discover');
+    //   }
+    // }, [currentuser, navigate]);
   
     const SubmitHandler = async (e) => {
       e.preventDefault()
@@ -41,8 +43,18 @@ export default function LoginForm() {
         return setError("Fill All the Field")
       }
       try {
-        await UserLogin(email, password)
-        navigate("/discover")
+        await UserLogin(email, password).then(() => {
+          if(!currentuser?.emailVerified) {
+            sendEmailVerification(currentuser)
+            .then(() => {
+              navigate('/verify')
+            })
+          .catch(err => alert(err.message))
+        }else{
+          navigate('/discover')
+        }
+        }).catch(err => alert(err.message))
+        
       } catch (error) {
   
         if (error.code == "auth/user-not-found") {

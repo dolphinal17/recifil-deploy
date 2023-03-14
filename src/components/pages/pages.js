@@ -8,6 +8,8 @@ import Landing  from "./Landing";
 import Discover from "./Discover";
 import RecipeProcess from "./RecipeProcess";
 import Profile from "./Profile";
+import Verify from "./Verify";
+
 
 export {
   Login, 
@@ -19,5 +21,6 @@ export {
   Landing,
   Discover,
   RecipeProcess,
-  Profile
+  Profile,
+  Verify
 };

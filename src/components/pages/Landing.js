@@ -10,11 +10,11 @@ const Landing = () => {
   const {currentuser} = useAuth()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (currentuser) {
-      navigate('/discover');
-    }
-  }, [currentuser, navigate]);
+  // useEffect(() => {
+  //   if (currentuser) {
+  //     navigate('/discover');
+  //   }
+  // }, [currentuser, navigate]);
 
   return (
     <div className={`${styles.boxWidth}`}>

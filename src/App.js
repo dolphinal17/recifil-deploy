@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 // importing style
 import "./index.css";
-import { Route,Routes } from "react-router-dom";
+import { Route,Routes, Navigate} from "react-router-dom";
 import { auth } from './config/firebase';
 
 
 
 // here to import components like pages
-import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile} from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, CardRecipeView, ForgotPassword} from './components/organisms/organisms.js'
+import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify} from './components/pages/pages.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, ForgotPassword} from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 
@@ -32,11 +32,36 @@ function App() {
     <div>
       <div>
         <Routes>
-            <Route path="/" element={<Landing/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/signup" element={<Signup/>} />
-            <Route path="/forgotpassword" element={<ForgotPassword/>} />
 
+            <Route path="/" element={
+              !currentuser?.emailVerified 
+              ? <Landing/>
+              : <Navigate to='/discover' replace/>
+            } />
+
+            <Route path="/verify" element={
+              !currentuser?.emailVerified 
+              ? <Verify />
+              : <Navigate to='/discover' replace/>
+            } />  
+
+            <Route path="/login" element={
+              !currentuser?.emailVerified 
+              ? <Login/>
+              : <Navigate to='/discover' replace/>
+            } />
+
+            <Route path="/signup" element={
+            !currentuser?.emailVerified 
+            ? <Signup/>
+            : <Navigate to='/discover' replace/>
+            } />
+
+            <Route path="/forgotpassword" element={
+              !currentuser?.emailVerified 
+              ? <ForgotPassword/>
+              : <Navigate to='/discover' replace/>
+            } />
             <Route
               exact
               path="/library"
@@ -138,7 +163,6 @@ function App() {
             />
 
             
-            <Route path="/recipeviewws" element={<CardRecipeView/>} />
             <Route path="loadings" element={<PreLoader />} />
         </Routes>
       </div>

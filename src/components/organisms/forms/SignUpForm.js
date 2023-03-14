@@ -38,11 +38,11 @@ export default function SignUpForm() {
         })
     }
 
-    useEffect(() => {
-        if (currentuser) {
-          navigate('/discover');
-        }
-      }, [currentuser, navigate]);
+    // useEffect(() => {
+    //     if (currentuser) {
+    //       navigate('/discover');
+    //     }
+    //   }, [currentuser, navigate]);
 
 
     const SubmitHandler = async (e) => {
@@ -78,7 +78,7 @@ export default function SignUpForm() {
                     confirmPassword: ""
                 })
             }
-            navigate('/login')
+            navigate('/verify')
         }
     }
 
