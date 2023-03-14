@@ -23,7 +23,7 @@ function Verify() {
         }
       })
       .catch((err) => {
-        alert(err.message)
+        // alert(err.message)
         logout()
         navigate('/signup')
       })

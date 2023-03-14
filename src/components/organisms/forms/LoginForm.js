@@ -49,11 +49,11 @@ export default function LoginForm() {
             .then(() => {
               navigate('/verify')
             })
-          .catch(err => alert(err.message))
+          // .catch(err => alert(err.message))
         }else{
           navigate('/discover')
         }
-        }).catch(err => alert(err.message))
+        })
         
       } catch (error) {
   
