@@ -7,7 +7,7 @@ import { auth } from './config/firebase';
 
 
 // here to import components like pages
-import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify} from './components/pages/pages.js'
+import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg} from './components/pages/pages.js'
 import { CardCreatePost, CardEditInfo, CardRecipesView, ForgotPassword} from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
@@ -62,6 +62,7 @@ function App() {
               ? <ForgotPassword/>
               : <Navigate to='/discover' replace/>
             } />
+
             <Route
               exact
               path="/library"
@@ -158,6 +159,16 @@ function App() {
               element={
                 <WithPrivateRoute>
                   <Profile />
+                </WithPrivateRoute>
+              }
+            />
+
+            <Route
+              exact
+              path="/upload"
+              element={
+                <WithPrivateRoute>
+                  <UploadImg /> 
                 </WithPrivateRoute>
               }
             />

@@ -4,9 +4,12 @@ import { faChevronRight, faArrowRightFromBracket } from '@fortawesome/free-solid
 import { Menu, Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { ModalLogout } from './molecules.js';
+import { useAuth } from '../../context/UserAuthContext.js';
 
 export default function DropdownProfile() {
     const [openModal, setOpenModal] = useState(false)
+
+    const {currentuser} = useAuth()
 
   return (
     <div>
@@ -15,7 +18,7 @@ export default function DropdownProfile() {
         <Menu as="div" className='relative z-10'>
             {({open}) => (
                 <Fragment>
-                    <Menu.Button as="img" src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[1.25rem] h-[1.25rem] tablet:w-[35px] tablet:h-[35px] rounded-full object-cover cursor-pointer' />
+                    <Menu.Button as="img" src={currentuser?.photoURL} className='w-[1.25rem] h-[1.25rem] tablet:w-[35px] tablet:h-[35px] rounded-full object-cover cursor-pointer' />
 
                     <Transition 
                         show={open}
@@ -33,14 +36,14 @@ export default function DropdownProfile() {
                                     <div className={`group flex gap-[0.5rem] p-[0.5rem] items-center cursor-pointer
                                         ${active ? "bg-green-400" : ""}
                                     `}>
-                                        <img src='https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg' className='w-[2rem] w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
+                                        <img src={currentuser?.photoURL} className='w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
 
                                         {/* name and arrow*/}
                                         <div className='w-full flex justify-between items-center'>
                                             <div className='flex flex-col gap-[0.125rem]'>
                                                 <span className={`text-sm tablet:text-base font-normal laptop:font-medium
                                                     ${active ? "text-primary" : "text-mainBlack"}
-                                                `}>Sample Name</span>
+                                                `}>{currentuser?.displayName}</span>
 
                                                 <span className={`text-xs tablet:text-sm font-light laptop:font-normal
                                                     ${active ? "text-primary" : "text-fadeBlack"}

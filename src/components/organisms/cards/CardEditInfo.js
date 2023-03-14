@@ -8,7 +8,7 @@ const CardEditInfo = () => {
         <div className='sm:w-[440px] w-[340px] h-[538px] border-solid border-[1px] rounded-[5px] px-5 py-4 bg-[#FFFFFF]'>
             <div className='flex justify-between items-center'>
               <h1 className='text-[16px] font-[600] text-[#000000]'>Edit Info</h1>
-              <FontAwesomeIcon icon={faXmark} className='text-[16px] font-[500] text-[#949494]'/>
+              <FontAwesomeIcon icon={faXmark} className='text-[16px] font-[500] text-[#949494] cursor-pointer'/>
             </div>
             <div className='py-5'>
               <div className='flex justify-center pb-2'>

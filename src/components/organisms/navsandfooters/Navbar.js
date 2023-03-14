@@ -13,10 +13,10 @@ const Navbar = () => {
     <nav className='w-full relative'>
       <div className='flex justify-center bg-secondary'> 
         <div className='max-w-[80rem] w-full flex justify-between p-[1rem]'> 
-          <div className='flex flex-row items-center'>
+          <Link to='/discover'><div className='flex flex-row items-center gap-1'>
           <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FNewLogoPrimary.png?alt=media&token=177edd6d-7543-4fc2-9cce-d39f3a5218a6" className='w-[1rem] tablet:w-[1.5rem] ml-1' />
               <h4 className='text-primary text-base tablet:text-2xl font-[500] mx-1'>ReciFil</h4>
-          </div>
+          </div></Link>
           <div className='flex flex-row items-center gap-[1rem]'>
               <FontAwesomeIcon icon={faBell} className=' text-primary text-base tablet:text-2xl cursor-pointer' />
 

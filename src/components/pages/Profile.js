@@ -6,8 +6,12 @@ import { faHeart, faBasketShopping, faGear } from '@fortawesome/free-solid-svg-i
 import CreatePost from '../../assets/create-post.png'
 import { CardPost, Navbar } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/UserAuthContext';
 
 const Profile = () => {
+
+    const {currentuser} = useAuth()
+
   return (
     <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -18,7 +22,7 @@ const Profile = () => {
                 <div className='flex flex-col sm:flex-row laptop:flex-col p-[1rem] w-full laptop:max-w-[14.5rem] gap-[0.5rem] sm:gap-[1rem] laptop:gap-[0.5rem] bg-bgColorTwo rounded-t-md'>
                     {/* picture */}
                     <div className='max-w-[12.5rem] w-full h-[12.5rem]'>
-                        <img  src='https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg' className='w-full h-full object-cover border border-2 border-secondary'></img>
+                        <img  src={currentuser?.photoURL} className='w-full h-full object-cover border-2 border-secondary'></img>
                     </div>
 
                     {/* name, total posts, and option list */}
@@ -27,7 +31,7 @@ const Profile = () => {
                         <div className='flex flex-col gap-[0.125rem] tablet:gap-[0.25rem]'>
                             {/* name */}
                             <div className='flex justify-between items-start'>
-                                <span className='text-base font-normal tablet:font-medium text-primary'>Sample Name</span>
+                                <span className='text-base font-normal tablet:font-medium text-primary'>{currentuser?.displayName}</span>
 
                                 <FontAwesomeIcon icon={faPenToSquare} className='text-primary text-xs'/>
                             </div>

@@ -9,6 +9,7 @@ import Discover from "./Discover";
 import RecipeProcess from "./RecipeProcess";
 import Profile from "./Profile";
 import Verify from "./Verify";
+import UploadImg from "./UploadImg";
 
 
 export {
@@ -22,5 +23,6 @@ export {
   Discover,
   RecipeProcess,
   Profile,
-  Verify
+  Verify,
+  UploadImg
 };
