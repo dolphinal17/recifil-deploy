@@ -93,13 +93,13 @@ const Basket = () => {
           </div>
 
           {/* suggestions section */}
-          <div className='col-gap-1 py-[1rem] sm:py-[2rem] px-[1rem] bg-primary rounded-b-md sm:rounded-r-md'>
+          <div className='col-gap-1 py-[1rem] sm:py-[2rem] px-[1rem] laptop:px-[0.5rem] bg-primary rounded-b-md sm:rounded-r-md'>
             <div className='flex flex-col items-center gap-[1rem]'>
               <div className='p-[0.5rem] bg-bgColorTwo rounded-md'>
                 <label className='text-sm font-normal tablet:font-medium text-secondary'>Recipe Suggestions</label>
               </div>
 
-              <div className='grid laptop:grid-cols-2 gap-[1rem]'>
+              <div className='grid laptop:grid-cols-2 gap-[1rem] laptop:gap-[0.5rem] desktop:gap-[1rem]'>
                 <RecipeCard
                   image="https://i.pinimg.com/564x/1f/5b/4c/1f5b4c2eb24b952adb26c7a11ced40d0.jpg"
                   name="Bulalo"

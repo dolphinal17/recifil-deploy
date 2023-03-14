@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Discimg from '../organisms/others/DiscImgWText'
 import styles from '../../style';
-import { RecipeCard, Navbar, DiscImgWText } from '../organisms/organisms.js'
+import { RecipeCard, Navbar, DiscImgWText, CarouselRecipe } from '../organisms/organisms.js'
 import { collection, query, getDocs, limit } from 'firebase/firestore'
 import { db } from '../../config/firebase';
 import { Link } from 'react-router-dom';
@@ -45,7 +45,7 @@ const Discover = () => {
             </div>
 
             {/* recipes */}
-            <div className='w-full flex flex-wrap gap-[0.5rem] tablet:gap-[2rem] justify-center'>
+            {/* <div className='w-full flex flex-wrap gap-[0.5rem] tablet:gap-[2rem] justify-center'>
                 {
                     info.map((val, id) => {
                         return(
@@ -59,7 +59,9 @@ const Discover = () => {
                         )
                     })
                 }
-            </div>
+            </div> */}
+            <CarouselRecipe />
+            
           </div>
           
           {/* <div className='w-full tablet:px-[0.5rem] laptop:px-0 grid sm:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center'>

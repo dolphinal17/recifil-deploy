@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { BtnLogout } from '../../atoms/atoms.js';
 import DropdownProfile from '../../molecules/DropdownProfile.js';
 
 
@@ -10,7 +9,7 @@ import DropdownProfile from '../../molecules/DropdownProfile.js';
 const Navbar = () => {
 
   return (
-    <nav className='w-full relative'>
+    <nav className='w-full fixed top-0 z-10'>
       <div className='flex justify-center bg-secondary'> 
         <div className='max-w-[80rem] w-full flex justify-between p-[1rem]'> 
           <Link to='/discover'><div className='flex flex-row items-center gap-1'>

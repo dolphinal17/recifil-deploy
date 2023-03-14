@@ -5,8 +5,8 @@ import { faHeart} from '@fortawesome/free-regular-svg-icons'
 
 export default function RecipeCard( {image, name} ) {
   return (
-    <div className='max-w-[14.5rem] w-full h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
-        <div className='max-w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
+    <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+        <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
             <img src={image} className='w-full h-full rounded-t-md object-cover'></img>
         </div>
 
