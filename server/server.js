@@ -4,6 +4,7 @@ const rootrouter = require ('./routes/controller/CRUD-UserAccount');
 const UserPost = require ('./routes/controller/User-post');
 const uploadImg = require ('./routes/controller/upload-img')
 const SignUp = require ('./routes/controller/Signup-Auth')
+const tryUploadImg = require ('./routes/controller/UserPost_Img')
 
 //Middleware
 const app = express()
@@ -20,5 +21,6 @@ app.listen(PORT, () => {
     app.use('/postrecipe',UserPost.PostRecipe)
     app.use('/user/UploadProfile',uploadImg.ImgController)
     app.use('/user/signup',SignUp.UserAccount)
+    app.use('/tryupload', tryUploadImg.ImgTrial)
     console.log('Server running in the Port: ' + PORT)
 })
