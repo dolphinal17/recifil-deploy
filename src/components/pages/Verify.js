@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { useAuth } from '../../context/UserAuthContext'
 import {sendEmailVerification} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
-import { auth } from '../../config/firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMailBulk } from '@fortawesome/free-solid-svg-icons'
 
@@ -24,7 +23,7 @@ function Verify() {
       })
       .catch((err) => {
         // alert(err.message)
-        logout()
+        logout();
         navigate('/signup')
       })
     }, 1000)
@@ -60,15 +59,15 @@ function Verify() {
           <span className='text-[#B2D33D] font-[600] text-[1.2rem]'>{currentuser?.email}</span>
         </p>
         <span className='text-gray-500 mt-[2rem]'>Follow the instruction in the email to verify your account</span>
-        {time == 0 ? (
+        {time === 0 ? (
         <button
-          disabled={disables==true}  
+          disabled={disables===true}  
           onClick={resendEmailVerification}
           className='w-[8rem] bg-[#B2D33D] text-white p-[0.8rem] mt-[1rem] rounded-lg'
         >Resend Email </button>
         ) : (
         <button
-          disabled={disables==true}  
+          disabled={disables===true}  
           onClick={resendEmailVerification}
           className='w-[10rem] bg-[#cae178] text-white p-[0.8rem] mt-[1rem] rounded-lg'
         >Resend Email: {time}</button>

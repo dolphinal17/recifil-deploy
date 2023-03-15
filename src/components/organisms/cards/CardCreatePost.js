@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark} from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+
 
 
 const CardCreatePost = ( { open, onClose } ) => {
@@ -23,7 +23,7 @@ const CardCreatePost = ( { open, onClose } ) => {
 
             <div className='pb-2 flex justify-between items-center'>
                 <input type="text" placeholder='Recipe name' className='placeholder-[#949494] text-[14px] font-[500] border-b border-[#949494] focus:outline-none '></input>
-                <img src="https://cdn-icons-png.flaticon.com/512/685/685685.png" className='w-[57px] h-[57px]' />
+                <img src="https://cdn-icons-png.flaticon.com/512/685/685685.png" alt='recipe' className='w-[57px] h-[57px]' />
             </div>
 
             <div className='sm:w-[60%] w-[80%] mt-[15px]'>

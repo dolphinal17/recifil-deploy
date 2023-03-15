@@ -1,9 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import Discimg from '../organisms/others/DiscImgWText'
+import React from 'react';
 import styles from '../../style';
-import { RecipeCard, Navbar, DiscImgWText, CarouselRecipe } from '../organisms/organisms.js'
-import { collection, query, getDocs, limit } from 'firebase/firestore'
-import { db } from '../../config/firebase';
+import { Navbar, DiscImgWText, CarouselRecipe } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom';
 
 
@@ -11,22 +8,22 @@ import { Link } from 'react-router-dom';
 
 const Discover = () => {
 
-  const [info , setInfo] = useState([]);
+  // const [info , setInfo] = useState([]);
 
-    const RecipeData = async () => {
-        const q = query(collection(db, "recipes"), limit(4));
+  //   const RecipeData = async () => {
+  //       const q = query(collection(db, "recipes"), limit(4));
 
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id:doc.id,
-        }));
-        setInfo(data);
-    };
+  //       const querySnapshot = await getDocs(q);
+  //       const data = querySnapshot.docs.map((doc) => ({
+  //           ...doc.data(),
+  //           id:doc.id,
+  //       }));
+  //       setInfo(data);
+  //   };
 
-    useEffect(() => {
-        RecipeData();
-    }, []);
+  //   useEffect(() => {
+  //       RecipeData();
+  //   }, []);
 
   return (
     <div>

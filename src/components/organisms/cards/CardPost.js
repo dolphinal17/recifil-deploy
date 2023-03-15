@@ -7,7 +7,7 @@ export default function CardPost( {usersName, about, recipeName, usersImage, rec
   return (
     <div className='w-full max-w-[47.5rem] min-h-[15.875rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
         <div className='col-span-1 w-full h-[15.875rem] bg-textFadeBlack'>
-            <img src={recipeImage} className='w-full h-full object-cover'></img>
+            <img src={recipeImage} alt='recipeimg' className='w-full h-full object-cover'></img>
         </div>
 
         <div className='col-span-1 sm:col-span-2 w-full p-[1rem]'>
@@ -17,7 +17,7 @@ export default function CardPost( {usersName, about, recipeName, usersImage, rec
                     {/* user's profile */}
                     <div className='flex items-center gap-[0.5rem]'>
                         <div className='w-[3rem] h-[3rem] rounded-full'>
-                            <img src={usersImage} className='w-full h-full object-cover rounded-full'></img>
+                            <img src={usersImage} alt='userimg' className='w-full h-full object-cover rounded-full'></img>
                         </div>
 
                         <label className='text-sm font-medium text-textMainBlack'>{usersName}</label>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { BtnLS } from '../../atoms/atoms.js'
 import { InputBox } from '../../molecules/molecules.js'
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons'
@@ -36,7 +36,7 @@ export default function LoginForm() {
     const SubmitHandler = async (e) => {
       e.preventDefault()
       const { email, password } = user
-      if (email == "" || password == "") {
+      if (email === "" || password === "") {
         setInterval(() => {
           setError("")
         }, 5000)
@@ -57,13 +57,13 @@ export default function LoginForm() {
         
       } catch (error) {
   
-        if (error.code == "auth/user-not-found") {
+        if (error.code === "auth/user-not-found") {
           setInterval(() => {
             setError("")
           }, 5000)
           return setError("User Not Found")
         }
-        else if (error.code == "auth/wrong-password") {
+        else if (error.code === "auth/wrong-password") {
           setInterval(() => {
             setError("")
           }, 5000)

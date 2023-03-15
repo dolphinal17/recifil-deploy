@@ -4,7 +4,7 @@ import { Navbar } from '../organisms.js'
 import { BtnServing, PreLoader } from '../../atoms/atoms.js'
 import { SearchBarWBG } from '../../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faCircleInfo } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../config/firebase'
@@ -48,7 +48,7 @@ const CardRecipesView = () => {
                     {/* recipe image, author, name, ratings, heart, about */}
                     <div className='flex flex-col gap-[0.5rem] sm:flex-row sm:gap-[1rem]'>
                         {/* recipe image */}
-                        <img src={info.image} className='flex-none w-[14rem] h-[14rem] object-cover border-4 border-secondary rounded-md'></img>
+                        <img src={info.image} alt='recipeimg' className='flex-none w-[14rem] h-[14rem] object-cover border-4 border-secondary rounded-md'></img>
                     
 
                         {/* recipe author, name, ratings and about */}

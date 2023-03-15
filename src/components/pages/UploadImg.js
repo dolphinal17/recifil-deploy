@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark} from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../../context/UserAuthContext'
 import { upload } from '../../config/firebase'
 import { Link } from 'react-router-dom'
@@ -40,7 +38,7 @@ const UploadImg = () => {
             </div>
             <div className='py-5'>
               <div className='flex justify-center pb-2'>
-                <img alt='Profile Image' src={photoURL} className='w-[150px] h-[150px] rounded-[50%]'/>
+                <img alt='profileimg' src={photoURL} className='w-[150px] h-[150px] rounded-[50%]'/>
               </div>
               <div className='flex justify-center'>
                 <input className='my-5 border-[1px] border-solid border-black' type="file" onChange={handleChange} />

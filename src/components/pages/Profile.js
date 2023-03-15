@@ -22,7 +22,7 @@ const Profile = () => {
                 <div className='flex flex-col sm:flex-row laptop:flex-col p-[1rem] w-full laptop:max-w-[14.5rem] gap-[0.5rem] sm:gap-[1rem] laptop:gap-[0.5rem] bg-bgColorTwo rounded-t-md'>
                     {/* picture */}
                     <div className='max-w-[12.5rem] w-full h-[12.5rem]'>
-                        <img  src={currentuser?.photoURL} className='w-full h-full object-cover border-2 border-secondary'></img>
+                        <img  src={currentuser?.photoURL} alt='profileimg' className='w-full h-full object-cover border-2 border-secondary'></img>
                     </div>
 
                     {/* name, total posts, and option list */}
@@ -56,7 +56,7 @@ const Profile = () => {
                     <div className='flex justify-between items-center px-[1rem] laptop:px-0'>
                         <span className='text-sm font-normal tablet:font-medium text-mainBlack'>All Post</span>
 
-                       <button className='p-[0.5rem] text-sm font-normal tablet:font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'><img src={CreatePost} className='w-[0.875rem]'></img>Create New</button> 
+                       <button className='p-[0.5rem] text-sm font-normal tablet:font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'><img src={CreatePost} alt='postimg' className='w-[0.875rem]'></img>Create New</button> 
                     </div>
 
                     {/* posts */}

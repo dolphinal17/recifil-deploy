@@ -1,6 +1,5 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
 export default function PreLoader() {
   return (
     <div className='h-screen w-full flex justify-center items-center bg-primary relative'>

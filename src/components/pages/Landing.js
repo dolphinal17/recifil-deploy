@@ -1,20 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from '../../style'
 import { LandingNavbar, LandingFooter } from '../organisms/organisms.js'
-import Image1 from '../../assets/image1.png'
-import { useAuth } from '../../context/UserAuthContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Landing = () => {
-
-  const {currentuser} = useAuth()
-  const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   if (currentuser) {
-  //     navigate('/discover');
-  //   }
-  // }, [currentuser, navigate]);
 
   return (
     <div className={`${styles.boxWidth}`}>
@@ -29,7 +18,7 @@ const Landing = () => {
             </div>
 
             <div className='m-auto'>
-              <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FLandingImage.png?alt=media&token=4d4d6341-1804-400b-8589-810980dbdcc1" className='w-[12rem] tablet:w-[16rem]'/>
+              <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FLandingImage.png?alt=media&token=4d4d6341-1804-400b-8589-810980dbdcc1" alt='landingimg' className='w-[12rem] tablet:w-[16rem]'/>
             </div>
           </div>
 
@@ -64,7 +53,7 @@ const Landing = () => {
           <div className='desktop:w-full w-[90%] sm:min-h-[512px] min-h-auto bg-primary border rounded-[32px] grid sm:grid-cols-2 m-auto items-center py-4'>
               <div className='col-span-1 flex justify-center items-center'>
                   <div className='laptop:w-[25rem] sm:w-[15rem] w-[18rem] laptop:h-[25rem] sm:h-[15rem] h-[13rem]'>
-                  <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat-1.png?alt=media&token=7f231bea-4a52-4a2f-8ff7-5386eca379ef" className='w-full h-full object-cover rounded-[2rem]'/>
+                  <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat-1.png?alt=media&token=7f231bea-4a52-4a2f-8ff7-5386eca379ef" alt='landingimg' className='w-full h-full object-cover rounded-[2rem]'/>
                   </div>
               </div>
               <div className='col-span-1 p-[2rem]'>
@@ -84,7 +73,7 @@ const Landing = () => {
               {/* </div> */}
               <div className='col-span-1 flex justify-center items-center'>
                   <div className='laptop:w-[25rem] sm:w-[15rem] w-[18rem] laptop:h-[25rem] sm:h-[15rem] h-[13rem]'>
-                      <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat2.png?alt=media&token=138bda65-7295-4481-85e5-f110a54c54c7' className='w-full h-full object-cover rounded-[2rem]'/>
+                      <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat2.png?alt=media&token=138bda65-7295-4481-85e5-f110a54c54c7' alt='landingimg' className='w-full h-full object-cover rounded-[2rem]'/>
                   </div>
               </div>
           </div>
@@ -94,7 +83,7 @@ const Landing = () => {
           <div className='desktop:w-full w-[90%] sm:min-h-[512px] min-h-auto bg-primary border rounded-[32px] grid sm:grid-cols-2 m-auto items-center py-4'>
             <div className='col-span-1 flex justify-center items-center'>
                 <div className='laptop:w-[25rem] sm:w-[15rem] w-[18rem] laptop:h-[25rem] sm:h-[15rem] h-[13rem]'>
-                    <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat3.png?alt=media&token=a451018c-0523-49b8-a17d-4b7c82e7d4ac' className='w-full h-full object-cover rounded-[2rem]'/>
+                    <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat3.png?alt=media&token=a451018c-0523-49b8-a17d-4b7c82e7d4ac' alt='landingimg' className='w-full h-full object-cover rounded-[2rem]'/>
                 </div>
             </div>
             <div>

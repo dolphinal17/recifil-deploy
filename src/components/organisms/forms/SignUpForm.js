@@ -48,7 +48,7 @@ export default function SignUpForm() {
     const SubmitHandler = async (e) => {
         e.preventDefault()
         const { email, password, confirmPassword, firstname, lastname} = user
-        if (password == "" || confirmPassword == "" || email == "" || firstname == "" || lastname == "") {
+        if (password === "" || confirmPassword === "" || email === "" || firstname === "" || lastname === "") {
             setInterval(() => {
                 setError("")
             }, 5000)

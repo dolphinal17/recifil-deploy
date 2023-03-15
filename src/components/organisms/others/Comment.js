@@ -16,7 +16,7 @@ const Comment = () => {
         {/* comments */}
         <div className='flex flex-col gap-[0.5rem]'> 
           <div className='flex justify-start items-start gap-[0.5rem]'>
-            <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[2rem] h-[2rem] rounded-full object-cover'/>
+            <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" alt='userimg' className='w-[2rem] h-[2rem] rounded-full object-cover'/>
 
             <div className='w-full flex flex-col p-[0.5rem] rounded-sm bg-bgColor gap-[0.25rem]'>
               <span className='text-sm font-light laptop:font-normal text-mainBlack'>Sample Name</span>
@@ -32,7 +32,7 @@ const Comment = () => {
 
       {/* users input */}
       <div className='flex items-center gap-[0.5rem] px-[1rem] py-[0.5rem]'>
-        <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" className='w-[3rem] h-[3rem] rounded-full object-cover'/>
+        <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" alt='userimg' className='w-[3rem] h-[3rem] rounded-full object-cover'/>
 
         <input placeholder='Add a comment' className='text-sm font-light laptop:font-normal text-mainBlack outline-none'></input>
       </div>

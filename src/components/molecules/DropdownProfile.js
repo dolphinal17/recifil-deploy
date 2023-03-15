@@ -36,7 +36,7 @@ export default function DropdownProfile() {
                                     <div className={`group flex gap-[0.5rem] p-[0.5rem] items-center cursor-pointer
                                         ${active ? "bg-green-400" : ""}
                                     `}>
-                                        <img src={currentuser?.photoURL} className='w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
+                                        <img src={currentuser?.photoURL} alt='profileimg' className='w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
 
                                         {/* name and arrow*/}
                                         <div className='w-full flex justify-between items-center'>

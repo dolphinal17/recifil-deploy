@@ -8,9 +8,10 @@ import { auth } from './config/firebase';
 
 // here to import components like pages
 import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg} from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, CarouselRecipe, ForgotPassword} from './components/organisms/organisms.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, ForgotPassword} from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
+
 
 function App() {
 
@@ -172,16 +173,6 @@ function App() {
                 </WithPrivateRoute>
               }
             />
-
-            {/* <Route
-              exact
-              path="/carousel"
-              element={
-                <WithPrivateRoute>
-                  <CarouselRecipe /> 
-                </WithPrivateRoute>
-              }
-            /> */}
 
             
             <Route path="loadings" element={<PreLoader />} />

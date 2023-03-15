@@ -4,7 +4,7 @@ import styles from '../../../style'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { BtnServing } from '../../atoms/atoms.js'
+
 
 function CardRecipeView() {
   return (
@@ -16,7 +16,7 @@ function CardRecipeView() {
                     <div className='w-[22rem] h-[2.188rem] p-6'>
                     <SearchBarWBG />
                         <div className='flex'>                         
-                            <img src='https://yummykitchentv.com/wp-content/uploads/2022/10/nilagang-baboy.jpg' className='w-[14rem] h-[14rem] border-solid border-[#B2D33D] border-[0.25rem] mt-4'></img>
+                            <img src='https://yummykitchentv.com/wp-content/uploads/2022/10/nilagang-baboy.jpg' alt='recipeimg' className='w-[14rem] h-[14rem] border-solid border-[#B2D33D] border-[0.25rem] mt-4'></img>
 
                             <div className='mx-6 py-3'>
                                 <p className='w-[3.875] h-[1.125rem] text-[0.875rem] font-medium text-secondary'>From App</p>

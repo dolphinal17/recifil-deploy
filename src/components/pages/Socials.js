@@ -16,7 +16,7 @@ function Socials() {
                 {/* post section */}
                 <div className='max-w-[47.5rem] w-full'>
                     <div className='w-full flex flex-col items-center laptop:items-start'>
-                       <button onClick={() => setOpenModal(true)} className='p-[0.5rem] text-sm font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] mb-[1rem]'><img src={CreatePost} className='w-[0.875rem]'></img>Create New</button>
+                       <button onClick={() => setOpenModal(true)} className='p-[0.5rem] text-sm font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] mb-[1rem]'><img src={CreatePost} alt='post' className='w-[0.875rem]'></img>Create New</button>
                     </div>
 
                     {/* posts */}
