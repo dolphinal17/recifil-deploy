@@ -12,6 +12,7 @@ import { CardCreatePost, CardEditInfo, CardRecipesView, UploadImage} from './com
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 import { ModalAccountSuccess } from './components/molecules/molecules';
+import Post from './components/postdemos/Post';
 
 
 
@@ -97,7 +98,7 @@ function App() {
               path="/socials"
               element={
                 <WithPrivateRoute>
-                  <Socials />
+                  <Post />
                 </WithPrivateRoute>
               }
             />
@@ -191,6 +192,8 @@ function App() {
                 </WithPrivateRoute>
               }
             />
+
+            {/* <Route path='/postlmao' element={<Post/>} /> */}
 
             <Route path='/success' element={<ModalAccountSuccess/>} />
             <Route path="/loadings" element={<PreLoader />} />

@@ -1,21 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from '../../style'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faBasketShopping, faGear } from '@fortawesome/free-solid-svg-icons';
 import CreatePost from '../../assets/create-post.png'
-import { CardPost, Navbar } from '../organisms/organisms.js'
+import { CardCreatePost, CardPost, Navbar } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/UserAuthContext';
+
 
 const Profile = () => {
 
     const {currentuser} = useAuth()
+    const [openModal, setOpenModal] = useState(false)
 
   return (
     <div className={`${styles.boxWidth}`}>
         <Navbar />
-
+        <CardCreatePost open={openModal} onClose={() => setOpenModal(false)}/>
         <div className={`${styles.container}`}>
             <div className='w-full flex flex-col laptop:flex-row gap-[1rem] laptop:gap-[2rem]'>
                 {/* user's profile */}
@@ -56,7 +58,9 @@ const Profile = () => {
                     <div className='flex justify-between items-center px-[1rem] laptop:px-0'>
                         <span className='text-sm font-normal tablet:font-medium text-mainBlack'>All Post</span>
 
-                       <button className='p-[0.5rem] text-sm font-normal tablet:font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'><img src={CreatePost} alt='postimg' className='w-[0.875rem]'></img>Create New</button> 
+                        
+                        <button onClick={() => setOpenModal(true)} className='p-[0.5rem] text-sm font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] mb-[1rem]'><img src={CreatePost} alt='post' className='w-[0.875rem]'></img>Create New</button>
+                        
                     </div>
 
                     {/* posts */}
