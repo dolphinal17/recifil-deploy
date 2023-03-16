@@ -1,0 +1,11 @@
+This what you need to install to run this server
+-npm i express
+-npm i body-parser
+-npm install nodemon
+-Download Postman app
+-npm install --save express-validator
+
+for database
+-npm install firebase
+-npm i cors
+-npm install firebase-admin --save
