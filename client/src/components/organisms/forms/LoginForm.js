@@ -47,7 +47,7 @@ export default function LoginForm() {
           if(!currentuser?.emailVerified) {
             sendEmailVerification(currentuser)
             .then(() => {
-              navigate('/verify')
+              navigate('/emailverification')
             })
           // .catch(err => alert(err.message))
         }else{

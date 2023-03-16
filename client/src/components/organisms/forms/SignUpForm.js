@@ -89,7 +89,7 @@ export default function SignUpForm() {
                     photoURL:''
                 }).then(() => {
                     sendEmailVerification(auth.currentUser)
-                    navigate('/verify')
+                    navigate('/emailverification')
                 })
             })
 
