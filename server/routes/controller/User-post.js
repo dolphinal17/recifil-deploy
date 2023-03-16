@@ -3,7 +3,8 @@ const { req, res, Router } = require('express');
 const User_PostRecipe = require ('../../schema/UserPostRecipe')
 
 // //For database
-const { db } = require ('../../firebase/index')
+const { db } = require ('../../firebase/index');
+const { body } = require('express-validator');
 
 
 
@@ -14,24 +15,28 @@ UserPost.post('/',
 async (req, res) => {
         
   try{
-    console.log("Hello World");
+    console.log("Userpost Success");
     const UserJson= {
           RecipeName: req.body.RecipeName,
           RecipeAbout: req.body.RecipeAbout,
-          RecipeIngredients: req.body.RecipeIngredients,
-          RecipeProcess: req.body.RecipeProcess
+          Main_Ingredients:req.body.Main_Ingredients,
+          Category:req.body.Category,
+          Ingredients:req.body.Ingredients,
+          Measurements:req.body.Measurements,
+          Status: ("Status") != true
     }
     const rp = req.body.RecipeProcess;
     console.log(UserJson);
-
-    const response = await db.collection("UserPost").add(UserJson);
-    res.sendStatus(201);
+    console.log(Ingredients, Measurements);
+    const response = await db.collection("UserPost").add(UserJson).doc('Ingredients_map').set({
+      Ingredients: req.body.Ingredients,
+      Measurements: req.body.Measurements
+    });
+    res.send(UserJson);
   }
   catch(error){
     res.send(error)
   }
-
-
 })
 UserPost.get('/getpost',
 async (req, res) => {
