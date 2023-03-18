@@ -30,6 +30,8 @@ async (req, res) => {
           },
           Recipe_Process: req.body.Recipe_Process,
           Status: ("Status") != true,
+          Comment: null,
+          favorite: null,
           timestamp: date
     }
     console.log(UserJson);
