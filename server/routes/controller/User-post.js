@@ -1,34 +1,38 @@
-
-const { req, res, Router, response } = require('express');
-const User_PostRecipe = require ('../../schema/UserPostRecipe');
-const multer = require('multer');
+const admin = require ('firebase-admin')
+const { req, res, Router } = require('express');
+const User_PostRecipe = require ('../../schema/UserPostRecipe')
 
 // //For database
 const { db } = require ('../../firebase/index');
 const { body } = require('express-validator');
 
 
-const upload = multer();
+
 const UserPost = Router();
 
 
-UserPost.post('/',upload.none(),
+UserPost.post('/',
 async (req, res) => {
-        
+  const now = new Date();
+  const timestamp =  admin.firestore.Timestamp.now();
+  const date = timestamp.toDate();
   try{
     console.log("Userpost Success");
-;
     const UserJson= {
           RecipeName: req.body.RecipeName,
           RecipeAbout: req.body.RecipeAbout,
           Main_Ingredients:req.body.Main_Ingredients,
           Category:req.body.Category,
-          Ingredients_map: {
-          Ingredients : req.body.Ingredients, 
-          Measurements: req.body.Measurements
+          Ingredients_map:
+          {
+          Ingredients:req.body.Ingredients,
+          Measurements:req.body.Measurements,
           },
-          Status: ("Status") == false
+          Recipe_Process: req.body.Recipe_Process,
+          Status: ("Status") != true,
+          timestamp: date
     }
+    console.log(UserJson);
     const response = await db.collection("UserPost").add(UserJson);
     res.send(UserJson);
   }
@@ -38,26 +42,7 @@ async (req, res) => {
 })
 UserPost.get('/getpost',
 async (req, res) => {
-        // try {
-        //   const docRef = await db.collection('UserPost').doc('t6PSDo8FcCg3eLBtHDIi');
-
-        //     docRef.get().then((doc) => {
-        //       if (doc.exists) {
-        //         const Ingredients_map = doc.data().Ingredients_map;
-        //         const Ingredients = doc.data().Ingredients_map.Ingredients;
-        //         const Measurements = doc.data().Ingredients_map.Measurements;
-        //              console.log(`Ingredients: ${[Ingredients]}`);
-        //              console.log(`Mesurements: ${[Measurements]}`);
-        //             res.send(Ingredients_map);
-        //       } else {
-        //        console.log('No such document!');
-        //        }
-        //   })
-        // }
-        //   catch(error){
-        //      console.log('Error getting document:', error);
-        //       }
-            
+        
   try {
     const UserPost = db.collection("UserPost");
     const response = await UserPost.get();
@@ -72,6 +57,8 @@ async (req, res) => {
   catch(error){
     res.send(error)
   }
+
+
 })
 
 
