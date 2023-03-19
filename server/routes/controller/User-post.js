@@ -1,6 +1,6 @@
 const admin = require ('firebase-admin')
 const { req, res, Router } = require('express');
-const User_PostRecipe = require ('../../schema/UserPostRecipe')
+// const User_PostRecipe = require ('../../schema/UserPostRecipe')
 
 // //For database
 const { db } = require ('../../firebase/index');
@@ -33,7 +33,8 @@ async (req, res) => {
           Comment: null,
           favorite: null,
           timestamp: date,
-          Time: req.body.Time
+          Time: req.body.Time,
+          ImgUrl: req.body.ImgUrl
     }
     console.log(UserJson);
     const response = await db.collection("UserPost").add(UserJson);
