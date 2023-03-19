@@ -32,7 +32,8 @@ async (req, res) => {
           Status: ("Status") != true,
           Comment: null,
           favorite: null,
-          timestamp: date
+          timestamp: date,
+          Time: req.body.Time
     }
     console.log(UserJson);
     const response = await db.collection("UserPost").add(UserJson);
