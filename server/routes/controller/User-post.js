@@ -1,6 +1,6 @@
-
+const admin = require ('firebase-admin')
 const { req, res, Router } = require('express');
-const User_PostRecipe = require ('../../schema/UserPostRecipe')
+// const User_PostRecipe = require ('../../schema/UserPostRecipe')
 
 // //For database
 const { db } = require ('../../firebase/index');
@@ -13,7 +13,9 @@ const UserPost = Router();
 
 UserPost.post('/',
 async (req, res) => {
-        
+  const now = new Date();
+  const timestamp =  admin.firestore.Timestamp.now();
+  const date = timestamp.toDate();
   try{
     console.log("Userpost Success");
     const UserJson= {
@@ -21,17 +23,26 @@ async (req, res) => {
           RecipeAbout: req.body.RecipeAbout,
           Main_Ingredients:req.body.Main_Ingredients,
           Category:req.body.Category,
+
+          Ingredients_map:
+          {
+          Ingredients:req.body.Ingredients,
+          Measurements:req.body.Measurements,
+          },
+          Recipe_Process: req.body.Recipe_Process,
+          Status: ("Status") != true,
+          Comment: null,
+          favorite: null,
+          timestamp: date,
+          Time: req.body.Time,
+          ImgUrl: req.body.ImgUrl
           Ingredients:req.body.Ingredients,
           Measurements:req.body.Measurements,
           Status: ("Status") != true
+
     }
-    const rp = req.body.RecipeProcess;
     console.log(UserJson);
-    console.log(Ingredients, Measurements);
-    const response = await db.collection("UserPost").add(UserJson).doc('Ingredients_map').set({
-      Ingredients: req.body.Ingredients,
-      Measurements: req.body.Measurements
-    });
+
     res.send(UserJson);
   }
   catch(error){

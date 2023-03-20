@@ -1,9 +1,10 @@
 const express= require ('express');
 const {res, req} = require ('express');
 const UserPost = require ('./routes/controller/User-post');
-const ProfileImg = require ('./routes/controller/upload-img')
-const SignUp = require ('./routes/controller/Signup-Auth')
-const tryUploadImg = require ('./routes/controller/UserPost_Img')
+const ProfileImg = require ('./routes/controller/upload-img');
+const SignUp = require ('./routes/controller/Signup-Auth');
+const tryUploadImg = require ('./routes/controller/UserPost_Img');
+const Basket = require ('./routes/controller/Basket-Filter')
 
 //Middleware
 const app = express()
@@ -20,5 +21,6 @@ app.listen(PORT, () => {
     app.use('/user/UploadProfile',ProfileImg.UploadImg);
     app.use('/user/signup',SignUp.UserAccount);
     app.use('/tryupload', tryUploadImg.ImgTrial);
+    app.use('/basketfilter', Basket.filter);
     console.log('Server running in the Port: ' + PORT);
 })

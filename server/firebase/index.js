@@ -7,7 +7,7 @@ const { getStorage } = require('firebase-admin/storage');
 require('dotenv').config()
 
 
-initializeApp({
+admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://recifil-default-rtdb.firebaseio.com",
     storageBucket: 'gs://recifil.appspot.com'
@@ -16,9 +16,10 @@ initializeApp({
 
 const db = getFirestore();
 const getst = getStorage();
+const firestore = admin.firestore();
 
 
 
 
 
-module.exports = { db , getst };
+module.exports = { db , getst, firestore};
