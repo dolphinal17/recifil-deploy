@@ -35,7 +35,7 @@ async (req, res) => {
           favorite: null,
           timestamp: date,
           Time: req.body.Time,
-          ImgUrl: req.body.ImgUrl
+          ImgUrl: req.body.ImgUrl,
           Ingredients:req.body.Ingredients,
           Measurements:req.body.Measurements,
           Status: ("Status") != true
