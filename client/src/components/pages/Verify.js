@@ -18,7 +18,7 @@ function Verify() {
       .then(() => {
         if(currentuser?.emailVerified){
           clearInterval(interval)
-          navigate('/discover')
+          navigate('/upload')
         }
       })
       .catch((err) => {

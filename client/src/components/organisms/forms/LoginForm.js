@@ -47,7 +47,7 @@ export default function LoginForm() {
           if(!currentuser?.emailVerified) {
             sendEmailVerification(currentuser)
             .then(() => {
-              navigate('/verify')
+              navigate('/emailverification')
             })
           // .catch(err => alert(err.message))
         }else{
@@ -62,6 +62,12 @@ export default function LoginForm() {
             setError("")
           }, 5000)
           return setError("User Not Found")
+        }
+        else if (error.code === "auth/invalid-email") {
+          setInterval(() => {
+            setError("")
+          }, 5000)
+          return setError("The email is not valid")
         }
         else if (error.code === "auth/wrong-password") {
           setInterval(() => {
@@ -93,7 +99,7 @@ export default function LoginForm() {
         <div className='flex flex-col gap-[1rem]'>
             {/* email */}
             <InputBox 
-                type="email"
+                type="text"
                 icon={faAt}
                 placeHolder="Enter your email or username"
                 value={user.email}

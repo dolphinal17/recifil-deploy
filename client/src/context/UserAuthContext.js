@@ -1,7 +1,8 @@
 import { useContext, createContext, useEffect, useState } from "react"
 
-import { AuthErrorCodes, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, sendEmailVerification } from 'firebase/auth'
+import {  createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
 import { auth } from "../config/firebase";
+
 
 
 
@@ -27,40 +28,45 @@ const UserAuthContext = ({ children }) => {
       })
     }, [currentuser]
   )
-  const SignUp = async (email, password, firstname, lastname) => {
-    setError("");
-    createUserWithEmailAndPassword(auth, email, password).then(
-      async (result) => {
-        console.log(result)
-        updateProfile(auth.currentUser, {
-          displayName: firstname + ' ' + lastname,
-          photoURL:''
-        }).then(() => {
-          sendEmailVerification(auth.currentUser)
-      }).catch((error) => {
-          const errorCode = error.code;
-        }) 
-      }
-    ).catch(err => {
-      if (err.code === "Email is already used. Please try another email.") {
 
-        setInterval(() => {
-          setError("")
-        }, 5000)
-        setError("Email is already used. Please try another email.")
-      }
-      else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+  // const SignUp = async (email, password, firstname, lastname) => {
+  //   setError("");
+  //   createUserWithEmailAndPassword(auth, email, password).then(
+  //     async (result) => {
+  //       console.log(result)
+  //       updateProfile(auth.currentUser, {
+  //         displayName: firstname + ' ' + lastname,
+  //         photoURL:''
+  //       }).then(() => {
+  //         sendEmailVerification(auth.currentUser)
+  //     }).catch((error) => {
+  //         const errorCode = error.code;
+  //       }) 
+  //     }
+  //   ).catch(error => {
+  //     if (error.code === "Email is already used. Please try another email.") {
 
-        setInterval(() => {
-          setError("")
-        }, 5000)
-        setError("Password must be 6 characters or more.")
-      }
+  //       setInterval(() => {
+  //         setError("")
+  //       }, 5000)
+  //       setError("Email is already used. Please try another email.")
+  //     }
+  //     else if (error.code === AuthErrorCodes.WEAK_PASSWORD) {
 
-      else {
-        setError(err.message)
-      }
-    })
+  //       setInterval(() => {
+  //         setError("")
+  //       }, 5000)
+  //       setError("Password must be 6 characters or more.")
+  //     }
+
+  //     else {
+  //       setError(error.message)
+  //     }
+  //   })
+  // }
+
+  const SignUp = async (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
   }
 
 

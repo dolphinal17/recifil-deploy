@@ -4,11 +4,12 @@ import { BtnLS } from '../../atoms/atoms.js'
 import { InputBox } from '../../molecules/molecules.js'
 import { useAuth } from '../../../context/UserAuthContext.js'
 import { Link, useNavigate } from 'react-router-dom'
+import { sendEmailVerification, updateProfile, AuthErrorCodes } from 'firebase/auth'
+import { auth } from '../../../config/firebase.js'
 
 export default function SignUpForm() {
     const navigate = useNavigate()
     const { error, SignUp, currentuser } = useAuth()
-
     const [err, setError] = useState("")
     const [backError, setBackError] = useState("")
     const [user, setUser] = useState({
@@ -18,6 +19,11 @@ export default function SignUpForm() {
         password: "",
         confirmPassword: ""
     })
+
+
+    const regex = /[^a-zA-Z\s]/g;
+
+
     useEffect(() => {
         console.log("i am in")
         if (error) {
@@ -60,25 +66,61 @@ export default function SignUpForm() {
             }, 5000)
             return setError("Password does not match!")
         }
-        else if (!password.length >= 6 || !confirmPassword.length >= 6) {
+        else if (regex.test(firstname) || regex.test(lastname)) {
             setInterval(() => {
                 setError("")
             }, 5000)
-            return setError("Password Length must be greater than 6!")
+            return setError("Firstname and Lastname should not include special characters and numbers!")
+        }
+        else if (firstname.length === 1 || lastname.length === 1) {
+            setInterval(() => {
+                setError("")
+            }, 5000)
+            return setError("Firstname and Lastname must be more than 1 character!")
         }
         else {
 
-            SignUp(email, password, firstname, lastname)
-            {
-                currentuser && setUser({
-                    firstname: "",
-                    lastname: "",
-                    email: "",
-                    password: "",
-                    confirmPassword: ""
+        try {
+            
+            await SignUp(email,password).then( async (result) => {
+                console.log(result)
+                updateProfile(auth.currentUser, {
+                    displayName: firstname+ ' '+lastname,
+                    photoURL:''
+                }).then(() => {
+                    sendEmailVerification(auth.currentUser)
+                    navigate('/emailverification')
                 })
+            })
+
+        } catch (err) {
+            if (err.code === "auth/email-already-in-use") {
+                setInterval(() => {
+                    setError("")
+                }, 5000)
+                setError("Email is already used. Please try another email.")
             }
-            navigate('/verify')
+            else if (err.code === "auth/invalid-email") {
+
+                setInterval(() => {
+                    setError("")
+                }, 5000)
+                setError("Email is not valid. Please try a valid email.")
+            }
+            else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+
+                setInterval(() => {
+                    setError("")
+                }, 5000)
+                setError("Password must be 6 characters or more!")
+            }
+
+            else {
+                setError(err.message)
+            }
+        } 
+           
+
         }
     }
 

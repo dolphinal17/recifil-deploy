@@ -23,6 +23,7 @@ async (req, res) => {
           RecipeAbout: req.body.RecipeAbout,
           Main_Ingredients:req.body.Main_Ingredients,
           Category:req.body.Category,
+
           Ingredients_map:
           {
           Ingredients:req.body.Ingredients,
@@ -35,9 +36,13 @@ async (req, res) => {
           timestamp: date,
           Time: req.body.Time,
           ImgUrl: req.body.ImgUrl
+          Ingredients:req.body.Ingredients,
+          Measurements:req.body.Measurements,
+          Status: ("Status") != true
+
     }
     console.log(UserJson);
-    const response = await db.collection("UserPost").add(UserJson);
+
     res.send(UserJson);
   }
   catch(error){

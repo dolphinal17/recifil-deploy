@@ -14,8 +14,9 @@ import CardRecipeView from "./cards/CardRecipeView";
 import CardRecipesView from "./cards/CardRecipesView";
 import DiscImgWText from "./others/DiscImgWText";
 import Comment from "./others/Comment";
-import ForgotPassword from "./forms/ForgotPassword";
 import CarouselRecipe from "./others/CarouselRecipe";
+import ForgotPasswordForm from "./forms/ForgotPasswordForm";
+import UploadImage from "./others/UploadImage";
 
 export {
     CardSuggRecipeBasket,
@@ -34,6 +35,7 @@ export {
     CardRecipesView,
     DiscImgWText,
     Comment,
-    ForgotPassword,
-    CarouselRecipe
+    ForgotPasswordForm,
+    CarouselRecipe,
+    UploadImage
 }

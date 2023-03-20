@@ -29,12 +29,12 @@ export default function DropdownProfile() {
                         leaveFrom='opacity-100 scale-100'
                         leaveTo='opacity-0 scale-95'
                     >
-                        <Menu.Items className='w-[12.5rem] tablet:w-[18.75rem] flex flex-col bg-primary rounded-sm shadow-lg absolute origin-top-right right-0 mt-2 ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                        <Menu.Items className='w-[12.5rem] tablet:w-[18.75rem] flex flex-col bg-zinc-50 rounded-sm shadow-lg absolute origin-top-right right-0 mt-2 ring-1 ring-black ring-opacity-5 focus:outline-none'>
                             {/* profile */}
                             <Link to="/profile"><Menu.Item>
                                 {({active}) => (
                                     <div className={`group flex gap-[0.5rem] p-[0.5rem] items-center cursor-pointer
-                                        ${active ? "bg-green-400" : ""}
+                                        ${active ? "bg-lime-500" : ""}
                                     `}>
                                         <img src={currentuser?.photoURL} alt='profileimg' className='w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
 
@@ -63,7 +63,7 @@ export default function DropdownProfile() {
                             <Menu.Item>
                                 {({active}) => (
                                     <div type='button' onClick={() => setOpenModal(true)} className={`group flex p-[0.5rem] items-center justify-end gap-[0.25rem] laptop:gap-[0.5rem] cursor-pointer
-                                        ${active ? "bg-green-400" : ""}
+                                        ${active ? "bg-lime-500" : ""}
                                     `}>
                                         <FontAwesomeIcon icon={faArrowRightFromBracket} className={`text-xs tablet:text-sm
                                             ${active ? "text-primary" : "text-secondary"}

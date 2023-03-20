@@ -5,6 +5,8 @@ import SearchBarWBG from "./SearchBarWBG";
 import { InputBox } from "./InputBox";
 import DropdownProfile from "./DropdownProfile";
 import ModalLogout from "./modals/ModalLogout";
+import EmailVerificationModal from "./modals/EmailVerificationModal";
+import ModalAccountSuccess from "./modals/ModalAccountSuccess";
 
 
 export {
@@ -14,5 +16,7 @@ export {
     SearchBarWBG,
     InputBox,
     DropdownProfile,
-    ModalLogout
+    ModalLogout,
+    EmailVerificationModal,
+    ModalAccountSuccess
 }

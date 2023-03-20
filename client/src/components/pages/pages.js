@@ -10,6 +10,8 @@ import RecipeProcess from "./RecipeProcess";
 import Profile from "./Profile";
 import Verify from "./Verify";
 import UploadImg from "./UploadImg";
+import ForgotPassword from "./ForgotPassword";
+import EmailVerification from "./EmailVerification";
 
 
 export {
@@ -24,5 +26,7 @@ export {
   RecipeProcess,
   Profile,
   Verify,
-  UploadImg
+  UploadImg,
+  ForgotPassword,
+  EmailVerification
 };

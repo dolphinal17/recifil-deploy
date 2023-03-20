@@ -7,10 +7,13 @@ import { auth } from './config/firebase';
 
 
 // here to import components like pages
-import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg} from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, ForgotPassword} from './components/organisms/organisms.js'
+import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg, ForgotPassword, EmailVerification} from './components/pages/pages.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, UploadImage} from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
+import { ModalAccountSuccess } from './components/molecules/molecules';
+import Post from './components/postdemos/Post';
+
 
 
 function App() {
@@ -40,11 +43,11 @@ function App() {
               : <Navigate to='/discover' replace/>
             } />
 
-            <Route path="/verify" element={
+            {/* <Route path="/verify" element={
               !currentuser?.emailVerified 
               ? <Verify />
               : <Navigate to='/discover' replace/>
-            } />  
+            } />   */}
 
             <Route path="/login" element={
               !currentuser?.emailVerified 
@@ -60,7 +63,13 @@ function App() {
 
             <Route path="/forgotpassword" element={
               !currentuser?.emailVerified 
-              ? <ForgotPassword/>
+              ? <ForgotPassword />
+              : <Navigate to='/discover' replace/>
+            } />
+
+            <Route path="/emailverification" element={
+              !currentuser?.emailVerified 
+              ? <EmailVerification />
               : <Navigate to='/discover' replace/>
             } />
 
@@ -89,7 +98,7 @@ function App() {
               path="/socials"
               element={
                 <WithPrivateRoute>
-                  <Socials />
+                  <Post />
                 </WithPrivateRoute>
               }
             />
@@ -164,7 +173,7 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               exact
               path="/upload"
               element={
@@ -172,10 +181,22 @@ function App() {
                   <UploadImg /> 
                 </WithPrivateRoute>
               }
+            /> */}
+
+            <Route
+              exact
+              path="/upload"
+              element={
+                <WithPrivateRoute>
+                  <UploadImage />
+                </WithPrivateRoute>
+              }
             />
 
-            
-            <Route path="loadings" element={<PreLoader />} />
+            {/* <Route path='/postlmao' element={<Post/>} /> */}
+
+            <Route path='/success' element={<ModalAccountSuccess/>} />
+            <Route path="/loadings" element={<PreLoader />} />
         </Routes>
       </div>
     </div> : <PreLoader />
