@@ -5,7 +5,9 @@ import { InputBox } from '../../molecules/molecules.js'
 import { useAuth } from '../../../context/UserAuthContext.js'
 import { Link, useNavigate } from 'react-router-dom'
 import { sendEmailVerification, updateProfile, AuthErrorCodes } from 'firebase/auth'
-import { auth } from '../../../config/firebase.js'
+import { auth, db } from '../../../config/firebase.js'
+import { doc, setDoc } from 'firebase/firestore'
+
 
 export default function SignUpForm() {
     const navigate = useNavigate()
@@ -84,6 +86,9 @@ export default function SignUpForm() {
             
             await SignUp(email,password).then( async (result) => {
                 console.log(result)
+                const ref = doc(db, "userinfo", auth.currentUser.uid)
+                const docRef = await setDoc(ref, { firstname, lastname })
+                // console.log("Document written with ID: ", docRef.uid);
                 updateProfile(auth.currentUser, {
                     displayName: firstname+ ' '+lastname,
                     photoURL:''

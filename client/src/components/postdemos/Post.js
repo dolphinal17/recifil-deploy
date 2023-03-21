@@ -14,6 +14,7 @@ import { CardPost, RecipeCard, Navbar, CardCreatePost } from '../organisms/organ
 import CreatePost from '../../assets/create-post.png'
 import { Link } from 'react-router-dom'
 import { db } from "../../config/firebase";
+import { useAuth } from "../../context/UserAuthContext";
 
 
 
@@ -21,9 +22,10 @@ import { db } from "../../config/firebase";
 function Post() {
     const [openModal, setOpenModal] = useState(false)
 
-
-    const [recipes, setRecipes] = useState([])
+  const {currentuser} = useAuth()
+  const [recipes, setRecipes] = useState([])
   const [form, setForm] = useState({
+    uid: "",
     title: "",
     desc: "",
     ingredients: [],
@@ -75,6 +77,7 @@ function Post() {
     addDoc(recipesCollectionRef, form)
 
     setForm({
+      uid: currentuser.id,
       title: "",
       desc: "",
       ingredients: [],
@@ -127,16 +130,16 @@ function Post() {
   return (
     <div className={`${styles.boxWidth}`}>
         <Navbar />
-        <div className={`${styles.container} relative`}>
+        <div className={`${styles.container} relative mb-[2rem]`}>
             <div className='w-full flex justify-between laptop:gap-[1.25rem] desktop:gap-[2rem] relative'>
                 {/* post section */}
-                <div className='max-w-[47.5rem] w-full mb-8'>
-                    <div className='w-full flex flex-col items-center laptop:items-start'>
+                <div className='max-w-[47.5rem] w-full'>
+                  <div className='w-full flex flex-col items-center laptop:items-start'>
                        <button onClick={() => setOpenModal(true)} className='p-[0.5rem] text-sm font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] mb-[1rem]'><img src={CreatePost} alt='post' className='w-[0.875rem]'></img>Create New</button>
                     </div>
 
                     {/* posts */}
-                    <div className='flex flex-row gap-[0.5rem] justify-items-center'>
+                    <div className='grid grid-cols-1 gap-[0.5rem] justify-items-center'>
                         {/* <CardPost 
                             usersName="Sample Name"
                             about="This is my about"
@@ -145,80 +148,63 @@ function Post() {
                             recipeImage="https://i.pinimg.com/236x/90/b7/c9/90b7c95b0112ecbcf8580e6abdffcdbe.jpg"
                         /> */}
 
-                        { recipes.map((recipe, i) => (
-                        <div className='w-full max-w-[25rem] h-auto sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)] ml-5 mt-6'>
-                                <div className='w-full h-auto bg-textFadeBlack'>
-                                    <img src="https://i.pinimg.com/236x/90/b7/c9/90b7c95b0112ecbcf8580e6abdffcdbe.jpg" alt='recipeimg' className='w-full h-[20rem] object-fill'></img>
-                                </div>
+                { recipes.map((recipe, i) => (
+                  <div className='w-full max-w-[47.5rem] h-[16rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={recipe.id}>
+                      <div className='col-span-1 w-full h-[16rem] bg-textFadeBlack'>
+                          <img src="https://i.pinimg.com/236x/90/b7/c9/90b7c95b0112ecbcf8580e6abdffcdbe.jpg" alt='recipeimg' className='w-full h-full object-cover'></img>
+                      </div>
 
-                                <div className='col-span-1 sm:col-span-2 w-full p-5' key={recipe.id}>
-                                    <div className='flex flex-col gap-[1rem] relative'>
-                                        {/* user profile and icon */}
-                                        <div className='flex justify-between items-center w-full'>
-                                            {/* user's profile */}
-                                            <div className='flex items-center gap-[0.5rem]'>
-                                                <div className='w-[3rem] h-[3rem] rounded-full'>
-                                                    <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" alt='userimg' className='w-full h-full object-cover rounded-full'></img>
-                                                </div>
+                      <div className='col-span-1 sm:col-span-2 w-full p-[1rem]'>
+                          <div className='flex flex-col gap-[1rem] relative'>
+                              {/* user profile and icon */}
+                              <div className='flex justify-between items-center w-full'>
+                                  {/* user's profile */}
+                                  <div className='flex items-center gap-[0.5rem]'>
+                                      <div className='w-[3rem] h-[3rem] rounded-full'>
+                                          <img src="https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg" alt='userimg' className='w-full h-full object-cover rounded-full'></img>
+                                      </div>
 
-                                                <label className='text-sm font-medium text-textMainBlack'>Sample Name</label>
-                                            </div>
+                                      <label className='text-sm font-medium text-textMainBlack'>Sample Name</label>
+                                  </div>
 
-                                            {/* icon */}
-                                            <FontAwesomeIcon icon={faHeart} className='text-secondary text-[2rem]' />
-                                        </div>
+                                  {/* icon */}
+                                  <FontAwesomeIcon icon={faHeart} className='text-secondary text-[2rem]' />
+                              </div>
 
-                                        {/* about recipe and recipe name */}
-                                        <div className='flex flex-col gap-[0.5rem]'>
-                                            <label className='text-sm font-normal text-textMainBlack'>{recipe.desc}</label>
-                                            <div className='flex gap-[0.5rem] items-center'>
-                                                <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/>
+                              {/* about recipe and recipe name */}
+                              <div className='flex flex-col gap-[0.5rem]'>
+                                  <label className='text-sm font-normal text-textMainBlack'>{recipe.desc}</label>
 
-                                                <label className='text-sm font-normal text-textMainBlack'>{recipe.title}</label>
-                                            </div>
-                                        </div>
+                                  <div className='flex gap-[0.5rem] items-center'>
+                                      <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/>
 
-                                        {/* Ingredients */}
-                                        <div className='flex flex-col gap-[0.5rem]'>
-                                            <label className='text-sm font-medium text-textFadeBlack'>Ingredients</label>
-                                            { recipe.ingredients.map((ingredient, i) => (
-                  
-               
-                                            <ul className='flex flex-col gap-[0.25rem]'>
-                                                <li key={i} className='text-sm font-normal text-textMainBlack'>{ ingredient }</li>
-                                                {/* <li className='text-sm font-normal text-textMainBlack'>Pork</li>
-                                                <li className='text-sm font-normal text-textMainBlack'>Eggplant</li> */}
-                                                {/* <li className='text-sm font-normal text-textMainBlack'>Petchay...<span className='font-sm text-normal text-secondary'> view all</span></li> */}
-                                            </ul>
-                                             ))}
-                                        </div>
+                                      <label className='text-sm font-normal text-textMainBlack'>{recipe.title}</label>
+                                  </div>
+                              </div>
 
-                                        
+                              {/* Ingredients */}
+                              <div className='flex flex-col gap-[0.5rem]'>
+                                  <label className='text-sm font-medium text-textFadeBlack'>Ingredients</label>
 
+                                  <ul className='flex flex-col gap-[0.25rem] h-[3rem] flex-wrap'>
+                                  { recipe.ingredients.map((ingredient, i) => (
+                                      <li className='text-sm font-normal text-textMainBlack' key={i}>{ingredient}</li>
+                                  ))}
+                                  </ul>
+                              </div>  
 
+                              {/* comments */}
+                              {/* <button className='p-[0.375rem] flex items-center text-sm font-normal text-textFadeBlack absolute bottom-0 right-0 border-solid border-2 border-[#EDEDED] rounded-md'><FontAwesomeIcon icon={faComment} className='text-secondary text-sm mr-[0.25rem]'/>3 comments</button>     */}
+                          </div>
+                      </div>
+                  </div>
+                  ))}
 
-                                        {/* comments */}
-                                        {/* <button className='p-[0.375rem] flex items-center text-sm font-normal text-textFadeBlack absolute bottom-0 right-0 border-solid border-2 border-[#EDEDED] rounded-md'><FontAwesomeIcon icon={faComment} className='text-secondary text-sm mr-[0.25rem]'/>3 comments</button>     */}
-                                    </div>
-                                </div>
-                                <div className='flex flex-col gap-[0.5rem] p-5'>
-                                            <label className='text-sm font-medium text-textFadeBlack'>Procedures</label>
-                                            { recipe.steps.map((step, i) => (
-                  
-               
-                                            <ul className='flex flex-col gap-[0.25rem]'>
-                                                <li key={i} className='text-sm font-normal text-textMainBlack'>{ step }</li>
-                                                {/* <li className='text-sm font-normal text-textMainBlack'>Pork</li>
-                                                <li className='text-sm font-normal text-textMainBlack'>Eggplant</li> */}
-                                                {/* <li className='text-sm font-normal text-textMainBlack'>Petchay...<span className='font-sm text-normal text-secondary'> view all</span></li> */}
-                                            </ul>
-                                             ))}
-                                        </div>
-                            </div>
-
-                            ))}
                     </div>
                 </div>
+                    
+
+
 
                 <div className='hidden laptop:block'>
                     <div className='flex justify-between px-[0.5rem] mb-[0.5rem]'>
@@ -241,6 +227,7 @@ function Post() {
                 </div>
             </div>
         </div>
+    
 
 
 
