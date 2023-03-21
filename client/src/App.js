@@ -13,6 +13,9 @@ import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 import { ModalAccountSuccess } from './components/molecules/molecules';
 import Post from './components/postdemos/Post';
+import OtherPost from './components/postdemos/OtherPost';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -93,12 +96,22 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               exact
               path="/socials"
               element={
                 <WithPrivateRoute>
                   <Post />
+                </WithPrivateRoute>
+              }
+            /> */}
+
+            <Route
+              exact
+              path="/socials"
+              element={
+                <WithPrivateRoute>
+                  <OtherPost />
                 </WithPrivateRoute>
               }
             />
@@ -198,6 +211,18 @@ function App() {
             <Route path='/success' element={<ModalAccountSuccess/>} />
             <Route path="/loadings" element={<PreLoader />} />
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
     </div> : <PreLoader />
   )
