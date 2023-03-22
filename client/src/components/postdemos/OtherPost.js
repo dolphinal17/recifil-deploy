@@ -47,9 +47,7 @@ function OtherPost() {
     steps,
   } = form;
   
-  if (setOpenModal == false) {
-    window.location.reload()
-  }
+  
 
   function onChange(e) {
     if(e.target.files) {
@@ -182,7 +180,7 @@ async function handleSubmit(e) {
     delete formCopy.image;
     const docRef = await addDoc(collection(db, "createpost"), formCopy);
     setLoading(false);
-    alert("Post created");
+    toast.success("Post Created")
     setOpenModal(false)
   }
 
@@ -255,8 +253,8 @@ async function handleSubmit(e) {
                     /> */}
 
             { recipes.map((recipe, i) => (
-              <div className='w-full max-w-[47.5rem] h-[16rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={recipe.id}>
-                  <div className='col-span-1 w-full h-[16rem] bg-textFadeBlack'>
+              <div className='w-full max-w-[47.5rem] h-[17rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={recipe.id}>
+                  <div className='col-span-1 w-full h-[17rem] bg-textFadeBlack'>
                       <img src={recipe.imgUrls} alt='recipeimg' className='w-full h-full object-cover'></img>
                   </div>
 
@@ -279,13 +277,13 @@ async function handleSubmit(e) {
 
                           {/* about recipe and recipe name */}
                           <div className='flex flex-col gap-[0.5rem]'>
+                            <div className='flex gap-[0.5rem] items-center'>
+                                <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/>
+
+                                <label className='text-md font-[700] text-textMainBlack'>{recipe.title}</label>
+                            </div>
+
                               <label className='text-sm font-normal text-textMainBlack'>{recipe.desc}</label>
-
-                              <div className='flex gap-[0.5rem] items-center'>
-                                  <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/>
-
-                                  <label className='text-sm font-normal text-textMainBlack'>{recipe.title}</label>
-                              </div>
                           </div>
 
                           {/* Ingredients */}

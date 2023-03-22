@@ -1,9 +1,30 @@
-import React from 'react'
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
 
 export default function ForgotPasswordForm() {
+
+  const [email, setEmail] = useState('')
+
+  function onChange(e) {
+    setEmail(e.target.value)
+  }
+
+  async function onSubmit (e) {
+    e.preventDefault()
+    try {
+      const auth = getAuth()
+      await sendPasswordResetEmail(auth, email)
+      toast.success("Email was sent")
+    } catch (error) {
+      toast.error("Could not send Reset Password.")
+    }
+    
+  }
+
   return (
-    <form className='w-full max-w-[32rem] bg-primary rounded-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]'>
+    <form onSubmit={onSubmit} className='w-full max-w-[32rem] bg-primary rounded-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]'>
         {/* modal image */}
         <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Flock.png?alt=media&token=9b61bfaf-1ddc-4ffa-91e2-06f3bcd1260b' className='w-full object-cover rounded-t-lg' />
 
@@ -17,9 +38,9 @@ export default function ForgotPasswordForm() {
                 <span className='text-sm font-light tablet:font-normal text-mainBlack mt-[1rem] tablet:mt-[2rem]'>Email</span>
 
                 <div className='flex items-center gap-[0.5rem] tablet:gap-[1rem] mt-[0.125rem] tablet:mt-[0.25rem]'>
-                  <input type='email' className='text-sm font-light tablet:font-normal text-mainBlack border border-zinc-400 p-[0.5rem] outline-none rounded-sm w-full'></input>
+                  <input type='email' value={email} id="email" onChange={onChange} className='text-sm font-light tablet:font-normal text-mainBlack border border-zinc-400 p-[0.5rem] outline-none rounded-sm w-full'></input>
 
-                  <button className='text-sm tablet:text-base font-normal text-primary bg-lime-600 py-[0.5rem] rounded-md px-[1.5rem]'>Submit</button>
+                  <button type='submit' className='text-sm tablet:text-base font-normal text-primary bg-lime-600 py-[0.5rem] rounded-md px-[1.5rem]'>Submit</button>
                 </div>
             </div>
     </form>
