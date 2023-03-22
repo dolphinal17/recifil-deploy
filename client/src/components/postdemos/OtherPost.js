@@ -7,7 +7,7 @@ import {
     deleteDoc
   } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faTag } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faTag, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../style'
 import { CardPost, RecipeCard, Navbar, CardCreatePost } from '../organisms/organisms.js'
@@ -201,6 +201,15 @@ async function handleSubmit(e) {
     })
   }
 
+  const onRemoveIng = (i) => {
+    const newIng = [...form.ingredients]
+    newIng.splice(i, 1)
+    setForm({
+      ...form,
+      ingredients: newIng
+    })
+  }
+
   const handleStep = (e, i) => {
     const stepsClone = [...form.steps]
 
@@ -209,6 +218,15 @@ async function handleSubmit(e) {
     setForm({
       ...form,
       steps: stepsClone
+    })
+  }
+
+  const onRemoveStep = (i) => {
+    const newSteps = [...form.steps]
+    newSteps.splice(i, 1)
+    setForm({
+      ...form,
+      steps: newSteps
     })
   }
 
@@ -396,6 +414,7 @@ async function handleSubmit(e) {
                 <div className='pb-2'>
                     {
                         form.ingredients.map((ingredient, i) => (
+                          <div>
                             <input 
                                 type="text"
                                 placeholder='Add ingredients'
@@ -404,6 +423,8 @@ async function handleSubmit(e) {
                                 value={ingredient} 
                                 onChange={e => handleIngredient(e, i)} 
                             />
+                            { i == 0 ? "" :<button onClick={() => onRemoveIng(i)}><FontAwesomeIcon icon={faTrash}/></button> }
+                            </div>
                         ))
                     }
                     <button type="button" className="text-[0.8rem] bg-[#B2D33D] text-white p-1.5 rounded-lg mb-5" onClick={handleIngredientCount}>Add ingredient</button>
@@ -417,6 +438,7 @@ async function handleSubmit(e) {
                 <div className='pb-2'>
                 {
                     form.steps.map((step, i) => (
+                    <div>
                     <textarea 
                         type="text"
                         placeholder='Add procedure'
@@ -424,6 +446,8 @@ async function handleSubmit(e) {
                         key={i}
                         value={step} 
                         onChange={e => handleStep(e, i)} />
+                        { i == 0 ? "" :<button onClick={() => onRemoveStep(i)}><FontAwesomeIcon icon={faTrash}/></button> }
+                    </div> 
                     ))
                 }
                 <button type="button" className="text-[0.8rem] bg-[#B2D33D] text-white p-1.5 rounded-lg mb-5" onClick={handleStepCount}>Add procedure</button>
