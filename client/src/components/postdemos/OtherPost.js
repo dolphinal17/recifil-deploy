@@ -253,7 +253,7 @@ async function handleSubmit(e) {
                     /> */}
 
             { recipes.map((recipe, i) => (
-              <div className='w-full max-w-[47.5rem] h-[17rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={recipe.id}>
+              <div className='w-full max-w-[47.5rem] h-auto sm:h-[17rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={recipe.id}>
                   <div className='col-span-1 w-full h-[17rem] bg-textFadeBlack'>
                       <img src={recipe.imgUrls} alt='recipeimg' className='w-full h-full object-cover'></img>
                   </div>
@@ -290,7 +290,7 @@ async function handleSubmit(e) {
                           <div className='flex flex-col gap-[0.5rem]'>
                               <label className='text-sm font-medium text-textFadeBlack'>Ingredients</label>
 
-                              <ul className='flex flex-col gap-[0.25rem] h-[3rem] flex-wrap'>
+                              <ul className='flex flex-col gap-[0.25rem] h-auto sm:h-[3rem] flex-wrap'>
                               { recipe.ingredients.map((ingredient, i) => (
                                   <li className='text-sm font-normal text-textMainBlack' key={i}>{ingredient}</li>
                               ))}
