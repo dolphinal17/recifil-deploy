@@ -2,7 +2,7 @@ const  admin  = require ('firebase-admin');
 const { req, res, Router } = require('express');
 const { db } = require ('../../firebase/index');
 const validationResultSchema = require('../../middleware/validation-request-schema');
-const signupdata = require('../../schema/Signupform');
+const signupdata = require('../../models/Signupform');
 const { user } = require('firebase-functions/v1/auth');
 
 const SignUp = Router();
