@@ -6,7 +6,7 @@ const styles = {
     flexCenter: "flex justify-center items-center",
     flexStart: "flex justify-center items-start",
 
-    inputLS: "w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md",
+    inputLS: "w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md border border-zinc-200",
 
     basket: {
       categoryBox: "bg-primary py-[5px] px-[15px] flex justify-center items-center flex-col",

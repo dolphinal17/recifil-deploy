@@ -7,6 +7,7 @@ import DropdownProfile from "./DropdownProfile";
 import ModalLogout from "./modals/ModalLogout";
 import EmailVerificationModal from "./modals/EmailVerificationModal";
 import ModalAccountSuccess from "./modals/ModalAccountSuccess";
+import InputBoxPassword from "./InputBoxPassword";
 
 
 export {
@@ -18,5 +19,6 @@ export {
     DropdownProfile,
     ModalLogout,
     EmailVerificationModal,
-    ModalAccountSuccess
+    ModalAccountSuccess,
+    InputBoxPassword
 }

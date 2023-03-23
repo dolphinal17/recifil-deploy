@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { BtnLS } from '../../atoms/atoms.js'
-import { InputBox } from '../../molecules/molecules.js'
+import { InputBox, InputBoxPassword } from '../../molecules/molecules.js'
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../../../context/UserAuthContext.js'
 import { Link, useNavigate } from 'react-router-dom'
@@ -108,7 +108,7 @@ export default function LoginForm() {
             />
 
             {/* password */}
-            <InputBox
+            <InputBoxPassword
                 type="password" 
                 icon={faLock}
                 placeHolder="Password"

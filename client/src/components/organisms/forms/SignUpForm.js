@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { faAt, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { BtnLS } from '../../atoms/atoms.js'
-import { InputBox } from '../../molecules/molecules.js'
+import { InputBox, InputBoxPassword } from '../../molecules/molecules.js'
 import { useAuth } from '../../../context/UserAuthContext.js'
 import { Link, useNavigate } from 'react-router-dom'
 import { sendEmailVerification, updateProfile, AuthErrorCodes } from 'firebase/auth'
@@ -187,7 +187,7 @@ export default function SignUpForm() {
             />
 
             {/* password */}
-            <InputBox
+            <InputBoxPassword
                 type="password" 
                 icon={faLock}
                 placeHolder="Enter your password"
@@ -204,7 +204,7 @@ export default function SignUpForm() {
             />
 
             {/* confirm password */}
-            <InputBox
+            <InputBoxPassword
                 type="password" 
                 icon={faLock}
                 placeHolder="Confirm your password"
