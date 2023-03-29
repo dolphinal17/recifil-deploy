@@ -2,7 +2,7 @@ const { Router, res, req } = require('express');
 const multer = require('multer');
 const fs = require ('fs');
 
-const { getst } = require ('../../firebase/index')
+const { getst } = require ('../firebase/index')
 
 const ProfileImg = Router();
 

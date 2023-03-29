@@ -3,7 +3,7 @@ const { req, res, Router } = require('express');
 // const User_PostRecipe = require ('../../schema/UserPostRecipe')
 
 // //For database
-const { db } = require ('../../firebase/index');
+const { db } = require ('../firebase/index');
 const { body } = require('express-validator');
 
 
