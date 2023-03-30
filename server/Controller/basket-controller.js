@@ -47,9 +47,26 @@ const Basketfilter = async (req, res) => {
         .map(result => result.id)
       
       console.log(myfilter)
-      res.send(results);
-      // console.log(filterOut);
-    
+
+      ///getting the data using myfilter
+
+    //   const recipesRef = db.collection('recipes'); // reference to the recipes collection
+    // // Query for recipes that have an ID in the recipeIds array
+    //   const query = recipesRef.where('id', 'in', myfilter);
+
+    //   // Execute the query and retrieve the matching recipes
+    //   query.get().then((querySnapshot) => {
+    //     const recipes = [];
+    //     querySnapshot.forEach((doc) => {
+    //       console.log(recipes.id)
+    //       recipes.push(doc.data());
+    //     });
+    //     console.log('Matching recipes:', recipes);
+    //   }).catch((error) => {
+    //     console.error('Error retrieving recipes:', error);
+    //   });
+      
+          
       }
 
       module.exports = { Basketfilter }
