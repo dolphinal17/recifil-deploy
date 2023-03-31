@@ -5,8 +5,8 @@ const { db } = require ('../../Firebase/index')
 
 const router = express.Router();
 
-router.get('/maindish', async (req, res) => {
-    const category = ("maindish");
+router.get('/apetizer', async (req, res) => {
+    const category = ("apetizer");
     const querySnapshot = await db.collection('recipes')
     .where('dishcategory', 'array-contains', category)
     .get();

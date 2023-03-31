@@ -1,4 +1,5 @@
-const { db } = require ('../Firebase/index')
+const { db } = require ('../Firebase/index');
+const firebase = require ('firebase-admin');
 
 const Basketfilter = async (req, res) => {
     const FilterIn = req.body.IngredientsName;
@@ -46,26 +47,23 @@ const Basketfilter = async (req, res) => {
         .filter(result => !myfilterout.includes(result.id))
         .map(result => result.id)
       
-      console.log(myfilter)
+      // console.log(myfilter)
 
       ///getting the data using myfilter
 
-    //   const recipesRef = db.collection('recipes'); // reference to the recipes collection
-    // // Query for recipes that have an ID in the recipeIds array
-    //   const query = recipesRef.where('id', 'in', myfilter);
+     const recipesDocs = await db.collection('recipes')
+     .where(firebase.firestore.FieldPath.documentId(),'in', myfilter)
+     .get();
 
-    //   // Execute the query and retrieve the matching recipes
-    //   query.get().then((querySnapshot) => {
-    //     const recipes = [];
-    //     querySnapshot.forEach((doc) => {
-    //       console.log(recipes.id)
-    //       recipes.push(doc.data());
-    //     });
-    //     console.log('Matching recipes:', recipes);
-    //   }).catch((error) => {
-    //     console.error('Error retrieving recipes:', error);
-    //   });
-      
+     // Loop through the returned documents and extract the data
+        const recipes = [];
+        recipesDocs.forEach((doc) => {
+          const recipeData = doc.data();
+          console.log(recipeData);
+          recipes.push(recipeData);
+        });
+        res.send(recipes)
+    
           
       }
 
