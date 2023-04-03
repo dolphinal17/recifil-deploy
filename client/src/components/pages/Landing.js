@@ -1,10 +1,22 @@
 import React from 'react'
+// import { useEffect, useState } from 'react';
+// import axios from 'axios';
 import styles from '../../style'
 import { LandingNavbar, LandingFooter } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom'
 
 const Landing = () => {
+  // const [message, setMessage] = useState('');
 
+  // useEffect(() => {
+  //   axios.get('http://localhost:4000/api')
+  //     .then(response => {
+  //       setMessage(response.data.message);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }, []);
   return (
     <div className={`${styles.boxWidth}`}>
       <div className='w-full bg-primary grid-cols-1 gap-[2rem] pb-[2rem]'>
@@ -13,7 +25,7 @@ const Landing = () => {
         <div className='desktop:w-[65rem] laptop:w-[58rem] tablet:w-[43rem] sm:w-[35rem] w-[20rem] laptop:h-[512px] h-auto border-solid border-[1px] rounded-t-[2rem] shadow-[5px_0_10px_rgb(0,0,0,0.1)] m-auto flex flex-col'>
           <div className='tablet:flex-row flex-col flex tablet:w-[80%] w-[100%] m-auto py-10 gap-[1rem]'>
             <div className='tablet:w-[60%] w-[100%] flex flex-col items-center'>
-              <h1 className='text-2xl laptop:text-5xl text-textMainBlack font-medium tablet:font-semibold'>An AI Filipino <span className='text-[#59981A]'> Recipe Builder</span></h1>
+              <h1 className='text-2xl laptop:text-5xl text-textMainBlack font-medium tablet:font-semibold'>An AI Filipino  <span className='text-[#59981A]'> Recipe Builder</span></h1>
               <h2 className='text-base laptop:text-3xl font-normal tablet:font-medium text-textMainBlack '>Discover your inner Filipino, with our app.</h2>
             </div>
 
