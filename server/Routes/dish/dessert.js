@@ -5,7 +5,7 @@ const { db } = require ('../../Firebase/index')
 
 const router = express.Router();
 
-router.get('/desset', async (req, res) => {
+router.get('/alldish/dessert', async (req, res) => {
     const category = ("dessert");
     const querySnapshot = await db.collection('recipes')
     .where('dishcategory', 'array-contains', category)
@@ -16,7 +16,7 @@ router.get('/desset', async (req, res) => {
       const recipeData = doc.data();
       recipes.push(recipeData);
     })
-  console.log(recipes);
+  res.send(recipes);
     
 })
 
