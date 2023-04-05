@@ -6,7 +6,5 @@ const router = express.Router();
 router.post('/basket', Basketfilter);
 
 
-    
-    
 
   module.exports = router;
