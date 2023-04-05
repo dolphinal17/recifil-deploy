@@ -14,7 +14,7 @@ router.get('/alldish/sidedish', async (req, res) => {
     
     querySnapshot.forEach((doc) => {
       const recipeData = doc.data();
-      recipes.push(recipeData);
+      recipes.push({ id: doc.id, ...recipeData });
     })
   console.log(recipes);
   res.send(recipes)

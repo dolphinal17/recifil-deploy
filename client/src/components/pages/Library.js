@@ -8,24 +8,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
 
+
+
 const Library = () => {
+  //for recipe filtering
   const [info, setInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
-  // const RecipeData = async () => {
-  //     const q = query(collection(db, "recipes"));
 
-  //     const querySnapshot = await getDocs(q);
-  //     const data = querySnapshot.docs.map((doc) => ({
-  //         ...doc.data(),
-  //         id:doc.id,
-  //     }));
-  //     setInfo(data);
-  // };
-
-  // useEffect(() => {
-  //     RecipeData();
-  // }, []);
   useEffect(() => {
     setLoading(true)
     axios
@@ -88,11 +78,14 @@ const Library = () => {
         {loading ? ( <PreLoader/> ) :
         (
         <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
-            {info.map((val, id) => (
-          <Link to={"/recipeview/" + val.id}>
-            <RecipeCard image={val.image} name={val.title} />
-          </Link>
-        ))}
+           {info.map((val, id) => {
+            return (
+              
+              <Link to={"/recipeview/" + val.id} key={id}>
+                <RecipeCard image={val.image} name={val.title} />
+              </Link>
+            );
+          })}
         </div>
         )}
       </div>
