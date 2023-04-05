@@ -78,14 +78,13 @@ const Library = () => {
         {loading ? ( <PreLoader/> ) :
         (
         <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
-           {info.map((val, id) => {
-            return (
+           {info.map((val, id) =>(
               
               <Link to={"/recipeview/" + val.id} key={id}>
                 <RecipeCard image={val.image} name={val.title} />
               </Link>
-            );
-          })}
+            )
+          )}
         </div>
         )}
       </div>
