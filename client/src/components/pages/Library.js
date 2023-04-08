@@ -7,6 +7,10 @@ import { collection, query, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+
 
 
 
@@ -44,7 +48,7 @@ const Library = () => {
   };
 
 
- 
+
 
   return (
     <div className={`${styles.boxWidth}`}>
@@ -75,18 +79,34 @@ const Library = () => {
           </ul>
         </div>
         {/* recipe grid */}
-        {loading ? ( <PreLoader/> ) :
-        (
-        <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
-           {info.map((val, id) =>(
-              
-              <Link to={"/recipeview/" + val.id} key={id}>
-                <RecipeCard image={val.image} name={val.title} />
-              </Link>
-            )
+        {loading ? (<PreLoader />) :
+          (
+            <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
+              {info.map((val, id) => (
+
+                
+                  <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+                    <Link to={"/recipeview/" + val.id} key={id}>
+                    <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
+                      <img src={val.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
+                    </div>
+                    </Link>
+
+                    <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
+                      <div className='flex flex-col'>
+                      <Link to={"/recipeview/" + val.id} key={id}>
+                        <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{val.title}</label>
+                      </Link>
+                        <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
+                      </div>
+
+                      <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
+                    </div>
+                  </div>
+              )
+              )}
+            </div>
           )}
-        </div>
-        )}
       </div>
     </div>
   );
