@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faTag, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../style'
-import { CardPost, RecipeCard, Navbar, CardCreatePost } from '../organisms/organisms.js'
+import { CardPost, RecipeCard, Navbar, CardCreatePost, InsideFooter } from '../organisms/organisms.js'
 import CreatePost from '../../assets/create-post.png'
 import { Link } from 'react-router-dom'
 import { auth, db } from "../../config/firebase";
@@ -467,7 +467,7 @@ async function handleSubmit(e) {
         }
 
 
-
+        <InsideFooter/>
     </div>
   )
 }

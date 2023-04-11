@@ -5,11 +5,11 @@ import React from 'react'
 
 const InsideFooter = () => {
     return (
-        <footer className='w-full flex flex-col justify-start items-center bg-primary pt-[1rem] laptop:pt-[1rem] border-none z-10'>
+        <footer className='w-full flex flex-col justify-start items-center bg-primary pt-[1rem] laptop:pt-[0.5rem] border-none z-10'>
             <div className='w-full max-w-[64rem]'>
-                <div className='flex justify-center'>
+                {/* <div className='flex justify-center'>
                     <hr className='w-full bg-fadeText h-[1px]'/>
-                </div>
+                </div> */}
     
                 <div className='w-full laptop:flex laptop:justify-between items-center my-[1rem]'>
                     <div className='w-full flex flex-col laptop:flex-row items-center justify-center gap-[1rem] laptop:gap-[4rem]'>

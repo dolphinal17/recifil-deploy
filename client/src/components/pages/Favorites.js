@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../style'
-import { RecipeCard, Navbar } from '../organisms/organisms.js'
+import { RecipeCard, Navbar, InsideFooter } from '../organisms/organisms.js'
 import { SearchBarWBG } from '../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -33,6 +33,7 @@ const Favorites = () => {
 
 
     return (
+        <div>
         <div className={`${styles.boxWidth}`}>
             <Navbar />
 
@@ -112,6 +113,9 @@ const Favorites = () => {
                 /> */}
                 </div>
             </div>
+            
+        </div>
+        <InsideFooter />
         </div>
     )
 }

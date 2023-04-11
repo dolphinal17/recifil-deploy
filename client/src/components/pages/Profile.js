@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faBasketShopping, faGear } from '@fortawesome/free-solid-svg-icons';
 import CreatePost from '../../assets/create-post.png'
-import { CardCreatePost, CardPost, Navbar } from '../organisms/organisms.js'
+import { CardCreatePost, CardPost, InsideFooter, Navbar } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/UserAuthContext';
 
@@ -15,6 +15,7 @@ const Profile = () => {
     const [openModal, setOpenModal] = useState(false)
 
   return (
+    <div>
     <div className={`${styles.boxWidth}`}>
         <Navbar />
         <CardCreatePost open={openModal} onClose={() => setOpenModal(false)}/>
@@ -76,6 +77,9 @@ const Profile = () => {
                 </div>
             </div>
         </div>
+        
+    </div>
+    <InsideFooter />
     </div>
   )
 }

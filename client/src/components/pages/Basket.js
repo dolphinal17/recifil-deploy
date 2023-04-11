@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../style'
 import { SearchBarWBG, FiltInIngBasket, FiltOutIngBasket } from '../molecules/molecules.js'
-import { CardIngSugg, RecipeCard, Navbar } from '../organisms/organisms.js'
+import { CardIngSugg, RecipeCard, Navbar, InsideFooter } from '../organisms/organisms.js'
 
 const Basket = () => {
   return (
@@ -9,7 +9,7 @@ const Basket = () => {
       <Navbar />
       
       <div className={`${styles.container}`}>
-        <div className='w-full grid sm:grid-cols-2 rounded-md'>
+        <div className='w-full grid sm:grid-cols-2 rounded-md mb-[2rem]'>
           {/* building section */}
           <div className='col-gap-1 flex flex-col items-center bg-bgColorTwo py-[1rem] sm:py-[2rem]  rounded-t-md sm:rounded-l-md'>
             {/* search bar */}
@@ -119,6 +119,7 @@ const Basket = () => {
           </div>
         </div>
       </div>
+      <InsideFooter />
     </div>
   )
 }

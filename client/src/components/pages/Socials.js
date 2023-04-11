@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from '../../style'
-import { CardPost, RecipeCard, Navbar, CardCreatePost } from '../organisms/organisms.js'
+import { CardPost, RecipeCard, Navbar, CardCreatePost, InsideFooter } from '../organisms/organisms.js'
 import CreatePost from '../../assets/create-post.png'
 import { Link } from 'react-router-dom'
 
@@ -60,6 +60,7 @@ function Socials() {
                 </div>
             </div>
         </div>
+        <InsideFooter />
     </div>
   )
 }
