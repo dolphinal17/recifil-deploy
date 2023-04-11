@@ -8,7 +8,7 @@ import { auth } from './config/firebase';
 
 // here to import components like pages
 import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg, ForgotPassword, EmailVerification} from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, UploadImage} from './components/organisms/organisms.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, SidebarAdmin, TableUser, UploadImage} from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 import { ModalAccountSuccess } from './components/molecules/molecules';
@@ -16,6 +16,8 @@ import Post from './components/postdemos/Post';
 import OtherPost from './components/postdemos/OtherPost';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminPanel from './components/pages/AdminPanel';
+
 
 
 
@@ -210,7 +212,12 @@ function App() {
 
             <Route path='/success' element={<ModalAccountSuccess/>} />
             <Route path="/loadings" element={<PreLoader />} />
+            <Route path="adminsidebar" element={<SidebarAdmin />} />
+            <Route path="adminnav" element={<NavbarAdmin />} />
+            <Route path="admin" element={<AdminPanel />} />
+            <Route path="table" element={<TableUser />} />
         </Routes>
+
         <ToastContainer
           position="top-right"
           autoClose={3000}

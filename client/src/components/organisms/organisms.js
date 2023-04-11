@@ -18,6 +18,10 @@ import CarouselRecipe from "./others/CarouselRecipe";
 import ForgotPasswordForm from "./forms/ForgotPasswordForm";
 import UploadImage from "./others/UploadImage";
 import InsideFooter from "./navsandfooters/InsideFooter";
+import SidebarAdmin from "./navsandfooters/SidebarAdmin";
+import NavbarAdmin from "./navsandfooters/NavbarAdmin";
+import TableUser from "./tables/TableUser";
+
 
 export {
     CardSuggRecipeBasket,
@@ -39,5 +43,8 @@ export {
     ForgotPasswordForm,
     CarouselRecipe,
     UploadImage,
-    InsideFooter
+    InsideFooter,
+    SidebarAdmin,
+    NavbarAdmin,
+    TableUser
 }
