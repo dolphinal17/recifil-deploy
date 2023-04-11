@@ -17,6 +17,7 @@ import Comment from "./others/Comment";
 import CarouselRecipe from "./others/CarouselRecipe";
 import ForgotPasswordForm from "./forms/ForgotPasswordForm";
 import UploadImage from "./others/UploadImage";
+import InsideFooter from "./navsandfooters/InsideFooter";
 
 export {
     CardSuggRecipeBasket,
@@ -37,5 +38,6 @@ export {
     Comment,
     ForgotPasswordForm,
     CarouselRecipe,
-    UploadImage
+    UploadImage,
+    InsideFooter
 }

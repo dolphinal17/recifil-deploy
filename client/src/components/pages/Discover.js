@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../style';
-import { Navbar, DiscImgWText, CarouselRecipe } from '../organisms/organisms.js'
+import { Navbar, DiscImgWText, CarouselRecipe, InsideFooter } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom';
 
 
@@ -65,6 +65,7 @@ const Discover = () => {
             
           </div> */}
         </div>
+        <InsideFooter />
       </div>
     </div>
   )

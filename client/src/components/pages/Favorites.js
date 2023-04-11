@@ -1,44 +1,92 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../style'
 import { RecipeCard, Navbar } from '../organisms/organisms.js'
 import { SearchBarWBG } from '../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart} from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { auth, db } from '../../config/firebase'
+import { collection, doc, getDocs } from 'firebase/firestore'
+import { Link } from 'react-router-dom'
+
+
+
+
+
 
 const Favorites = () => {
-  return (
-    <div className={`${styles.boxWidth}`}>
-        <Navbar />
 
-        <div className={`${styles.container}`}>
-            {/* search bar and category list*/}
-            <div className='flex flex-col w-full items-center sm:items-start sm:pl-[1rem]'>
-                <div className='w-full flex justify-between items-center px-[0.5rem]'>
-                    <SearchBarWBG 
-                    placeHolder="Search favorites"
-                    bg="primary" 
-                    />
+    const [favs, setFavs] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [category, setCategory] = useState("");
+    const user = auth.currentUser;
 
-                    <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl'/>
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const favoritesRef = collection(doc(collection(db, 'userinfo'), user.uid), 'favorites');
+            const snapshot = await getDocs(favoritesRef);
+            const favoritesList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setFavs(favoritesList);
+        };
+        fetchData();
+    }, [db, user.uid]);
+
+
+    return (
+        <div className={`${styles.boxWidth}`}>
+            <Navbar />
+
+            <div className={`${styles.container}`}>
+                {/* search bar and category list*/}
+                <div className='flex flex-col w-full items-center sm:items-start sm:pl-[1rem]'>
+                    <div className='w-full flex justify-between items-center px-[0.5rem]'>
+                        <SearchBarWBG
+                            placeHolder="Search favorites"
+                            bg="primary"
+                        />
+
+                        <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
+                    </div>
+
+                    {/* category list */}
+                    <ul className='flex gap-[1rem] my-[2rem]'>
+                        <li className='text-sm font-medium text-secondary cursor-pointer'>All</li>
+                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Main Dish</li>
+                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Side Dish</li>
+                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Dessert</li>
+                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Appetizer</li>
+                    </ul>
                 </div>
+                {/* recipe grid */}
+                <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
+                    {favs.map((val, id) => (
 
-                {/* category list */}
-                <ul className='flex gap-[1rem] my-[2rem]'>
-                    <li className='text-sm font-medium text-secondary cursor-pointer'>All</li>
-                    <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Main Dish</li>
-                    <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Side Dish</li>
-                    <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Dessert</li>
-                    <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Appetizer</li>
-                </ul>
-            </div>
-            {/* recipe grid */}
-            <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
-                <RecipeCard 
-                    image="https://i.pinimg.com/236x/56/b2/18/56b2183fd66c8a8d9c7eabc92b3a33f7.jpg"
-                    name="Ampalaya"
-                />
 
-                <RecipeCard 
+                        <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>
+                            <Link to={"/recipeview/" + val.id} key={id}>
+                                <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
+                                    <img src={val.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
+                                </div>
+                            </Link>
+
+                            <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
+                                <div className='flex flex-col'>
+                                    <Link to={"/recipeview/" + val.id} key={id}>
+                                        <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{val.title}</label>
+                                    </Link>
+                                    <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
+                                </div>
+
+                                <button>
+                                    <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
+                                </button>
+
+                            </div>
+                        </div>
+                    )
+                    )}
+
+                    {/* <RecipeCard 
                     image="https://i.pinimg.com/236x/ed/0d/29/ed0d2931c988277eac062f30dfa99443.jpg"
                     name="Adobong Manok"
                 />
@@ -61,11 +109,11 @@ const Favorites = () => {
                 <RecipeCard 
                     image="https://i.pinimg.com/236x/06/a7/5e/06a75e6a8a9db3a1a81df30a29f3c4c8.jpg"
                     name="Chopsuey"
-                />
+                /> */}
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Favorites

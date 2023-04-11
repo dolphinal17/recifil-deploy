@@ -20,7 +20,7 @@ export default function ModalAccountSuccess() {
                     <span className='text-center text-base tablet:text-xl font-light tablet:font-normal text-mainBlack'>Account Created Successfully!</span>
                 </div>
 
-                <Link to='/upload'><button className='text-sm tablet:text-base font-normal text-primary bg-lime-500 py-[0.75rem] rounded-md px-[1.5rem] mx-auto mt-[0.5rem] tablet:mt-[1rem] mb-[1rem] tablet:mb-[2rem]'>Okay</button></Link>
+                <Link to='/upload'><button className='flex flex-col text-sm tablet:text-base font-normal text-primary bg-lime-500 py-[0.75rem] rounded-md px-[1.5rem] mx-auto mt-[0.5rem] tablet:mt-[1rem] mb-[1rem] tablet:mb-[2rem]'>Okay</button></Link>
             </div>
         </div>
     </div>

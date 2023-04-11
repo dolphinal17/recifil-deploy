@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../style";
-import { RecipeCard, Navbar } from "../organisms/organisms.js";
+import { RecipeCard, Navbar, InsideFooter } from "../organisms/organisms.js";
 import { SearchBarWBG } from "../molecules/molecules.js";
-import { db } from "../../config/firebase";
-import { collection, query, getDocs } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import { auth, db } from "../../config/firebase";
+import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc } from "firebase/firestore";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
+
 
 
 
@@ -19,13 +21,26 @@ const Library = () => {
   const [info, setInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
+  const [document, setDocument] = useState("");
+  // const { id } = useParams ();
+  const [favorites, setFavorites] = useState([]);
+  const [favDoc, setFavDoc] = useState([]);
+  const user = auth.currentUser;
+
+
 
   useEffect(() => {
     setLoading(true)
     axios
       .get(`/library/alldish/${category}`)
       .then((response) => {
-        setInfo(response.data); // This will log the recipes array to the console
+        // setInfo(response.data); // This will log the recipes array to the console
+        const recipes = response.data;
+        const recipeDataWithId = recipes.map((recipe) => {
+          return { ...recipe, document: recipe.id };
+        });
+        setInfo(recipeDataWithId);
+        
         setLoading(false)
       })
       .catch((error) => {
@@ -48,6 +63,32 @@ const Library = () => {
   };
 
 
+  const handleFavoriteClick = async (recipeId, recipeTitle) => {
+    try {
+      const favoritesRef = collection(db, `userinfo/${user.uid}/favorites`);
+
+      const querySnapshot = await getDocs(favoritesRef);
+      const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
+      setFavDoc(favoriteDoc);
+      
+      if (favoriteDoc) {
+        // Recipe already exists in favorites, remove it
+        setLoading(true)
+        await deleteDoc(doc(favoritesRef, favoriteDoc.id));
+        setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
+        setLoading(false)
+        toast.success('Removed from Favorites');
+      } else {
+        setLoading(true)
+        await addDoc(favoritesRef, recipeId);
+        setFavorites([...favorites, recipeTitle]);
+        setLoading(false)
+        toast.success('Added to Favorites');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
   return (
@@ -84,30 +125,41 @@ const Library = () => {
             <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
               {info.map((val, id) => (
 
-                
-                  <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
-                    <Link to={"/recipeview/" + val.id} key={id}>
+
+                <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>
+                  <Link to={"/recipeview/" + val.id} key={id}>
                     <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
                       <img src={val.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
                     </div>
-                    </Link>
+                  </Link>
 
-                    <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
-                      <div className='flex flex-col'>
+                  <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
+                    <div className='flex flex-col'>
                       <Link to={"/recipeview/" + val.id} key={id}>
                         <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{val.title}</label>
                       </Link>
-                        <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
-                      </div>
-
-                      <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
+                      <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
                     </div>
+
+                    <button onClick={() => handleFavoriteClick(val, val.title)}>
+                      
+                      {
+                        favorites.some(favorite => favorite.title === val.title) ? (
+                          <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
+                        ) : (
+                          <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
+                        )
+                      }
+                    </button>
+
                   </div>
+                </div>
               )
               )}
             </div>
           )}
       </div>
+      <InsideFooter />
     </div>
   );
 };
