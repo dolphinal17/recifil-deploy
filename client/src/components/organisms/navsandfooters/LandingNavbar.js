@@ -13,9 +13,9 @@ const LandingNavbar = () => {
             </div>
 
             <div className='flex item-center gap-2'>
-                <Link to='/login'><button className='sm:w-[9rem] w-[4rem] sm:h-[3rem] h-[2rem] bg-secondary rounded-[10px] text-[#FFFFFF] sm:text-[18px] text-[15px] font-[400] '>Login</button></Link>
+                <Link to='/login'><button className='sm:w-[9rem] w-[4rem] sm:h-[3rem] h-[2rem] bg-secondary rounded-[10px] text-[#FFFFFF] sm:text-[18px] text-[15px] font-[400] hover:bg-lime-600 '>Login</button></Link>
 
-                <Link to='/signup'><button className='sm:w-[9rem] w-[4rem] sm:h-[3rem] h-[2rem] bg-primary rounded-[10px] border border-[#EDEDED] text-secondary sm:text-[18px] text-[15px] font-[400] '>Sign Up</button></Link>
+                <Link to='/signup'><button className='sm:w-[9rem] w-[4rem] sm:h-[3rem] h-[2rem] bg-primary rounded-[10px] border border-[#EDEDED] text-secondary sm:text-[18px] text-[15px] font-[400] hover:border-lime-300'>Sign Up</button></Link>
             </div>
         </div>
     </nav>

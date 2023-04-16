@@ -29,15 +29,15 @@ const Navbar = () => {
         <div className='max-w-[80rem] w-full'>
 
           <ul className='flex justify-center gap-[2rem] laptop:gap-[4rem] px-[2rem] laptop:px-[4rem] py-[0.5rem]'>
-            <Link to='/discover'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faMagnifyingGlass} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block'>Discover</span></li></Link>
+            <Link to='/discover'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faMagnifyingGlass} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Discover</span></li></Link>
 
-            <Link to='/library'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBook} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block'>Library</span></li></Link>
+            <Link to='/library'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBook} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Library</span></li></Link>
 
-            <Link to='/basket'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBasketShopping} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block'>Basket</span></li></Link>
+            <Link to='/basket'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBasketShopping} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Basket</span></li></Link>
 
-            <Link to='/favorites'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faHeart} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block'>Favorites</span></li></Link>
+            <Link to='/favorites'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faHeart} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Favorites</span></li></Link>
 
-            <Link to='/socials'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faUsers} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block'>Socials</span></li></Link>
+            <Link to='/socials'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faUsers} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Socials</span></li></Link>
           </ul>
         </div>
       </div>

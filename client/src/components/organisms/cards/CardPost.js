@@ -10,7 +10,7 @@ export default function CardPost( {usersName, about, recipeName, usersImage, rec
             <img src={recipeImage} alt='recipeimg' className='w-full h-full object-cover'></img>
         </div>
 
-        <div className='col-span-1 sm:col-span-2 w-full p-[1rem]'>
+        <div className='col-span-1 sm:col-span-2 w-full p-[1rem] bg-primary'>
             <div className='flex flex-col gap-[1rem] relative'>
                 {/* user profile and icon */}
                 <div className='flex justify-between items-center w-full'>

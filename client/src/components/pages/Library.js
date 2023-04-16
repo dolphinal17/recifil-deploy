@@ -133,7 +133,7 @@ const Library = () => {
                     </div>
                   </Link>
 
-                  <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
+                  <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center bg-primary`}>
                     <div className='flex flex-col'>
                       <Link to={"/recipeview/" + val.id} key={id}>
                         <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{val.title}</label>
@@ -145,9 +145,9 @@ const Library = () => {
                       
                       {
                         favorites.some(favorite => favorite.title === val.title) ? (
-                          <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
+                          <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
                         ) : (
-                          <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
+                          <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
                         )
                       }
                     </button>

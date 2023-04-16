@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { faAt, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { BtnLS } from '../../atoms/atoms.js'
 import { InputBox, InputBoxPassword } from '../../molecules/molecules.js'
@@ -37,7 +37,7 @@ export default function SignUpForm() {
     }, [error, currentuser])
     const UserHandler = (e) => {
         const { name, value } = e.target;
-        console.log(name +"::::::::::"+value)
+        console.log(name + "::::::::::" + value)
         setUser((pre) => {
             return {
                 ...pre,
@@ -55,7 +55,7 @@ export default function SignUpForm() {
 
     const SubmitHandler = async (e) => {
         e.preventDefault()
-        const { email, password, confirmPassword, firstname, lastname} = user
+        const { email, password, confirmPassword, firstname, lastname } = user
         if (password === "" || confirmPassword === "" || email === "" || firstname === "" || lastname === "") {
             setInterval(() => {
                 setError("")
@@ -82,92 +82,92 @@ export default function SignUpForm() {
         }
         else {
 
-        try {
-            
-            await SignUp(email,password).then( async (result) => {
-                console.log(result)
-                const ref = doc(db, "userinfo", auth.currentUser.uid)
-                const docRef = await setDoc(ref, { firstname, lastname })
-                // console.log("Document written with ID: ", docRef.uid);
-                updateProfile(auth.currentUser, {
-                    displayName: firstname+ ' '+lastname,
-                    photoURL:''
-                }).then(() => {
-                    sendEmailVerification(auth.currentUser)
-                    navigate('/emailverification')
+            try {
+
+                await SignUp(email, password).then(async (result) => {
+                    console.log(result)
+                    const ref = doc(db, "userinfo", auth.currentUser.uid)
+                    const docRef = await setDoc(ref, { firstname, lastname })
+                    // console.log("Document written with ID: ", docRef.uid);
+                    updateProfile(auth.currentUser, {
+                        displayName: firstname + ' ' + lastname,
+                        photoURL: ''
+                    }).then(() => {
+                        sendEmailVerification(auth.currentUser)
+                        navigate('/emailverification')
+                    })
                 })
-            })
 
-        } catch (err) {
-            if (err.code === "auth/email-already-in-use") {
-                setInterval(() => {
-                    setError("")
-                }, 5000)
-                setError("Email is already used. Please try another email.")
-            }
-            else if (err.code === "auth/invalid-email") {
+            } catch (err) {
+                if (err.code === "auth/email-already-in-use") {
+                    setInterval(() => {
+                        setError("")
+                    }, 5000)
+                    setError("Email is already used. Please try another email.")
+                }
+                else if (err.code === "auth/invalid-email") {
 
-                setInterval(() => {
-                    setError("")
-                }, 5000)
-                setError("Email is not valid. Please try a valid email.")
-            }
-            else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
+                    setInterval(() => {
+                        setError("")
+                    }, 5000)
+                    setError("Email is not valid. Please try a valid email.")
+                }
+                else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
 
-                setInterval(() => {
-                    setError("")
-                }, 5000)
-                setError("Password must be 6 characters or more!")
+                    setInterval(() => {
+                        setError("")
+                    }, 5000)
+                    setError("Password must be 6 characters or more!")
+                }
+
+                else {
+                    setError(err.message)
+                }
             }
 
-            else {
-                setError(err.message)
-            }
-        } 
-           
 
         }
     }
 
 
-  return (
-    <form className='w-full max-w-[28rem] px-[1rem] py-[2rem] sm:px-[3rem] sm:py-[2rem] bg-primary rounded-3xl' onSubmit={SubmitHandler}>
+    return (
+        <form className='w-full max-w-[28rem] px-[1rem] py-[2rem] sm:px-[3rem] sm:py-[2rem] bg-primary rounded-3xl' onSubmit={SubmitHandler}>
 
             {
                 err ? (
                     err && <p className='error w-[24rem] rounded-lg text-center bg-red-600 ml-[-1rem] p-2 text-white mb-[1rem]'>{err}</p>
                 ) : (
                     backError && <p className='error w-[24rem] rounded-lg text-center bg-red-600 ml-[-1rem] p-2 text-white mb-[1rem]'>{backError}</p>
-                ) 
-            }   
+                )
+            }
 
 
-        <h1 className='text-secondary text-base font-normal tablet:font-medium text-center mb-[2rem]'>CREATE ACCOUNT</h1>
+            <h1 className='text-mainBlack text-base tablet:text-xl font-normal tablet:font-medium text-center mb-[2rem]'>Sign Up</h1>
 
-        {/* inputs */}
-        <div className='flex flex-col gap-[1rem]'>
-            {/* firstname */}
-            <InputBox
-                type="text" 
-                icon={faUser}
-                placeHolder="Enter your firstname"
-                name="firstname"
-                value={user.firstname}
-                onChange={UserHandler}
-            />
+            {/* inputs */}
+            <div className='flex flex-col gap-[1rem]'>
+                {/* firstname */}
+                <InputBox
+                    type="text"
+                    icon={faUser}
+                    placeHolder="Enter your firstname"
+                    name="firstname"
+                    value={user.firstname}
+                    onChange={UserHandler}
+                />
 
-            {/* lastname */}
-            <InputBox
-                type="text" 
-                icon={faUser}
-                placeHolder="Enter your lastname"
-                name="lastname"
-                value={user.lastname}
-                onChange={UserHandler}
-            />
+                {/* lastname */}
+                <InputBox
+                    type="text"
+                    icon={faUser}
+                    placeHolder="Enter your lastname"
+                    name="lastname"
+                    value={user.lastname}
+                    onChange={UserHandler}
+                />
 
-            {/* username */}
-            {/* <InputBox
+                {/* username */}
+                {/* <InputBox
                 type="text" 
                 icon={faUser}
                 placeHolder="Enter your username"
@@ -176,60 +176,64 @@ export default function SignUpForm() {
                 onChange={UserHandler}
             /> */}
 
-            {/* email */}
-            <InputBox
-                type="text" 
-                icon={faAt}
-                placeHolder="Enter your email"
-                name="email"
-                value={user.email}
-                onChange={UserHandler}
-            />
+                {/* email */}
+                <InputBox
+                    type="text"
+                    icon={faAt}
+                    placeHolder="Enter your email"
+                    name="email"
+                    value={user.email}
+                    onChange={UserHandler}
+                />
 
-            {/* password */}
-            <InputBoxPassword
-                type="password" 
-                icon={faLock}
-                placeHolder="Enter your password"
-                name="password"
-                value={user.password}
-                onChange={UserHandler}
-                onPaste={(e)=>{
-                    e.preventDefault()
-                    return false;
-                }} onCopy={(e)=>{
-                e.preventDefault()
-                return false;
-                }}
-            />
+                {/* password */}
+                <InputBoxPassword
+                    type="password"
+                    icon={faLock}
+                    placeHolder="Enter your password"
+                    name="password"
+                    value={user.password}
+                    onChange={UserHandler}
+                    onPaste={(e) => {
+                        e.preventDefault()
+                        return false;
+                    }} onCopy={(e) => {
+                        e.preventDefault()
+                        return false;
+                    }}
+                />
 
-            {/* confirm password */}
-            <InputBoxPassword
-                type="password" 
-                icon={faLock}
-                placeHolder="Confirm your password"
-                name="confirmPassword"
-                value={user.confirmPassword}
-                onChange={UserHandler}
-                onPaste={(e)=>{
-                    e.preventDefault()
-                    return false;
-                }} onCopy={(e)=>{
-                e.preventDefault()
-                return false;
-                }}
-            />
-        </div>
+                {/* confirm password */}
+                <InputBoxPassword
+                    type="password"
+                    icon={faLock}
+                    placeHolder="Confirm your password"
+                    name="confirmPassword"
+                    value={user.confirmPassword}
+                    onChange={UserHandler}
+                    onPaste={(e) => {
+                        e.preventDefault()
+                        return false;
+                    }} onCopy={(e) => {
+                        e.preventDefault()
+                        return false;
+                    }}
+                />
+            </div>
 
-        {/* button Create and Login link*/}
-        <div className='flex items-center flex-col gap-[1rem] mt-[2rem]'>
-            <BtnLS 
-                val="Create"
-                type="submit"
-            />
+            <p className='text-xs font-thin tablet:font-light text-fadeBlack text-center mt-[2rem]'>By clicking Sign Up, you agree to our <span className='text-lime-500 hover:underline cursor-pointer'>Terms</span> and <span className='text-lime-500 hover:underline cursor-pointer'>Privacy Policy</span></p>
 
-            <h3 className='text-xs font-light tablet:font-normal text-mainBlack'>Already have an account?<Link to='/login'><span className='ml-1 text-secondary font-light tablet:font-normal cursor-pointer'>Login here</span></Link></h3>
-        </div>
-    </form>
-  )
+            <div className='flex items-center flex-col gap-[1rem] mt-[0.25rem] tablet:mt-[0.5rem]'></div>
+
+            {/* button Create and Login link*/}
+            <div className='flex items-center flex-col gap-[1rem] mt-[2rem]'>
+                <BtnLS
+                    val="Sign Up"
+                    type="submit"
+                />
+
+                <h3 className='text-xs font-light tablet:font-normal text-mainBlack'>Already have an account?<Link to='/login'><span className='ml-1 text-lime-500 hover:text-lime-600 font-light tablet:font-normal cursor-pointer'>Login here</span></Link></h3>
+            </div>
+        </form>
+    )
 }
