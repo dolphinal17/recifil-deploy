@@ -13,7 +13,7 @@ const GetMaindish = async (req, res) => {
       const recipeData = doc.data();
       recipes.push({ id: doc.id, ...recipeData });
     })
-  console.log(recipes);
+  
   res.send(recipes); // Return the recipes array as the response
 }
 

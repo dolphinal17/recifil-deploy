@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../style'
 import { SearchBarWBG, FiltInIngBasket, FiltOutIngBasket } from '../molecules/molecules.js'
 import { CardIngSugg, RecipeCard, Navbar } from '../organisms/organisms.js'
 
 const Basket = () => {
+  
+  //For Filter IN Function
+  const [ingredients, setIngredients] = useState(['chicken', 'pork', 'beef']);
+  const handleDelete = (index) => {
+    const newIngredients = [...ingredients];
+    newIngredients.splice(index, 1);
+    setIngredients(newIngredients);
+  };
+
+  //For Filter Out Function
+  const [notingredients, setnotIngredients] = useState(['Soy Sauce']);
+  const nothandleDelete = (index) => {
+    const newnotIngredients = [...notingredients];
+    newnotIngredients.splice(index, 1);
+    setnotIngredients(newnotIngredients);
+  };
+  
   return (
     <div className={`${styles.boxWidth}`}>
       <Navbar />
@@ -23,16 +40,20 @@ const Basket = () => {
               {/* filtered in */}
               <div className={`col-span-1 flex flex-col items-center justify-start px-[1rem]`}>
                 <h3 className='text-sm font-normal tablet:font-medium text-primary mb-[10px]'>FILTERED IN</h3>
-
                 <div className='flex flex-wrap'>
+                  {ingredients.map((ingredient, index) => (
+                    <FiltInIngBasket key={index} name={ingredient} onDelete={() => handleDelete(index)} />
+                  ))}
+                  
+                </div>
+                {/* <div className='flex flex-wrap'>
                     <FiltInIngBasket 
                       name="Pork"
                     />
-
                     <FiltInIngBasket 
                       name="Corn"
                     />
-                </div>
+                </div> */}
               </div>
 
               {/* filtered out */}
@@ -40,9 +61,9 @@ const Basket = () => {
                 <h3 className='text-sm font-normal tablet:font-medium text-primary mb-[10px] mt-[0.5rem] laptop:mt-0'>FILTERED OUT</h3>
 
                 <div className='flex flex-wrap'>
-                    <FiltOutIngBasket 
-                      name="Soy Sauce"
-                    />
+                  {notingredients.map((notingredient, index) => (
+                    <FiltOutIngBasket key={index} name={notingredient} onDelete={() => nothandleDelete(index)} />
+                  ))}
                 </div>
               </div>
             </div>
