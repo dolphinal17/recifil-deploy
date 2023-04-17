@@ -17,6 +17,7 @@ import OtherPost from './components/postdemos/OtherPost';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPanel from './components/pages/AdminPanel';
+import AdminUser from './components/pages/AdminUser';
 
 
 
@@ -216,6 +217,7 @@ function App() {
             <Route path="adminnav" element={<NavbarAdmin />} />
             <Route path="admin" element={<AdminPanel />} />
             <Route path="table" element={<TableUser />} />
+            <Route path="adminuser" element={<AdminUser/>} />
         </Routes>
 
         <ToastContainer

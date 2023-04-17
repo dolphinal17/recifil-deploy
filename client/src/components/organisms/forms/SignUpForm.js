@@ -18,6 +18,8 @@ export default function SignUpForm() {
         firstname: "",
         lastname: "",
         email: "",
+        photoURL: "",
+        uid: "",
         password: "",
         confirmPassword: ""
     })
@@ -55,7 +57,7 @@ export default function SignUpForm() {
 
     const SubmitHandler = async (e) => {
         e.preventDefault()
-        const { email, password, confirmPassword, firstname, lastname } = user
+        const { email, password, confirmPassword, firstname, lastname, photoURL, uid } = user
         if (password === "" || confirmPassword === "" || email === "" || firstname === "" || lastname === "") {
             setInterval(() => {
                 setError("")
@@ -87,11 +89,11 @@ export default function SignUpForm() {
                 await SignUp(email, password).then(async (result) => {
                     console.log(result)
                     const ref = doc(db, "userinfo", auth.currentUser.uid)
-                    const docRef = await setDoc(ref, { firstname, lastname })
+                    const docRef = await setDoc(ref, { firstname, lastname, photoURL, email, uid:auth.currentUser.uid })
                     // console.log("Document written with ID: ", docRef.uid);
                     updateProfile(auth.currentUser, {
                         displayName: firstname + ' ' + lastname,
-                        photoURL: ''
+                        photoURL: '',
                     }).then(() => {
                         sendEmailVerification(auth.currentUser)
                         navigate('/emailverification')

@@ -2,8 +2,10 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { upload } from '../../../config/firebase'
+import { db, upload } from '../../../config/firebase'
 import { useAuth } from '../../../context/UserAuthContext'
+import { doc, setDoc } from 'firebase/firestore'
+
 
 
 
@@ -28,10 +30,19 @@ export default function UploadImage() {
     }
 
     useEffect(() => {
-        if (currentuser?.photoURL) {
-            setPhotoURL(currentuser.photoURL)
+        async function updatedPhoto() {     
+          if (currentuser?.photoURL) {
+              setPhotoURL(currentuser.photoURL) 
+              
+              const userinforef = doc(db, "userinfo", currentuser.uid)
+  
+              await setDoc(userinforef, {photoURL: currentuser.photoURL}, {merge: true})
+          } else {
+            console.log("no photo")
+          }
         }
-    }, [currentuser])
+        updatedPhoto();
+      }, [currentuser])
 
   return (
     <div className='w-full h-screen flex justify-center items-center bg-primary'>
