@@ -55,17 +55,16 @@ const Library = () => {
     const recipesRef = query(collection(db, 'recipes'));
 
     const querySnapshot = await getDocs(recipesRef);
-    const recipeDataWithId = querySnapshot.docs.map((doc) => {
-      return { ...doc.data(), document: doc.id };
-    })
+    const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
 
     setInfo(recipeDataWithId);
     setLoading(false)
+    
   }
 
   useEffect(() => {
     fetchRecipes();
-  }, [])
+  }, [category])
 
   const handleMainDishClick = () => {
     setCategory("maindish");

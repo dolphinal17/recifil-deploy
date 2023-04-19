@@ -22,6 +22,7 @@ import AdminRecipes from './components/pages/AdminRecipes';
 import EditRecipes from './components/pages/EditRecipes';
 import AddRecipeForm from './components/organisms/forms/AddRecipeForm';
 import AddRecipes from './components/pages/AddRecipes';
+import AdminPosts from './components/pages/AdminPosts';
 
 
 
@@ -103,15 +104,7 @@ function App() {
               }
             />
 
-            {/* <Route
-              exact
-              path="/socials"
-              element={
-                <WithPrivateRoute>
-                  <Post />
-                </WithPrivateRoute>
-              }
-            /> */}
+            
 
             <Route
               exact
@@ -227,6 +220,8 @@ function App() {
             <Route path='/editrecipes/:id' element={<EditRecipes />} />
             <Route path='/addrecipesform' element={<AddRecipeForm />} />
             <Route path='/addrecipes' element={<AddRecipes />} />
+            <Route path='/adminposts' element={<AdminPosts />} />
+            
         </Routes>
 
         <ToastContainer

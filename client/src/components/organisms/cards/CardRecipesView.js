@@ -15,13 +15,13 @@ import { doc, getDoc } from '@firebase/firestore'
 
 const CardRecipesView = () => {
 
-    const params = useParams();
+    const {id} = useParams();
     const [info, setInfo] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchRecipe() {
-            const docRef = doc(db, "recipes", params.id)
+            const docRef = doc(db, "recipes", id)
             const docSnap = await getDoc(docRef)
             if (docSnap.exists()){
                 setInfo(docSnap.data())
@@ -29,7 +29,8 @@ const CardRecipesView = () => {
             } 
         }
         fetchRecipe();
-    }, [params.id]);
+    }, [id]);
+    
     if (loading) {
         return <PreLoader/>;
     }

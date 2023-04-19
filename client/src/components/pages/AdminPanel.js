@@ -27,10 +27,11 @@ export default function () {
             <FontAwesomeIcon icon={faNoteSticky} className='text-white text-[30px]' />
           </div>
 
-          <div className="w-[17rem] h-[14rem] flex flex-col justify-center items-center bg-[#84cc16] shadow-md rounded-md p-4 mx-[3rem]">
+          <Link to='/adminrecipes'><div className="w-[17rem] h-[14rem] flex flex-col justify-center items-center bg-[#84cc16] shadow-md rounded-md p-4 mx-[3rem]">
             <h2 className="text-xl font-semibold text-white mb-4">Recipes</h2>
             <FontAwesomeIcon icon={faBookOpen} className='text-white text-[30px]' />
           </div>
+          </Link>
 
           <div className="w-[17rem] h-[14rem] flex flex-col justify-center items-center bg-[#84cc16] shadow-md rounded-md p-4 mx-[3rem]">
             <h2 className="text-xl font-semibold text-white mb-4">Ingredients</h2>
