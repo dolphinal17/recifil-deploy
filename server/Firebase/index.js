@@ -15,11 +15,8 @@ admin.initializeApp({
     storageBucket: "recifil.appspot.com"
 });
 
-
 const db = getFirestore();
 const getst = getStorage();
-
-
 
 
 
