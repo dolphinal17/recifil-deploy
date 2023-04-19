@@ -184,7 +184,7 @@ export default function RecipesForm() {
 
                             <input
                                 className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md'
-                                type='button'
+                                
                                 placeholder='Ingredient'
                                 value={newIngredient}
                                 onChange={(e) => setNewIngredient(e.target.value)}
@@ -192,6 +192,7 @@ export default function RecipesForm() {
 
                             <button
                                 className='flex flex-none py-[0.5rem] justify-center items-center w-[4rem] bg-secondary text-primary text-lg rounded-md'
+                                type='button'
                                 onClick={() => {
                                     if (!tempIng.includes(newIngredient)) {
                                         setTempIng((prevTempIng) => [...prevTempIng, newIngredient]);
@@ -232,7 +233,7 @@ export default function RecipesForm() {
 
                             <input
                                 className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md'
-                                type='button'
+                               
                                 placeholder='Procedure'
                                 value={newStep}
                                 onChange={(e) => setNewStep(e.target.value)}
@@ -240,6 +241,7 @@ export default function RecipesForm() {
 
                             <button
                                 className='flex flex-none py-[0.5rem] justify-center items-center w-[4rem] bg-secondary text-primary text-lg rounded-md'
+                                type='button'
                                 onClick={() => {
                                     if (!tempSteps.includes(newStep)) {
                                         setTempSteps((prevTempSteps) => [...prevTempSteps, newStep]);
