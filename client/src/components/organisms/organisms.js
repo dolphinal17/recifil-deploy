@@ -21,6 +21,12 @@ import InsideFooter from "./navsandfooters/InsideFooter";
 import SidebarAdmin from "./navsandfooters/SidebarAdmin";
 import NavbarAdmin from "./navsandfooters/NavbarAdmin";
 import TableUser from "./tables/TableUser";
+import SignUpJerud from "./forms/SignUpJerud";
+import NewSignUpForm from "./forms/NewSignUpForm";
+
+
+
+
 
 
 export {
@@ -46,5 +52,7 @@ export {
     InsideFooter,
     SidebarAdmin,
     NavbarAdmin,
-    TableUser
+    TableUser,
+    SignUpJerud,
+    NewSignUpForm
 }

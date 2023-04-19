@@ -8,7 +8,7 @@ import { auth } from './config/firebase';
 
 // here to import components like pages
 import {Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg, ForgotPassword, EmailVerification} from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, SidebarAdmin, TableUser, UploadImage} from './components/organisms/organisms.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, NewSignUpForm, SidebarAdmin, SignUpJerud, TableUser, UploadImage} from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 import { ModalAccountSuccess } from './components/molecules/molecules';
@@ -221,7 +221,8 @@ function App() {
             <Route path='/addrecipesform' element={<AddRecipeForm />} />
             <Route path='/addrecipes' element={<AddRecipes />} />
             <Route path='/adminposts' element={<AdminPosts />} />
-            
+            <Route path='/jerud' element={<SignUpJerud/>}/>
+            <Route path='/newsignup' element={<NewSignUpForm/>}/>
         </Routes>
 
         <ToastContainer

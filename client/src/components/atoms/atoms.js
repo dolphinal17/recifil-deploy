@@ -7,6 +7,10 @@ import BtnLS from "./buttons/BtnLS";
 import BtnServing from "./buttons/BtnServing";
 import BtnLogout from "./buttons/BtnLogout";
 import BtnSuggIngIO from "./buttons/BtnSuggIngIO";
+import InputGeneral from "./InputGeneral";
+import InputPassword from "./InputPassword";
+import LabelInputError from "./LabelInputError";
+
 
 
 export {
@@ -18,5 +22,8 @@ export {
     BtnServing,
     BtnLogout,
     BtnSuggIngIO,
-    PreLoader
+    PreLoader,
+    InputGeneral,
+    InputPassword,
+    LabelInputError
 }
