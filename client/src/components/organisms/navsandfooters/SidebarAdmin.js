@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faUserGroup, faNoteSticky, faBookOpen, faAppleWhole, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export default function SidebarAdmin() {
     const [open, setOpen] = useState(true)
@@ -27,13 +28,13 @@ export default function SidebarAdmin() {
 
             {/* menu list */}
             <ul className={`${open ? "pl-[0.5rem] tablet:pl-[1rem]" : ""} flex flex-col duration-200`}>
-                <li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faChartLine} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Dashboard</span></li>
+                <Link to='/admin'><li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faChartLine} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Dashboard</span></li></Link>
 
-                <li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faUserGroup} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Users</span></li>
+                <Link to='/adminuser'><li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faUserGroup} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Users</span></li></Link>
 
                 <li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faNoteSticky} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Posts</span></li>
 
-                <li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faBookOpen} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Recipes</span></li>
+                <Link to='/adminrecipes'><li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faBookOpen} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Recipes</span></li></Link>
 
                 <li className={`${open ? "" : "justify-center"} flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faAppleWhole} className='text-sm w-[14px] text-primary'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium text-primary duration-200`}>Ingredients</span></li>
             </ul>

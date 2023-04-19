@@ -18,6 +18,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminPanel from './components/pages/AdminPanel';
 import AdminUser from './components/pages/AdminUser';
+import AdminRecipes from './components/pages/AdminRecipes';
+import EditRecipes from './components/pages/EditRecipes';
+import AddRecipeForm from './components/organisms/forms/AddRecipeForm';
+import AddRecipes from './components/pages/AddRecipes';
 
 
 
@@ -213,11 +217,16 @@ function App() {
 
             <Route path='/success' element={<ModalAccountSuccess/>} />
             <Route path="/loadings" element={<PreLoader />} />
-            <Route path="adminsidebar" element={<SidebarAdmin />} />
-            <Route path="adminnav" element={<NavbarAdmin />} />
-            <Route path="admin" element={<AdminPanel />} />
-            <Route path="table" element={<TableUser />} />
-            <Route path="adminuser" element={<AdminUser/>} />
+            <Route path="/adminsidebar" element={<SidebarAdmin />} />
+            <Route path="/adminnav" element={<NavbarAdmin />} />
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/table" element={<TableUser />} />
+            <Route path="/adminuser" element={<AdminUser/>} />
+            <Route path='/adminrecipes' element={<AdminRecipes />} />
+            <Route path="/editrecipes" element={<EditRecipes />} />
+            <Route path='/editrecipes/:id' element={<EditRecipes />} />
+            <Route path='/addrecipesform' element={<AddRecipeForm />} />
+            <Route path='/addrecipes' element={<AddRecipes />} />
         </Routes>
 
         <ToastContainer

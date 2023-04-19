@@ -29,25 +29,43 @@ const Library = () => {
 
 
 
-  useEffect(() => {
-    setLoading(true)
-    axios
-      .get(`/library/alldish/${category}`)
-      .then((response) => {
-        // setInfo(response.data); // This will log the recipes array to the console
-        const recipes = response.data;
-        const recipeDataWithId = recipes.map((recipe) => {
-          return { ...recipe, document: recipe.id };
-        });
-        setInfo(recipeDataWithId);
+  // useEffect(() => {
+  //   setLoading(true)
+  //   axios
+  //     .get(`/library/alldish/${category}`)
+  //     .then((response) => {
+  //       // setInfo(response.data); // This will log the recipes array to the console
+  //       const recipes = response.data;
+  //       const recipeDataWithId = recipes.map((recipe) => {
+  //         return { ...recipe, document: recipe.id };
+  //       });
+  //       setInfo(recipeDataWithId);
         
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false)
-      });
-  }, [category]);
+  //       setLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setLoading(false)
+  //     });
+  // }, [category]);
+
+  const fetchRecipes = async () => {
+    setLoading(true)
+
+    const recipesRef = query(collection(db, 'recipes'));
+
+    const querySnapshot = await getDocs(recipesRef);
+    const recipeDataWithId = querySnapshot.docs.map((doc) => {
+      return { ...doc.data(), document: doc.id };
+    })
+
+    setInfo(recipeDataWithId);
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchRecipes();
+  }, [])
 
   const handleMainDishClick = () => {
     setCategory("maindish");
