@@ -5,7 +5,7 @@ import { SearchBarWBG } from '../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { auth, db } from '../../config/firebase'
-import { collection, doc, getDocs } from 'firebase/firestore'
+import { collection, doc, getDocs, where, query } from 'firebase/firestore'
 import { Link } from 'react-router-dom'
 
 
@@ -21,17 +21,48 @@ const Favorites = () => {
     const user = auth.currentUser;
 
 
-    useEffect(() => {
+    
         const fetchData = async () => {
-            const favoritesRef = collection(doc(collection(db, 'userinfo'), user.uid), 'favorites');
+            let recipesQuery;
+ 
+            if (category === "maindish") {
+            recipesQuery = where("dishcategory", "array-contains", "maindish");
+            } else if (category === "sidedish") {
+            recipesQuery = where("dishcategory", "array-contains", "sidedish");
+            } else if (category === "dessert") {
+            recipesQuery = where("dishcategory", "array-contains", "dessert");
+            } else if (category === "appetizer") {
+            recipesQuery = where("dishcategory", "array-contains", "appetizer");
+            } else {
+            recipesQuery = "";
+            }
+
+            const favoritesRef = query(collection(doc(collection(db, 'userinfo'), user.uid), 'favorites'),recipesQuery);
+            setLoading(true)
+            
             const snapshot = await getDocs(favoritesRef);
             const favoritesList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
             setFavs(favoritesList);
+            setLoading(false)
         };
+    useEffect(() => {
         fetchData();
-    }, [db, user.uid]);
+    }, [db, user.uid,category]);
 
-
+    const handleMainDishClick = () => {
+        setCategory("maindish");
+      };
+      const handleSideDishClick = () => {
+        setCategory("sidedish");
+      };
+      const handleDessertClick = () => {
+        setCategory("dessert");
+      };
+      const handleAppetizerClick = () => {
+        setCategory("appetizer");
+      };
+      
     return (
         <div>
         <div className={`${styles.boxWidth}`}>
@@ -50,13 +81,23 @@ const Favorites = () => {
                     </div>
 
                     {/* category list */}
-                    <ul className='flex gap-[1rem] my-[2rem]'>
-                        <li className='text-sm font-medium text-secondary cursor-pointer'>All</li>
-                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Main Dish</li>
-                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Side Dish</li>
-                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Dessert</li>
-                        <li className='text-sm font-medium text-fadeBlack cursor-pointer'>Appetizer</li>
-                    </ul>
+                    <ul className="flex gap-[1rem] my-[2rem]">
+            <li className={`text-sm font-normal tablet:font-medium ${category === "All" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={() => setCategory("All")}>
+              All
+            </li>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "Main Dish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleMainDishClick}>
+              Main Dish
+            </li>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "Side Dish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleSideDishClick}>
+              Side Dish
+            </li>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "Dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
+              Dessert
+            </li>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "Appetizer" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
+              Appetizer
+            </li>
+          </ul>
                 </div>
                 {/* recipe grid */}
                 <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>

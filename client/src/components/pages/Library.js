@@ -3,7 +3,7 @@ import styles from "../../style";
 import { RecipeCard, Navbar, InsideFooter } from "../organisms/organisms.js";
 import { SearchBarWBG } from "../molecules/molecules.js";
 import { auth, db } from "../../config/firebase";
-import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc } from "firebase/firestore";
+import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc, where } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
@@ -29,25 +29,54 @@ const Library = () => {
 
 
 
-  useEffect(() => {
-    setLoading(true)
-    axios
-      .get(`/library/alldish/${category}`)
-      .then((response) => {
-        // setInfo(response.data); // This will log the recipes array to the console
-        const recipes = response.data;
-        const recipeDataWithId = recipes.map((recipe) => {
-          return { ...recipe, document: recipe.id };
-        });
-        setInfo(recipeDataWithId);
+  // useEffect(() => {
+  //   setLoading(true)
+  //   axios
+  //     .get(`/library/alldish/${category}`)
+  //     .then((response) => {
+  //       // setInfo(response.data); // This will log the recipes array to the console
+  //       const recipes = response.data;
+  //       const recipeDataWithId = recipes.map((recipe) => {
+  //         return { ...recipe, document: recipe.id };
+  //       });
+  //       setInfo(recipeDataWithId);
         
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false)
-      });
-  }, [category]);
+  //       setLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setLoading(false)
+  //     });
+  // }, [category]);
+
+  const fetchRecipes = async () => {
+    setLoading(true)
+    let recipesQuery;
+ 
+    if (category === "maindish") {
+      recipesQuery = where("dishcategory", "array-contains", "maindish");
+    } else if (category === "sidedish") {
+      recipesQuery = where("dishcategory", "array-contains", "sidedish");
+    } else if (category === "dessert") {
+      recipesQuery = where("dishcategory", "array-contains", "dessert");
+    } else if (category === "appetizer") {
+      recipesQuery = where("dishcategory", "array-contains", "appetizer");
+    } else {
+      recipesQuery = "";
+    }
+    const recipesRef = query(collection(db, 'recipes'),recipesQuery);
+
+    const querySnapshot = await getDocs(recipesRef);
+    const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+
+    setInfo(recipeDataWithId);
+    setLoading(false)
+    
+  }
+
+  useEffect(() => {
+    fetchRecipes();
+  }, [category])
 
   const handleMainDishClick = () => {
     setCategory("maindish");
