@@ -3,7 +3,7 @@ import styles from "../../style";
 import { RecipeCard, Navbar, InsideFooter } from "../organisms/organisms.js";
 import { SearchBarWBG } from "../molecules/molecules.js";
 import { auth, db } from "../../config/firebase";
-import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc } from "firebase/firestore";
+import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc, where } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
@@ -52,7 +52,20 @@ const Library = () => {
   const fetchRecipes = async () => {
     setLoading(true)
 
-    const recipesRef = query(collection(db, 'recipes'));
+    let recipesQuery;
+
+    if (category === "maindish") {
+      recipesQuery = where("dishcategory", "array-contains", "maindish");
+    } else if (category === "sidedish") {
+      recipesQuery = where("dishcategory", "array-contains", "sidedish");
+    } else if (category === "dessert") {
+      recipesQuery = where("dishcategory", "array-contains", "dessert");
+    } else if (category === "appetizer") {
+      recipesQuery = where("dishcategory", "array-contains", "appetizer");
+    } else {
+      recipesQuery = "";
+    }
+    const recipesRef = query(collection(db, 'recipes'),recipesQuery);
 
     const querySnapshot = await getDocs(recipesRef);
     const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))

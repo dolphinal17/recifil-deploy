@@ -82,10 +82,7 @@ const CardPostView = () => {
             <div className={`${styles.container} h-auto `}>
                 <div className='w-full h-auto flex flex-col laptop:flex-row min-h-[32rem] px-[0.5rem] mb-[1rem] laptop:px-0'>
                     <div className='flex flex-col justify-center bg-bgColorTwo p-[1rem] desktop:p-[2rem] gap-[1rem] rounded-t-md laptop:max-w-[48rem] laptop:justify-start laptop:rounded-tr-none laptop:rounded-l-md laptop:w-full'>
-                        <SearchBarWBG
-                            placeHolder="Search other recipes"
-                            bg="primary"
-                        />
+                        
 
                         {/* recipe image, author, name, ratings, heart, about */}
                         <div className='flex flex-col gap-[0.5rem] sm:flex-row sm:gap-[1rem]'>
@@ -100,31 +97,14 @@ const CardPostView = () => {
                                     {/* recipe name and author*/}
                                     <div className='flex justify-between items-center'>
                                         <div className='flex flex-col gap-[0.25rem]'>
-                                            <span className='text-sm font-normal laptop:font-medium text-secondary'>From App</span>
+                                            <span className='text-sm font-normal laptop:font-medium text-secondary'>{info.userName}</span>
                                             <span className='text-2xl font-medium text-primary'>{info.title}</span>
                                         </div>
 
-                                        <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
+                                        
                                     </div>
 
-                                    {/* ratings */}
-                                    <div className='flex gap-[0.25rem] items-center'>
-                                        {/* stars */}
-                                        <div className='flex gap-[0.125rem]'>
-                                            <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
-                                            <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
-                                            <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
-                                            <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
-                                            <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
-                                        </div>
-
-                                        {/* numbers */}
-                                        <div className='flex gap-[0.25rem]'>
-                                            <span className='text-sm font-normal laptop:font-medium text-primary'>3.8</span>
-                                            <span className='text-sm font-normal laptop:font-medium text-primary'>|</span>
-                                            <span className='text-sm font-normal laptop:font-medium text-primary'>10</span>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
                                 {/* about */}
