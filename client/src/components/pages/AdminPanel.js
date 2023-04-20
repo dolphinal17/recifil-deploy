@@ -22,10 +22,10 @@ export default function () {
             </div>
           </Link>
 
-          <div className="w-[17rem] h-[14rem] flex flex-col justify-center items-center bg-[#84cc16] shadow-md rounded-md p-4 mx-[3rem]">
+          <Link to='/adminposts'><div className="w-[17rem] h-[14rem] flex flex-col justify-center items-center bg-[#84cc16] shadow-md rounded-md p-4 mx-[3rem]">
             <h2 className="text-xl font-semibold text-white mb-4">Posts</h2>
             <FontAwesomeIcon icon={faNoteSticky} className='text-white text-[30px]' />
-          </div>
+          </div></Link>
 
           <Link to='/adminrecipes'><div className="w-[17rem] h-[14rem] flex flex-col justify-center items-center bg-[#84cc16] shadow-md rounded-md p-4 mx-[3rem]">
             <h2 className="text-xl font-semibold text-white mb-4">Recipes</h2>

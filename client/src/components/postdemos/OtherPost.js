@@ -4,7 +4,8 @@ import {
     onSnapshot,
     doc,
     addDoc,
-    deleteDoc
+    deleteDoc,
+    getDocs
   } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faTag, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -19,6 +20,7 @@ import { PreLoader } from "../atoms/atoms";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 import {toast} from 'react-toastify'
+
 
 
 
@@ -64,19 +66,18 @@ function OtherPost() {
       }
   }
 
-  const recipesCollectionRef = collection(db, "createpost")
+  const fetchPost = async () => {
 
-  useEffect(() => {
-    onSnapshot(recipesCollectionRef, snapshot => {
-      setRecipes(snapshot.docs.map(doc => {
-        return {
-          id: doc.id,
-          viewing: false,
-          ...doc.data()
-        }
-      }))
-    })
-  }, [])
+    const postref = collection(db, "approvepost")
+    const snapshot = await getDocs(postref)
+    const recipes = snapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }))
+    console.log(recipes)
+    setRecipes(recipes)
+}
+
+useEffect(() => {
+  fetchPost()
+}, [])
 
  
 
@@ -289,8 +290,10 @@ async function handleSubmit(e) {
                                   <label className='text-sm font-medium text-textMainBlack'>{recipe.userName}</label>
                               </div>
 
-                              {/* icon */}
-                              <FontAwesomeIcon icon={faHeart} className='text-secondary text-[2rem]' />
+                                <Link to={'/postview/' + recipe.uid} key={i}>
+                                <button className='bg-[#84cc16] text-white p-2 rounded-md mb-2'>View More</button>
+                                </Link>
+
                           </div>
 
                           {/* about recipe and recipe name */}
