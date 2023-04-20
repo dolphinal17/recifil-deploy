@@ -3,7 +3,7 @@ import styles from '../../style'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEye, faEyeSlash} from '@fortawesome/free-regular-svg-icons'
 
-export default function InputBoxPassword({ placeHolder, icon, type, name, value, onChange }) {
+export default function InputBoxPassword({ placeHolder, icon, type, name, value, onChange, onPaste, onCopy }) {
     const [isPasswordHidden, setIsPasswordHidden] = useState(true)
     const [isIconHidden, setIsIconHidden] = useState(true)
     const [passwordType, setPasswordType] = useState("password");
@@ -19,7 +19,7 @@ export default function InputBoxPassword({ placeHolder, icon, type, name, value,
 
   return (
     <div className={`${styles.inputLS}`}>
-        <input type={passwordType} placeholder={placeHolder} name={name} value={value} onChange={onChange} className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack'/>
+        <input type={passwordType} placeholder={placeHolder} name={name} value={value} onChange={onChange} onPaste={onPaste} onCopy={onCopy} className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack'/>
 
         <FontAwesomeIcon  onClick={() => {
             setIsPasswordHidden(!isPasswordHidden);

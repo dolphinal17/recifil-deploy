@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../context/UserAuthContext'
-import { upload } from '../../config/firebase'
+import { db, upload } from '../../config/firebase'
 import { Link } from 'react-router-dom'
+import { doc, setDoc } from 'firebase/firestore'
+
 
 
 
@@ -24,10 +26,20 @@ const UploadImg = () => {
     }
 
     useEffect(() => {
+      async function updatedPhoto() {     
         if (currentuser?.photoURL) {
-            setPhotoURL(currentuser.photoURL)
+            setPhotoURL(currentuser.photoURL) 
+            
+            const userinforef = doc(db, "userinfo", currentuser.uid)
+
+            await setDoc(userinforef, {photoURL: currentuser.photoURL}, {merge: true})
+        } else {
+          console.log("no photo")
         }
-    }, [currentuser])
+      }
+      updatedPhoto();
+    }, [currentuser, photoURL])
+
 
   return (
     <div className='w-full h-[100vh] flex justify-center items-center align-middle border-[#B2D33D]'>

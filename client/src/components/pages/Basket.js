@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { Link } from 'react-router-dom'
 
 
 
@@ -466,6 +467,7 @@ const Basket = () => {
                   
                 <>
                 {inResult.map((res, id) => (
+                  <Link to={'/recipeview/' + res.id}>
                   <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
                     <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
                       <img src={res.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
@@ -478,9 +480,10 @@ const Basket = () => {
                         <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
                       </div>
 
-                      <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
+                      
                     </div>
                   </div>
+                  </Link>
                 ))}
                 
                   
