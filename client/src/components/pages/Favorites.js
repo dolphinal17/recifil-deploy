@@ -99,6 +99,8 @@ const Favorites = () => {
                     </div>
                     {/* recipe grid */}
                     <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
+                        { favs.length === 0 ? 
+                        <><h1>You have no favorites.</h1></> : <>
                         {favs.map((val, id) => (
 
 
@@ -125,6 +127,7 @@ const Favorites = () => {
                             </div>
                         )
                         )}
+                        </>}
 
                         {/* <RecipeCard 
                     image="https://i.pinimg.com/236x/ed/0d/29/ed0d2931c988277eac062f30dfa99443.jpg"
