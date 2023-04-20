@@ -44,13 +44,18 @@ export default function LoginForm() {
       }
       try {
         await UserLogin(email, password).then(() => {
-          if(!currentuser?.emailVerified) {
+
+          if(currentuser?.email === "admin@panel.com") {
+            navigate('/admin')
+          }
+          else if(!currentuser?.emailVerified) {
             sendEmailVerification(currentuser)
             .then(() => {
               navigate('/emailverification')
             })
           // .catch(err => alert(err.message))
-        }else{
+        }
+        else{
           navigate('/discover')
         }
         })
