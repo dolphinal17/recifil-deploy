@@ -48,7 +48,7 @@ const Profile = () => {
                 <div className='flex flex-col sm:flex-row laptop:flex-col p-[1rem] w-full laptop:max-w-[14.5rem] gap-[0.5rem] sm:gap-[1rem] laptop:gap-[0.5rem] bg-bgColorTwo rounded-t-md'>
                     {/* picture */}
                     <div className='max-w-[12.5rem] w-full h-[12.5rem]'>
-                        <img  src={currentuser?.photoURL} alt='profileimg' className='w-full h-full object-cover border-2 border-secondary'></img>
+                        <img  src={currentuser?.photoURL || "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5"} alt='profileimg' className='w-full h-full object-cover border-2 border-secondary'></img>
                     </div>
 
                     {/* name, total posts, and option list */}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../context/UserAuthContext'
-import { db, upload } from '../../config/firebase'
+import { db} from '../../config/firebase'
 import { Link } from 'react-router-dom'
 import { doc, setDoc } from 'firebase/firestore'
 
@@ -22,7 +22,7 @@ const UploadImg = () => {
     }
 
     function handleClick() {
-        upload(photo, currentuser, setLoading)
+        console.log('haha')
     }
 
     useEffect(() => {

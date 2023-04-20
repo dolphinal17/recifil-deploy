@@ -18,7 +18,7 @@ export default function DropdownProfile() {
         <Menu as="div" className='relative z-10'>
             {({open}) => (
                 <Fragment>
-                    <Menu.Button as="img" src={currentuser?.photoURL} className='w-[1.25rem] h-[1.25rem] tablet:w-[35px] tablet:h-[35px] rounded-full object-cover cursor-pointer' />
+                    <Menu.Button as="img" src={currentuser?.photoURL || "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5"} className='w-[1.25rem] h-[1.25rem] tablet:w-[35px] tablet:h-[35px] rounded-full object-cover cursor-pointer' />
 
                     <Transition 
                         show={open}
@@ -36,7 +36,7 @@ export default function DropdownProfile() {
                                     <div className={`group flex gap-[0.5rem] p-[0.5rem] items-center cursor-pointer
                                         ${active ? "bg-lime-500" : ""}
                                     `}>
-                                        <img src={currentuser?.photoURL} alt='profileimg' className='w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
+                                        <img src={currentuser?.photoURL || "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5"} alt='profileimg' className='w-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
 
                                         {/* name and arrow*/}
                                         <div className='w-full flex justify-between items-center'>

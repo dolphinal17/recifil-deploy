@@ -36,17 +36,3 @@ export {
     storage,
 }
 
-export async function upload(file, currentuser, setLoading) {
-  const fileRef = ref(storage, 'profileimages/'+currentuser.uid +'.jpg');
-
-  setLoading(true);
-  const snapshot = await uploadBytes(fileRef, file);
-
-  const photoURL = await getDownloadURL(fileRef)
-
-  updateProfile(currentuser, {photoURL});
-
-  setLoading(false);
-  
-  window.location.reload(true)
-}

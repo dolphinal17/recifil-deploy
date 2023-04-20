@@ -7,7 +7,7 @@ const LandingNavbar = () => {
     <nav className='w-full bg-primary'>
         <div className='desktop:w-[67rem] laptop:w-[60rem] sm:w-[38rem] w-[20rem] h-auto flex justify-between m-auto items-center py-3'>
             <div className='flex items-center gap-[0.5rem]'>
-                <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FNewLogoSecondary.png?alt=media&token=0c0d1f96-61bb-405a-99b1-9e8a51974677" alt='recifillogo' className='w-[1rem] laptop:w-[2rem]'/>
+                <img src="https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2FLogoMainG.png?alt=media&token=c25b6fd5-4217-4b56-af19-4aa6208abcc8" alt='recifillogo' className='w-[1rem] laptop:w-[2rem]'/>
 
                 <h1 className='sm:text-2xl text-xl text-textMainBlack font-semibold'>ReciFil</h1>
             </div>

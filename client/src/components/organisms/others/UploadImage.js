@@ -2,9 +2,12 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { db, upload } from '../../../config/firebase'
+import { db, storage} from '../../../config/firebase'
 import { useAuth } from '../../../context/UserAuthContext'
 import { doc, setDoc } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { updateProfile } from 'firebase/auth'
+
 
 
 
@@ -18,31 +21,53 @@ export default function UploadImage() {
     const navigate = useNavigate()
 
 
+    async function upload(file, currentuser, setLoading) {
+        const fileRef = ref(storage, 'profileimages/'+currentuser.uid +'.jpg');
+      
+        setLoading(true);
+        const snapshot = await uploadBytes(fileRef, file);
+      
+        const photoURL = await getDownloadURL(fileRef)
+      
+        updateProfile(currentuser, {photoURL});
+      
+        setLoading(false);
+        
+        window.location.reload(true)
+      }
+
     function handleChange(e) {
        if (e.target.files[0]) {
         setPhoto(e.target.files[0])
+       } 
+       else {
+        setPhotoURL("https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5")
        }
     }
 
     function handleClick() {
+        if (photo) {
         upload(photo, currentuser, setLoading)
         // navigate('/upload')
+    } else {
+            setPhotoURL("https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5")
+        }
     }
 
     useEffect(() => {
-        async function updatedPhoto() {     
-          if (currentuser?.photoURL) {
-              setPhotoURL(currentuser.photoURL) 
-              
-              const userinforef = doc(db, "userinfo", currentuser.uid)
-  
-              await setDoc(userinforef, {photoURL: currentuser.photoURL}, {merge: true})
+        if (currentuser) {
+          if (currentuser.photoURL) {
+            setPhotoURL(currentuser.photoURL);
+            const userinforef = doc(db, "userinfo", currentuser.uid);
+            setDoc(userinforef, { photoURL: currentuser.photoURL }, { merge: true });
           } else {
-            console.log("no photo")
+            const defaultAvatarURL = "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5";
+            setPhotoURL(defaultAvatarURL);
+            const userinforef = doc(db, "userinfo", currentuser.uid);
+            setDoc(userinforef, { photoURL: defaultAvatarURL }, { merge: true });
           }
         }
-        updatedPhoto();
-      }, [currentuser])
+      }, [currentuser]);
 
   return (
     <div className='w-full h-screen flex justify-center items-center bg-primary'>
@@ -50,7 +75,7 @@ export default function UploadImage() {
             <div className='flex flex-col p-[1rem]'>
                 <div className='flex flex-row justify-center items-center'>
                     <span className='text-center text-base tablet:text-xl font-normal text-mainBlack'>Change Avatar</span>
-                    <Link to='/discover'><FontAwesomeIcon icon={faXmark} className='text-[16px] font-[500] text-[#949494] cursor-pointer left-40 relative'/></Link>
+                    
                 </div>
                 
 
@@ -87,6 +112,7 @@ export default function UploadImage() {
                 onClick={handleClick}
                 disabled={loading || !photo}
                 >Change</button>
+                <Link to='/discover'><button className='p-2 bg-slate-100 text-black border-2 mt-3 border-black'>Skip</button></Link>
             </div>
         </div>
     </div>
