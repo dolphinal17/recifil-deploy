@@ -9,8 +9,9 @@ import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { faFilter, faMagnifyingGlass, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+
 
 
 
@@ -24,6 +25,8 @@ const Library = () => {
   const [document, setDocument] = useState("");
   // const { id } = useParams ();
   const [favorites, setFavorites] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [favDoc, setFavDoc] = useState([]);
   const user = auth.currentUser;
 
@@ -40,7 +43,7 @@ const Library = () => {
   //         return { ...recipe, document: recipe.id };
   //       });
   //       setInfo(recipeDataWithId);
-        
+
   //       setLoading(false)
   //     })
   //     .catch((error) => {
@@ -65,14 +68,32 @@ const Library = () => {
     } else {
       recipesQuery = "";
     }
-    const recipesRef = query(collection(db, 'recipes'),recipesQuery);
+    const recipesRef = query(collection(db, 'recipes'), recipesQuery);
 
     const querySnapshot = await getDocs(recipesRef);
     const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
 
     setInfo(recipeDataWithId);
     setLoading(false)
-    
+
+  }
+
+  useEffect(() => {
+    async function fetchSearchResults() {
+      const q = query(collection(db, 'recipes'), where('title', '>=', searchTerm));
+      const querySnapshot = await getDocs(q);
+      const results = [];
+      querySnapshot.forEach((doc) => {
+        results.push({ id: doc.id, ...doc.data() });
+      });
+      setSearchResults(results);
+    }
+
+    fetchSearchResults();
+  }, [searchTerm]);
+
+  function handleSearch(e) {
+    setSearchTerm(e.target.value);
   }
 
   useEffect(() => {
@@ -100,7 +121,7 @@ const Library = () => {
       const querySnapshot = await getDocs(favoritesRef);
       const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
       setFavDoc(favoriteDoc);
-      
+
       if (favoriteDoc) {
         // Recipe already exists in favorites, remove it
         setLoading(true)
@@ -128,7 +149,15 @@ const Library = () => {
       <div className={`${styles.container}`}>
         {/* search bar and category list*/}
         <div className="flex flex-col w-full items-center sm:items-start sm:ml-[1rem]">
-          <SearchBarWBG placeHolder="Search recipes" bg="primary" />
+
+          {/* search bar */}
+          <div className={`py-[0.5rem] px-[1rem] max-w-[22rem] w-full bg-white rounded-full flex flex-row justify-center items-center`}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} className='text-fadeText text-sm mr-[0.5rem]' />
+
+            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' placeholder='Search recipes..' onChange={handleSearch} value={searchTerm}></input>
+
+            <FontAwesomeIcon icon={faFilter} className='text-textMainBlack text-sm ml-[0.5rem]' />
+          </div>
 
           {/* category list */}
           <ul className="flex gap-[1rem] my-[2rem]">
@@ -153,7 +182,8 @@ const Library = () => {
         {loading ? (<PreLoader />) :
           (
             <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
-              {info.map((val, id) => (
+              
+              {searchResults.map((val, id) => (
 
 
                 <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>
@@ -172,7 +202,7 @@ const Library = () => {
                     </div>
 
                     <button onClick={() => handleFavoriteClick(val, val.title)}>
-                      
+
                       {
                         favorites.some(favorite => favorite.title === val.title) ? (
                           <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
