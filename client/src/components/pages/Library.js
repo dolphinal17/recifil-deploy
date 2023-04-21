@@ -110,7 +110,7 @@ const Library = () => {
       } else {
         setLoading(true)
         await addDoc(favoritesRef, recipeId);
-        setFavorites([...favorites, recipeTitle]);
+        setFavorites([...favorites,  {id: recipeId, title: recipeTitle}]);
         setLoading(false)
         toast.success('Added to Favorites');
       }
