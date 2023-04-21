@@ -95,7 +95,7 @@ const Landing = () => {
           <div className='desktop:w-full w-[90%] sm:min-h-[512px] min-h-auto bg-primary border rounded-[32px] grid sm:grid-cols-2 m-auto items-center py-4'>
             <div className='col-span-1 flex justify-center items-center'>
               <div className='laptop:w-[25rem] sm:w-[15rem] w-[18rem] laptop:h-[25rem] sm:h-[15rem] h-[13rem]'>
-                <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat3.png?alt=media&token=a451018c-0523-49b8-a17d-4b7c82e7d4ac' alt='landingimg' className='w-full h-full object-cover rounded-[2rem]' />
+                <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2Ffeat3.png?alt=media&token=a451018c-0523-49b8-a17d-4b7c82e7d4ac' className='w-full h-full object-cover rounded-[2rem]' />
               </div>
             </div>
             <div>
