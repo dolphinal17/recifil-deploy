@@ -117,7 +117,10 @@ const Library = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
+  useEffect(() => {
+    handleFavoriteClick();
+  },[])
 
 
   return (
