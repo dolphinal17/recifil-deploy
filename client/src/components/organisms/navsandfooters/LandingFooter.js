@@ -5,13 +5,13 @@ import { faFacebookF, faTwitter, faGithub } from '@fortawesome/free-brands-svg-i
 
 const LandingFooter = () => {
   return (
-    <footer className='w-full flex flex-col justify-start items-center bg-primary pt-[1rem] laptop:pt-[2rem]'>
+    <footer className='w-full flex flex-col justify-start items-center bg-primary py-[0.5rem] laptop:py-[1rem]'>
         <div className='w-full max-w-[64rem]'>
-            <div className='flex justify-center'>
+            {/* <div className='flex justify-center'>
                 <hr className='w-full bg-fadeText h-[1px]'/>
-            </div>
+            </div> */}
 
-            <div className='w-full laptop:flex laptop:justify-between items-center my-[1rem]'>
+            <div className='w-full laptop:flex laptop:justify-between items-center'>
                 <div className='w-full flex flex-col laptop:flex-row items-center justify-center gap-[1rem] laptop:gap-[4rem]'>
                     <div className='flex flex-col sm:flex-row items-center gap-[1rem] text-center'>
                         <span className='flex items-center gap-[0.25rem] text-sm tablet:text-base font-normal tablet:font-medium text-mainBlack'><img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FNewLogoSecondary.png?alt=media&token=0c0d1f96-61bb-405a-99b1-9e8a51974677" alt='recifillogo' className='w-[1rem]'></img>Recifil</span>

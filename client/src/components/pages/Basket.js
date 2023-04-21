@@ -463,7 +463,7 @@ const Basket = () => {
 
                 {inResult.length === 0 && outResult.length === 0 ?
 
-                ( <h1 className= 'text-center text-gray-500'>No results</h1>) : (
+                ( <h1 className= 'text-center text-gray-500 w-full col-span-2'>No results</h1>) : (
                   
                 <>
                 {inResult.map((res, id) => (

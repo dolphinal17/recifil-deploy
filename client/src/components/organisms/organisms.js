@@ -23,11 +23,7 @@ import NavbarAdmin from "./navsandfooters/NavbarAdmin";
 import TableUser from "./tables/TableUser";
 import SignUpJerud from "./forms/SignUpJerud";
 import NewSignUpForm from "./forms/NewSignUpForm";
-
-
-
-
-
+import CardRecipeProcess from "./cards/CardRecipeProcess";
 
 export {
     CardSuggRecipeBasket,
@@ -54,5 +50,6 @@ export {
     NavbarAdmin,
     TableUser,
     SignUpJerud,
-    NewSignUpForm
+    NewSignUpForm,
+    CardRecipeProcess
 }

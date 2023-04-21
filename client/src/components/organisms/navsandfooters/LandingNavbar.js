@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const LandingNavbar = () => {
   return (
     <nav className='w-full bg-primary'>
-        <div className='desktop:w-[67rem] laptop:w-[60rem] sm:w-[38rem] w-[20rem] h-auto flex justify-between m-auto items-center py-3'>
+        <div className='desktop:w-[67rem] laptop:w-[60rem] sm:w-[38rem] w-[20rem] h-auto flex justify-between m-auto items-center py-5'>
             <div className='flex items-center gap-[0.5rem]'>
                 <img src="https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2FLogoMainG.png?alt=media&token=c25b6fd5-4217-4b56-af19-4aa6208abcc8" alt='recifillogo' className='w-[1rem] laptop:w-[2rem]'/>
 

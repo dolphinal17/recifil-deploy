@@ -154,7 +154,7 @@ function Post() {
                           <img src="https://i.pinimg.com/236x/90/b7/c9/90b7c95b0112ecbcf8580e6abdffcdbe.jpg" alt='recipeimg' className='w-full h-full object-cover'></img>
                       </div>
 
-                      <div className='col-span-1 sm:col-span-2 w-full p-[1rem]'>
+                      <div className='col-span-1 sm:col-span-2 w-full p-[1rem] bg-primary'>
                           <div className='flex flex-col gap-[1rem] relative'>
                               {/* user profile and icon */}
                               <div className='flex justify-between items-center w-full'>

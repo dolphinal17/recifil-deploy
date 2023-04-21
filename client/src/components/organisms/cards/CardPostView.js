@@ -4,7 +4,7 @@ import { Navbar } from '../organisms.js'
 import { BtnServing, PreLoader } from '../../atoms/atoms.js'
 import { SearchBarWBG } from '../../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
 import { useParams } from 'react-router-dom'
 import { auth, db } from '../../../config/firebase'
@@ -204,38 +204,44 @@ const CardPostView = () => {
                     </div>
                 </div>
 
-                <div className='w-full h-auto bg-white mb-10'>
-                    <h1 className='text-[1.5rem] font-[500] ml-5 mt-3'>Comments:</h1>
+                <div className='w-full h-auto bg-white mb-10 pt-[1rem] laptop:pt-[2rem] px-[1rem] tablet:px-[2rem]'>
+                    <h1 className='text-lg tablet:text-xl font-medium mb-[1rem]'>Comments:</h1>
 
                     {/* comments */}
-                    <div className='flex flex-col gap-[0.25rem] p-2 h-auto'>
+                    <div className='flex flex-col gap-[0.25rem] h-auto'>
+                        <div className='flex flex-col gap-[0.5rem] tablet:gap-[1rem] h-[10rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                            {commentInfo.map((com, i) => (
+                                <div  key={i} className='flex justify-start items-start gap-[0.5rem]'>
+                                    {/* <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover'></img> */}
+                                    
+                                    {/* <h1 className='text-lg font-[500]'>{com.user.name}</h1> */}
 
-                    <div className='h-[10rem] overflow-y-auto'>
-                        {commentInfo.map((com, i) => (
-                            
-                        <div  key={i} >
-                        <div className='ml-6 flex flex-row items-center justify-start mb-2'>
-                            <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover mr-3    '></img>
-                            <h1 className='text-lg font-[500]'>{com.user.name}</h1>
+                                    <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover flex-none'/>
+
+                                    <div className='w-full flex flex-col p-[0.5rem] rounded-sm bg-zinc-100 gap-[0.25rem]'>
+                                        <span className='text-lg font-light laptop:font-normal text-mainBlack'>{com.user.name}</span>
+
+                                        <span className='text-base font-thin laptop:font-light text-mainBlack'>{com.text}</span>
+                                    </div>
+                                    {/* <h1 className='text-md'>{com.text}</h1> */}
+                                </div>
+                            ))}
                         </div>
-                        <h1 className='text-md ml-6'>{com.text}</h1>
-                        </div>
-                        ))}
-                        </div>
-                        <form className='flex flex-row items-center' onSubmit={handleSubmit}>
-                            <textarea rows="4"
-                                cols="100"
-                                placeholder="Enter your comment here"
-                                className='resize-none p-2 my-5 mt-8 border-2 rounded-sm border-black'
+
+                        <form className='flex items-center justify-between border-t border-zinc-300 py-[0.5rem] tablet:py-[1rem]  mt-[1rem] gap-[1rem] tablet:gap-[2rem]' onSubmit={handleSubmit}>
+                            <textarea rows="1"
+                                placeholder="Add a comment..."
+                                className='resize-none p-2 border-2 border-zinc-200 rounded-lg focus:outline-zinc-400 w-full'
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                             ></textarea>
 
-                            <input
+                            {/* <input
                                 value='Comment'
                                 type='submit'
-                                className='p-2 bg-[#84cc16] h-[3rem] text-white ml-5 rounded-md cursor-pointer'
-                            ></input>
+                                className='p-2 bg-[#84cc16] h-[3rem] text-white rounded-md cursor-pointer'
+                            ></input> */}
+                            <FontAwesomeIcon type='submit' icon={faPaperPlane} className='cursor-pointer text-2xl text-secondary'/>
                         </form>
                     </div>
 
