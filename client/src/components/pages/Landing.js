@@ -18,11 +18,12 @@ const Landing = () => {
   //     });
   // }, []);
   return (
-    <div className={`${styles.boxWidth}`}>
-      <div className='w-full bg-primary grid-cols-1 gap-[2rem] pb-[2rem]'>
+    <div className={`${styles.boxWidth} scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
+      <div className='w-full bg-primary grid-cols-1 gap-[2rem] pb-[2rem] min-h-screen'>
         <LandingNavbar />
 
-        <div className='desktop:w-[65rem] laptop:w-[58rem] tablet:w-[43rem] sm:w-[35rem] w-[20rem] laptop:h-[512px] h-auto border-solid border-[1px] rounded-t-[2rem] shadow-[5px_0_10px_rgb(0,0,0,0.1)] m-auto flex flex-col'>
+        {/* shadow-[5px_0_10px_rgb(0,0,0,0.1)] */}
+        <div className='desktop:w-[65rem] laptop:w-[58rem] tablet:w-[43rem] sm:w-[35rem] w-[20rem] laptop:h-[512px] h-auto border border-zinc-300 rounded-t-[2rem] m-auto flex flex-col'>
           <div className='tablet:flex-row flex-col flex tablet:w-[80%] w-[100%] m-auto py-10 gap-[1rem]'>
             <div className='tablet:w-[60%] w-[100%] flex flex-col items-center'>
               <h1 className='text-2xl laptop:text-5xl text-textMainBlack font-medium tablet:font-semibold'>An AI Filipino  <span className='text-[#59981A]'> Recipe Builder</span></h1>
@@ -52,7 +53,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <div className={`${styles.container}`}>
+      <div className={`flex w-full max-w-[64rem] flex-col items-start justify-start bg-transparent pt-[1rem] laptop:pt-[2rem] laptop:px-[1rem] desktop:px-0`}>
         <div className='flex flex-col items-center laptop:max-w-[42rem] sm:max-w-[38rem] max-w-[20rem] m-auto pb-5 gap-[1rem]'>
           <div className='p-[0.5rem] rounded-md bg-fadeText'>
             <h2 className='text-sm tablet:text-base text-primary font-normal tablet:font-medium'>THE SOLUTION</h2>

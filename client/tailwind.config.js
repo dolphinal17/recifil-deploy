@@ -14,7 +14,7 @@ module.exports = {
         fadeBlack: "#747474",
         bgColorTwo: "#20262E",
         primary: "#FFFFFF",
-        secondary: "#84cc16",
+        secondary: "#65a30d",
         bgColor: "#e4e4e7",
         fadeText: "rgba(0, 0, 0, 0.6)",
         textMainBlack: "rgba(0, 0, 0, 0.8)",

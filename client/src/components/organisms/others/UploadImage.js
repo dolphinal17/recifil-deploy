@@ -72,7 +72,7 @@ export default function UploadImage() {
   return (
     <div className='w-full h-screen flex justify-center items-center bg-primary'>
         <div className='max-w-[32rem] w-full bg-primary rounded-lg shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]'>
-            <div className='flex flex-col p-[1rem]'>
+            <div className='w-full flex flex-col p-[1rem]'>
                 <div className='flex flex-row justify-center items-center'>
                     <span className='text-center text-base tablet:text-xl font-normal text-mainBlack'>Change Avatar</span>
                     
@@ -107,12 +107,22 @@ export default function UploadImage() {
                 onChange={handleChange}
                 ></input>
 
+                {/* <div className='flex items-center gap-[1rem] tablet:gap-[2rem] mt-[1rem]'>
+                  <button 
+                  className='w-full max-w-[8rem] border border-zinc-400 py-[0.5rem] rounded-md hover:bg-lime-500 hover:text-primary hover:border-lime-500 duration-200 text-sm tablet:text-base font-normal'
+                  onClick={handleClick}
+                  disabled={loading || !photo}
+                  >Change</button>
+
+                  <Link to='/discover'> <button className='w-full max-w-[8rem] border border-zinc-400 py-[0.5rem] rounded-md hover:bg-lime-500 hover:text-primary hover:border-lime-500 duration-200 text-sm tablet:text-base font-normal'>Skip</button> </Link>
+                </div> */}
                 <button 
-                className='flex justify-center items-center border border-zinc-400 py-[0.5rem] mt-[1rem] rounded-md hover:bg-lime-500 hover:text-primary hover:border-lime-500 duration-200 text-sm tablet:text-base font-normal'
+                className='flex justify-center items-center border border-zinc-400 py-[0.5rem] mt-[1rem] rounded-md hover:bg-lime-500 hover:text-primary hover:border-lime-500 duration-200 text-sm tablet:text-base font-normal mb-[0.25rem] tablet:mb-[0.5rem]'
                 onClick={handleClick}
                 disabled={loading || !photo}
                 >Change</button>
-                <Link to='/discover'><button className='p-2 bg-slate-100 text-black border-2 mt-3 border-black'>Skip</button></Link>
+
+                <Link to='/discover'><button className='w-full border border-zinc-400 py-[0.5rem] rounded-md hover:bg-zinc-500 hover:text-primary hover:border-zinc-500 duration-200 text-sm tablet:text-base font-normal mx-auto'>Skip</button></Link>
             </div>
         </div>
     </div>

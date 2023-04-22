@@ -5,7 +5,7 @@ import React from 'react'
 
 const InsideFooter = () => {
     return (
-        <footer className='w-full flex flex-col justify-start items-center bg-primary pt-[1rem] laptop:pt-[0.5rem] border-none z-10'>
+        <footer className='w-full flex flex-col justify-start items-center bg-primary border-none z-10 absolute bottom-0 right-0'>
             <div className='w-full max-w-[64rem]'>
                 {/* <div className='flex justify-center'>
                     <hr className='w-full bg-fadeText h-[1px]'/>

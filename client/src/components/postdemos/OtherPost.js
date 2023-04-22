@@ -8,8 +8,8 @@ import {
     getDocs
   } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faTag, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
+import { faXmark, faTag, faTrash, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faComment } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../style'
 import { CardPost, RecipeCard, Navbar, CardCreatePost, InsideFooter } from '../organisms/organisms.js'
 import CreatePost from '../../assets/create-post.png'
@@ -277,50 +277,64 @@ async function handleSubmit(e) {
                       <img src={recipe.imgUrls} alt='recipeimg' className='w-full h-full object-cover'></img>
                   </div>
 
-                  <div className='col-span-1 sm:col-span-2 w-full p-[1rem] overflow-y-scroll'>
-                      <div className='flex flex-col gap-[1rem] relative'>
-                          {/* user profile and icon */}
-                          <div className='flex justify-between items-center w-full'>
-                              {/* user's profile */}
-                              <div className='flex items-center gap-[0.5rem]'>
-                                  <div className='w-[3rem] h-[3rem] rounded-full'>
-                                      <img src={recipe.userPhoto} alt='userimg' className='w-full h-full object-cover rounded-full'></img>
-                                  </div>
+                  <div className='col-span-1 sm:col-span-2 w-full pt-[1rem] px-[1rem] bg-primary h-auto sm:h-[17rem] relative'>
+                    <div className="flex flex-col gap-[1rem]">
+                      {/* user profile and icon */}
+                      <div className='flex justify-between items-center w-full'>
+                        {/* user's profile */}
+                        <div className='flex items-center gap-[0.5rem]'>
+                            <div className='w-[3rem] h-[3rem] rounded-full'>
+                                <img src={recipe.userPhoto} alt='userimg' className='w-full h-full object-cover rounded-full'></img>
+                            </div>
 
-                                  <label className='text-sm font-medium text-textMainBlack'>{recipe.userName}</label>
-                              </div>
+                            <label className='text-sm tablet:text-lg font-medium text-textMainBlack'>{recipe.userName}</label>
+                        </div>
 
-                                <Link to={'/postview/' + recipe.uid} key={i}>
-                                <button className='bg-[#84cc16] text-white p-2 rounded-md mb-2'>View More</button>
-                                </Link>
+                          {/* <Link to={'/postview/' + recipe.uid} key={i}>
+                            <button className='bg-[#84cc16] text-white p-2 rounded-md mb-2'>View More</button>
+                          </Link> */}
+                      </div>
 
-                          </div>
-
-                          {/* about recipe and recipe name */}
-                          <div className='flex flex-col gap-[0.5rem]'>
+                      <div className="h-[10rem] tablet:h-[9rem] flex flex-col gap-[0.5rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem] pb-0 tablet:pb-[1rem]">
+                        {/* about recipe and recipe name */}
+                        <div className='flex flex-col gap-[0.5rem]'>
                             <div className='flex gap-[0.5rem] items-center'>
                                 <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/>
 
-                                <label className='text-md font-[700] text-textMainBlack'>{recipe.title}</label>
+                                <label className='text-md font-semibold tablet:font-bold text-textMainBlack'>{recipe.title}</label>
                             </div>
 
-                              <label className='text-sm font-normal text-textMainBlack'>{recipe.desc}</label>
-                          </div>
+                            <label className='text-sm font-ligt tablet:font-normal text-textMainBlack'>{recipe.desc}</label>
+                        </div>
 
-                          {/* Ingredients */}
-                          <div className='flex flex-col gap-[0.5rem]'>
-                              <label className='text-sm font-medium text-textFadeBlack'>Ingredients</label>
+                        {/* Ingredients */}
+                        <div className='flex flex-col gap-[0.5rem]'>
+                            <label className='text-sm tablet:text-base font-medium text-textFadeBlack'>Ingredients</label>
 
-                              <ul className='flex flex-col gap-[0.25rem] h-auto sm:h-[3rem] flex-wrap'>
-                              { recipe.ingredients.map((ingredient, i) => (
-                                  <li className='text-sm font-normal text-textMainBlack' key={i}>{ingredient}</li>
-                              ))}
-                              </ul>
-                          </div>  
-
-                          {/* comments */}
-                          {/* <button className='p-[0.375rem] flex items-center text-sm font-normal text-textFadeBlack absolute bottom-0 right-0 border-solid border-2 border-[#EDEDED] rounded-md'><FontAwesomeIcon icon={faComment} className='text-secondary text-sm mr-[0.25rem]'/>3 comments</button>     */}
+                            <ul className='flex items-center gap-[0.25rem] overflow-x-auto laptop:px-0 pb-[1rem] tablet:scroll-smooth tablet:scrollbar-thin tablet:scrollbar-thumb-secondary tablet:scrollbar-thumb-rounded-full tablet:scrollbar-track-[#B1B1B1] tablet:scrollbar-track-rounded-full'>
+                            { recipe.ingredients.map((ingredient, i) => (
+                                <li className='flex-none text-xs font-normal text-primary py-[0.25rem] px-[0.5rem] bg-bgColorTwo rounded-md' key={i}>{ingredient}</li>
+                            ))}
+                            </ul>
+                        </div>
                       </div>
+                    </div>
+                          
+
+                    <div className="w-full border-t border-zinc-300 tablet:absolute tablet:bottom-0 tablet:right-0 z-10 bg-primary mt-[1rem] tablet:mt-0">
+                        <div className="flex justify-between items-center px-[4rem] my-[0.5rem]">
+                          <Link to={'/postview/' + recipe.uid} key={i}>
+                            <h5 className="flex items-center text-sm text-mainBlack cursor-pointer"><FontAwesomeIcon icon={faComment} className="text-sm text-fadeBlack mr-[0.5rem]"/>Comments</h5>
+                          </Link>
+                          
+                          <Link to={'/postview/' + recipe.uid} key={i}>
+                            <h5 className="flex items-center text-sm text-mainBlack cursor-pointer"><FontAwesomeIcon icon={faAngleRight} className="text-sm text-fadeBlack mr-[0.5rem]"/>See More</h5>
+                          </Link>
+                        </div>
+                    </div>  
+
+                    {/* comments */}
+                    {/* <button className='p-[0.375rem] flex items-center text-sm font-normal text-textFadeBlack absolute bottom-0 right-0 border-solid border-2 border-[#EDEDED] rounded-md'><FontAwesomeIcon icon={faComment} className='text-secondary text-sm mr-[0.25rem]'/>3 comments</button>     */}
                   </div>
               </div>
               ))}
@@ -354,40 +368,63 @@ async function handleSubmit(e) {
     </div>
 
 
-    { openModal && <div className='min-h-screen w-full flex justify-center items-center fixed z-10 bg-textFadeBlack'>
-        <div className='sm:max-w-[450px] max-h-[calc(100vh_-_4rem)] max-w-[340px] border-solid border-[1px] rounded-[5px] px-5 py-4 bg-[#FFFFFF] overflow-auto'>
+    { openModal && <div className='min-h-screen w-full flex justify-center items-center fixed z-20 bg-textFadeBlack'>
+        <div className='sm:max-w-[450px] max-h-[calc(100vh_-_4rem)] max-w-[340px] border-solid border-[1px] rounded-[5px] px-5 py-4 bg-[#FFFFFF] overflow-auto scrollbar-hide'>
 
             <form onSubmit={handleSubmit}>
 
-            <div className='flex justify-between items-center'>
+            <div className='w-full flex justify-between items-center'>
                 <h1 className='text-[16px] font-[600] text-[#000000]'>Create new post</h1>
                 <FontAwesomeIcon onClick={() => setOpenModal(false)} icon={faXmark} className='text-[16px] font-[500] text-[#949494] cursor-pointer'/>
             </div>
 
-            <div className='pb-2 pt-5 mt-3 flex flex-col justify-start items-left'>
-            <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Name:</h1>
-                <input 
-                    type="text"
-                    id="title" 
-                    placeholder='Recipe name' 
-                    className='placeholder-[#949494] text-[14px] font-[500] border-b border-[#949494] focus:outline-none w-[12  rem]' 
-                    value={title}
-                    onChange={onChange}
-                />
-                
-                {/* <img src="https://cdn-icons-png.flaticon.com/512/685/685685.png" alt='recipe' className='w-[57px] h-[57px]' /> */}
-                  
+            <div className='pb-2 pt-5 flex flex-col justify-start items-left'>
+              <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Name:</h1>
+                  <input 
+                      type="text"
+                      id="title" 
+                      placeholder='Recipe name' 
+                      className='placeholder-[#949494] text-[14px] font-[500] border-b border-[#949494] focus:outline-none w-[12  rem]' 
+                      value={title}
+                      onChange={onChange}
+                  />
+                {/* <img src="https://cdn-icons-png.flaticon.com/512/685/685685.png" alt='recipe' className='w-[57px] h-[57px]' /> */}      
             </div>
 
             <div className="pt-[10px] pb-[20px]">
             <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Image:</h1>
-            <input
+            {/* <input
                     type='file'
                     id="images"
                     onChange={onChange}
                     required
                     
-            />
+            /> */}
+            <input 
+                type="file"
+                id="images" 
+                required
+                onChange={onChange}
+                className='
+                    flex
+                    file:bg-gradient-to-b file:from-lime-500 file:to-lime-600
+                    file:px-4 file:py-1 file:m-1
+                    file:border-none
+                    file:rounded-full
+                    file:text-primary
+                    file:cursor-pointer
+                    font-thin
+                    tablet:font-light
+                    mx-auto
+                    
+                    border 
+                    border-zinc-300
+                    text-mainBlack
+                    rounded-full
+                    cursor-pointer
+                    text-sm
+                '
+                ></input>
             </div>
 
             <div className='pt-[10px]'>
@@ -430,7 +467,7 @@ async function handleSubmit(e) {
                             </div>
                         ))
                     }
-                    <button type="button" className="text-[0.8rem] bg-[#B2D33D] text-white p-1.5 rounded-lg mb-5" onClick={handleIngredientCount}>Add ingredient</button>
+                    <button type="button" className="text-[0.8rem] bg-secondary text-white p-1.5 rounded-lg mb-5" onClick={handleIngredientCount}>Add ingredient</button>
                 </div>
             </div>
 
@@ -453,11 +490,11 @@ async function handleSubmit(e) {
                     </div> 
                     ))
                 }
-                <button type="button" className="text-[0.8rem] bg-[#B2D33D] text-white p-1.5 rounded-lg mb-5" onClick={handleStepCount}>Add procedure</button>
+                <button type="button" className="text-[0.8rem] bg-secondary text-white p-1.5 rounded-lg mb-5" onClick={handleStepCount}>Add procedure</button>
                 </div>
 
                 <div className='flex justify-center'>
-                    <button type="submit" className='sm:w-[400px] w-[290px] h-[54px] bg-[#B2D33D] rounded-[5px] text-[16px] font-[500] text-[#fff]'>Post</button>
+                    <button type="submit" className='sm:w-[400px] w-[290px] h-[54px] bg-secondary rounded-[5px] text-[16px] font-[500] text-[#fff]'>Post</button>
                 </div>
                 
             </div>
