@@ -68,7 +68,7 @@ const Library = () => {
     } else {
       recipesQuery = "";
     }
-    const recipesRef = query(collection(db, 'recipes'), recipesQuery);
+     const recipesRef = query(collection(db, 'recipes'), recipesQuery);
 
     const querySnapshot = await getDocs(recipesRef);
     const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
@@ -78,23 +78,23 @@ const Library = () => {
 
   }
 
-  useEffect(() => {
-    async function fetchSearchResults() {
-      const q = query(collection(db, 'recipes'), where('title', '>=', searchTerm));
-      const querySnapshot = await getDocs(q);
-      const results = [];
-      querySnapshot.forEach((doc) => {
-        results.push({ id: doc.id, ...doc.data() });
-      });
-      setSearchResults(results);
-    }
+  // useEffect(() => {
+  //   async function fetchSearchResults() {
+  //     const q = query(collection(db, 'recipes'), where('title', '>=', searchTerm));
+  //     const querySnapshot = await getDocs(q);
+  //     const results = [];
+  //     querySnapshot.forEach((doc) => {
+  //       results.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     setSearchResults(results);
+  //   }
 
-    fetchSearchResults();
-  }, [searchTerm]);
+  //   fetchSearchResults();
+  // }, [searchTerm]);
 
-  function handleSearch(e) {
-    setSearchTerm(e.target.value);
-  }
+  // function handleSearch(e) {
+  //   setSearchTerm(e.target.value);
+  // }
 
   useEffect(() => {
     fetchRecipes();
@@ -154,7 +154,7 @@ const Library = () => {
           <div className={`py-[0.5rem] px-[1rem] max-w-[22rem] w-full bg-white rounded-full flex flex-row justify-center items-center`}>
             <FontAwesomeIcon icon={faMagnifyingGlass} className='text-fadeText text-sm mr-[0.5rem]' />
 
-            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' placeholder='Search recipes..' onChange={handleSearch} value={searchTerm}></input>
+            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' ></input>
 
             <FontAwesomeIcon icon={faFilter} className='text-textMainBlack text-sm ml-[0.5rem]' />
           </div>
@@ -183,7 +183,7 @@ const Library = () => {
           (
             <div className="w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-10">
               
-              {searchResults.map((val, id) => (
+              {info.map((val, id) => (
 
 
                 <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>

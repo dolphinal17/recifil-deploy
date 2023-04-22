@@ -13,12 +13,12 @@ export default function TableUser() {
         const userref = collection(db, 'userinfo')
         const snapshot = await getDocs(userref)
         const users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-        setUserList(users)
-    }
+        setUserList(users);
+    };
 
     useEffect(() => {
         fetchUsers()
-    }, [])
+    }, []);
 
   return (
     <div className='w-full flex justify-center bg-bgColor'>
