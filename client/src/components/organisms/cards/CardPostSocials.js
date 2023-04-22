@@ -5,7 +5,7 @@ import { BtnCommSocials } from '../../atoms/atoms.js'
 
 function CardPostSocials() {
   return (
-    <div className='w-full grid laptop:grid-cols-3 min-h-[22rem] shadow-md'>
+    <div className='w-full grid laptop:grid-cols-3 min-h-[22rem]'>
         {/* image */}
         <img src="https://images.aws.nestle.recipes/resized/af78558684736b541f41416b652b5eed_MMS_K_0102_1900px_944_531.jpg" alt="" className='col-span-1 h-full object-cover'/>
 

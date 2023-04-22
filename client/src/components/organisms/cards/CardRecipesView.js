@@ -6,7 +6,7 @@ import { SearchBarWBG } from '../../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { db } from '../../../config/firebase'
 import { doc, getDoc } from '@firebase/firestore'
 
@@ -192,7 +192,7 @@ const CardRecipesView = () => {
                             </div>
                         </div>
 
-                        <button className='flex justify-center items-center mt-[1rem] bg-gradient-to-r from-[#B2D33D] to-[#59981A] text-primary text-sm font-normal laptop:font-medium py-[0.5rem] rounded-sm laptop:rounded-md laptop:mt-auto'>Try Now</button>
+                        <Link to='/recipepro'><button className='w-full p-3 flex justify-center items-center mt-[1rem] bg-gradient-to-r from-[#B2D33D] to-[#59981A] text-primary text-sm font-normal laptop:font-medium py-[0.5rem] rounded-sm laptop:rounded-md laptop:mt-auto'>Try Now</button></Link>
                     </div>
                 </div>
             </div>
