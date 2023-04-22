@@ -238,7 +238,7 @@ function App() {
           <Route path='/jerud' element={<SignUpJerud />} />
           <Route path='/newsignup' element={<NewSignUpForm />} />
           <Route path='/comms' element={<Comment />} />
-          <Route path='/prororo' element={<CardRecipeProcess />} />
+          <Route path='/recipepro' element={<CardRecipeProcess />} />
         </Routes>
 
         <ToastContainer

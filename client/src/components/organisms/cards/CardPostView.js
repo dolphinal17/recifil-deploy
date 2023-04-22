@@ -241,7 +241,7 @@ const CardPostView = () => {
                                 type='submit'
                                 className='p-2 bg-[#84cc16] h-[3rem] text-white rounded-md cursor-pointer'
                             ></input> */}
-                            <FontAwesomeIcon type='submit' icon={faPaperPlane} className='cursor-pointer text-2xl text-secondary'/>
+                            <button type='submit'><FontAwesomeIcon icon={faPaperPlane} className='cursor-pointer text-2xl text-secondary'/></button>
                         </form>
                     </div>
 
