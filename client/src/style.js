@@ -1,7 +1,7 @@
 const styles = {
     boxWidth: "w-full min-h-screen flex flex-col justify-start items-center bg-bgColor relative",
     contentBox: "flex w-full max-w-[1040px] flex-col items-start justify-start bg-transparent",
-    container: "flex w-full max-w-[64rem] flex-col items-start justify-start bg-transparent pt-[1rem] laptop:pt-[2rem] laptop:px-[1rem] desktop:px-0 mt-[5.5rem] tablet:mt-[6.75rem]",
+    container: "flex w-full max-w-[64rem] flex-col items-start justify-start bg-transparent pt-[1rem] laptop:pt-[2rem] laptop:px-[1rem] desktop:px-0 mt-[5.5rem] tablet:mt-[6.75rem] pb-[2rem]",
 
     flexCenter: "flex justify-center items-center",
     flexStart: "flex justify-center items-start",
