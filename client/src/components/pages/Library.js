@@ -63,8 +63,8 @@ const Library = () => {
       recipesQuery = where("dishcategory", "array-contains", "sidedish");
     } else if (category === "dessert") {
       recipesQuery = where("dishcategory", "array-contains", "dessert");
-    } else if (category === "appetizer") {
-      recipesQuery = where("dishcategory", "array-contains", "appetizer");
+    } else if (category === "vegetable") {
+      recipesQuery = where("dishcategory", "array-contains", "vegetable");
     } else {
       recipesQuery = "";
     }
@@ -110,7 +110,7 @@ const Library = () => {
     setCategory("dessert");
   };
   const handleAppetizerClick = () => {
-    setCategory("appetizer");
+    setCategory("vegetable");
   };
 
 
@@ -173,8 +173,8 @@ const Library = () => {
             <li className={`text-sm font-normal tablet:font-medium ${category === "Dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
               Dessert
             </li>
-            <li className={`text-sm font-normal tablet:font-medium ${category === "Appetizer" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
-              Appetizer
+            <li className={`text-sm font-normal tablet:font-medium ${category === "Vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
+              Vegetable
             </li>
           </ul>
         </div>

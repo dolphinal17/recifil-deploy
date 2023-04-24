@@ -7,9 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faHeart, faClock } from '@fortawesome/free-regular-svg-icons'
 import { Link, useParams } from 'react-router-dom'
-import { db } from '../../../config/firebase'
-import { doc, getDoc } from '@firebase/firestore'
-
+import { db, auth } from '../../../config/firebase'
+//for favorite button
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faFilter, faMagnifyingGlass, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
+import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc, where } from "firebase/firestore";
 
 
 
@@ -30,6 +33,38 @@ const CardRecipesView = () => {
         }
         fetchRecipe();
     }, [id]);
+//for favorites button
+const [favorites, setFavorites] = useState([]);
+const [favDoc, setFavDoc] = useState([]);
+const user = auth.currentUser;
+
+
+const handleFavoriteClick = async (recipeId, recipeTitle) => {
+    try {
+      const favoritesRef = collection(db, `userinfo/${user.uid}/favorites`);
+
+      const querySnapshot = await getDocs(favoritesRef);
+      const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
+      setFavDoc(favoriteDoc);
+
+      if (favoriteDoc) {
+        // Recipe already exists in favorites, remove it
+        setLoading(true)
+        await deleteDoc(doc(favoritesRef, favoriteDoc.id));
+        setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
+        setLoading(false)
+        toast.success('Removed from Favorites');
+      } else {
+        setLoading(true)
+        await addDoc(favoritesRef, recipeId);
+        setFavorites([...favorites, recipeTitle]);
+        setLoading(false)
+        toast.success('Added to Favorites');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
     
     if (loading) {
         return <PreLoader/>;
@@ -41,10 +76,10 @@ const CardRecipesView = () => {
         <div className={`${styles.container}`}>
             <div className='w-full flex flex-col laptop:flex-row min-h-[32rem] px-[0.5rem] mb-[1rem] laptop:px-0 laptop:mb-[2rem]'>
                 <div className='flex flex-col justify-center bg-bgColorTwo p-[1rem] desktop:p-[2rem] gap-[1rem] rounded-t-md laptop:max-w-[48rem] laptop:justify-start laptop:rounded-tr-none laptop:rounded-l-md laptop:w-full'>
-                    <SearchBarWBG 
+                    {/* <SearchBarWBG 
                         placeHolder="Search other recipes"
                         bg="primary"
-                    />
+                    /> */}
 
                     {/* recipe image, author, name, ratings, heart, about */}
                     <div className='flex flex-col gap-[0.5rem] sm:flex-row sm:gap-[1rem]'>
@@ -63,26 +98,35 @@ const CardRecipesView = () => {
                                         <span className='text-2xl font-medium text-primary'>{info.title}</span>
                                     </div>
 
-                                    <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
+                                    <button onClick={() => handleFavoriteClick(info, info.title)}>
+
+                                            {
+                                                favorites.some(favorite => favorite.title === info.title) ? (
+                                                <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                                                ) : (
+                                                <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
+                                                )
+                                            }
+                                    </button>
                                 </div>
 
                                 {/* ratings */}
                                 <div className='flex gap-[0.25rem] items-center'>
                                     {/* stars */}
-                                    <div className='flex gap-[0.125rem]'>
+                                    {/* <div className='flex gap-[0.125rem]'>
                                         <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
                                         <FontAwesomeIcon icon={faStar} className='text-secondary text-sm' />
-                                    </div>
+                                    </div> */}
 
                                     {/* numbers */}
-                                    <div className='flex gap-[0.25rem]'>
+                                    {/* <div className='flex gap-[0.25rem]'>
                                         <span className='text-sm font-normal laptop:font-medium text-primary'>3.8</span>
                                         <span className='text-sm font-normal laptop:font-medium text-primary'>|</span>
                                         <span className='text-sm font-normal laptop:font-medium text-primary'>10</span>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
 
@@ -137,7 +181,7 @@ const CardRecipesView = () => {
 
                                 <div className='flex flex-col gap-[0.5rem] laptop:gap-[1rem]'>
                                     {/* servings */}
-                                    <div className='flex gap-[0.25rem] desktop:gap-[0.5rem]'>
+                                    {/* <div className='flex gap-[0.25rem] desktop:gap-[0.5rem]'>
                                         <BtnServing
                                             val="1 serving" 
                                         />
@@ -149,7 +193,7 @@ const CardRecipesView = () => {
                                         <BtnServing
                                             val="5 servings" 
                                         />
-                                    </div>
+                                    </div> */}
 
                                     {/* integral ingredients */}
                                     <div className='flex flex-col gap-[0.25rem] laptop:gap-[0.5rem]'>

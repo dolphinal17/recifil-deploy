@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../style'
+import { PreLoader } from '../atoms/atoms'
 import { RecipeCard, Navbar, InsideFooter } from '../organisms/organisms.js'
 import { SearchBarWBG } from '../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { auth, db } from '../../config/firebase'
-import { collection, doc, getDocs, where, query } from 'firebase/firestore'
+import { collection, doc, getDocs, where, query, deleteDoc } from 'firebase/firestore'
+import { faFilter, faMagnifyingGlass, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"
 import { Link } from 'react-router-dom'
-
+import { toast  } from 'react-toastify'
 
 
 
@@ -19,11 +21,17 @@ const Favorites = () => {
     const [loading, setLoading] = useState(false);
     const [category, setCategory] = useState("");
     const user = auth.currentUser;
+    //for favorite
+    const [favorites, setFavorites] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [favDoc, setFavDoc] = useState([]);
+
 
 
     useEffect(() => {
         const fetchData = async () => {
-
+            setLoading(true)
             let recipesQuery;
 
             if (category === "maindish") {
@@ -32,17 +40,17 @@ const Favorites = () => {
                 recipesQuery = where("dishcategory", "array-contains", "sidedish");
             } else if (category === "dessert") {
                 recipesQuery = where("dishcategory", "array-contains", "dessert");
-            } else if (category === "appetizer") {
-                recipesQuery = where("dishcategory", "array-contains", "appetizer");
+            } else if (category === "vegetable") {
+                recipesQuery = where("dishcategory", "array-contains", "vegetable");
             } else {
                 recipesQuery = "";
             }
 
             const favoritesRef = query(collection(doc(collection(db, 'userinfo'), user.uid), 'favorites'), recipesQuery);
-            setLoading(true)
             const snapshot = await getDocs(favoritesRef);
             const favoritesList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             setFavs(favoritesList);
+            setLoading(false)
         };
         fetchData();
     }, [db, user.uid, category]);
@@ -57,9 +65,32 @@ const Favorites = () => {
         setCategory("dessert");
     };
     const handleAppetizerClick = () => {
-        setCategory("appetizer");
+        setCategory("vegetable");
     };
 
+
+
+  
+
+    const handleFavoriteClick = async (event,recipeId, recipeTitle) => {
+        
+          const favoritesRef = collection(db, `userinfo/${user.uid}/favorites`);
+    
+          const querySnapshot = await getDocs(favoritesRef);
+          const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
+          setFavDoc(favoriteDoc);
+    
+          
+            // Recipe already exists in favorites, remove it
+            setLoading(true)
+            await deleteDoc(doc(favoritesRef, favoriteDoc.id));
+            setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
+            setLoading(false)
+            toast.success('Removed from Favorites');
+            window.location.reload();
+    
+        }
+      
 
     return (
         <div>
@@ -92,12 +123,14 @@ const Favorites = () => {
                             <li className={`text-sm font-normal tablet:font-medium ${category === "Dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
                                 Dessert
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium ${category === "Appetizer" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
-                                Appetizer
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "Vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
+                                Vegetable
                             </li>
                         </ul>
                     </div>
                     {/* recipe grid */}
+                {loading ? (<PreLoader />) :
+                    (
                     <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
                         { favs.length === 0 ? 
                         <><h1 className='col-span-4 text-center text-lg text-fadeBlack'>You have no favorites yet.</h1></> : <>
@@ -117,10 +150,10 @@ const Favorites = () => {
                                         <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
                                     </div>
 
-                                    <button>
-                                        <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
+                                    <button onClick={(event) => handleFavoriteClick(event,val, val.title)}>
+                                            <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                                        
                                     </button>
-
                                 </div>
                             </div>
                         )
@@ -152,8 +185,10 @@ const Favorites = () => {
                     name="Chopsuey"
                 /> */}
                     </div>
+                   )
+            }
                 </div>
-
+          
             </div>
             <InsideFooter />
         </div>
