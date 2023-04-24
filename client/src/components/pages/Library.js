@@ -20,15 +20,16 @@ import { toast } from "react-toastify";
 const Library = () => {
   //for recipe filtering
   const [info, setInfo] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
   const [document, setDocument] = useState("");
   // const { id } = useParams ();
-  const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [favDoc, setFavDoc] = useState([]);
   const user = auth.currentUser;
+
 
 
 
@@ -72,6 +73,9 @@ const Library = () => {
 
     const querySnapshot = await getDocs(recipesRef);
     const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+
+    
+   
 
     setInfo(recipeDataWithId);
     setLoading(false)
@@ -132,9 +136,10 @@ const Library = () => {
       } else {
         setLoading(true)
         await addDoc(favoritesRef, recipeId);
-        setFavorites([...favorites, recipeTitle]);
+        setFavorites([...favorites, favoriteDoc]);
         setLoading(false)
         toast.success('Added to Favorites');
+
       }
     } catch (error) {
       console.log(error);
