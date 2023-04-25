@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../style';
-import { Navbar, DiscImgWText, CarouselRecipe, InsideFooter, CarouselFavorite } from '../organisms/organisms.js'
+import { Navbar, DiscImgWText, CarouselRecipe, InsideFooter, CarouselFavorite,CarouselSocial } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom';
 
 
@@ -61,6 +61,7 @@ const Discover = () => {
             
             <CarouselFavorite />
             
+            <CarouselSocial />
           </div>
           
           {/* <div className='w-full tablet:px-[0.5rem] laptop:px-0 grid sm:grid-cols-2 tablet:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center'> 

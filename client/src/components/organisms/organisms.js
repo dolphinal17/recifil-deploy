@@ -26,6 +26,9 @@ import NewSignUpForm from "./forms/NewSignUpForm";
 import CardRecipeProcess from "./cards/CardRecipeProcess";
 import CarouselFavorite from "./others/CarouselFavorite";
 import FavoriteCard from "./cards/FavoriteCard";
+import SocialCard from "./cards/SocialCard";
+import CarouselSocial from "./others/CarouselSocial";
+
 
 export {
     CardSuggRecipeBasket,
@@ -55,5 +58,7 @@ export {
     NewSignUpForm,
     CardRecipeProcess,
     CarouselFavorite,
-    FavoriteCard
+    FavoriteCard,
+    SocialCard,
+    CarouselSocial
 }
