@@ -129,8 +129,8 @@ const Favorites = () => {
                         </ul>
                     </div>
                     {/* recipe grid */}
-                {loading ? (<PreLoader />) :
-                    (
+                {/* {loading ? (<PreLoader />) :
+                    ( */}
                     <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
                         { favs.length === 0 ? 
                         <><h1 className='col-span-4 text-center text-lg text-fadeBlack'>You have no favorites yet.</h1></> : <>
@@ -160,33 +160,10 @@ const Favorites = () => {
                         )}
                         </>}
 
-                        {/* <RecipeCard 
-                    image="https://i.pinimg.com/236x/ed/0d/29/ed0d2931c988277eac062f30dfa99443.jpg"
-                    name="Adobong Manok"
-                />
-
-                <RecipeCard 
-                    image="https://i.pinimg.com/236x/6e/fd/bf/6efdbf7d16f7dc058b83b51448149e67.jpg"
-                    name="Bulalo"
-                />
-                
-                <RecipeCard 
-                    image="https://i.pinimg.com/236x/ec/95/8f/ec958f900835a42319e14de1a8c46984.jpg"
-                    name="Sisig"
-                />
-
-                <RecipeCard 
-                    image="https://i.pinimg.com/236x/97/89/48/978948078e5a96fac679d96948d1f289.jpg"
-                    name="Pinakbet"
-                />
-
-                <RecipeCard 
-                    image="https://i.pinimg.com/236x/06/a7/5e/06a75e6a8a9db3a1a81df30a29f3c4c8.jpg"
-                    name="Chopsuey"
-                /> */}
+                        
                     </div>
-                   )
-            }
+                   {/* )
+            } */}
                 </div>
           
             </div>
