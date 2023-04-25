@@ -24,7 +24,7 @@ export default function CarouselRecipe() {
     }, []);
 
   return (
-    <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-center desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[1rem] scrollbar-hide scroll-smooth'>
+    <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-center desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[2rem] scrollbar-hide scroll-smooth'>
 
         {
             info.map((val, id) => {

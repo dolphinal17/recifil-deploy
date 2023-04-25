@@ -202,7 +202,7 @@ const Basket = () => {
       <div className={`${styles.container}`}>
         <div className='w-full grid sm:grid-cols-2 rounded-md mb-[2rem]'>
           {/* building section */}
-          <div className='col-gap-1 flex flex-col items-center bg-bgColorTwo py-[1rem] sm:py-[2rem]  rounded-t-md sm:rounded-l-md'>
+          <div className='col-gap-1 max-h-[64rem] overflow-y-auto scrollbar-hide flex flex-col items-center bg-bgColorTwo py-[1rem] sm:py-[2rem]  rounded-t-md sm:rounded-l-md'>
             {/* search bar */}
             <SearchBarWBG
               placeHolder="Search ingredients"
@@ -282,7 +282,7 @@ const Basket = () => {
 
 
 
-                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden'>
+                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full'>
                   <h1 className='text-sm font-normal tablet:font-medium text-mainBlack text-center mb-[0.5rem]'>Meat</h1>
 
                   {ingMeat.map((val, id) => (
@@ -316,7 +316,7 @@ const Basket = () => {
 
 
                 {/* vegetables and fruits */}
-                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden'>
+                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full'>
                   <h1 className='text-sm font-normal tablet:font-medium text-mainBlack text-center mb-[0.5rem]'>Vegetables and Fruits</h1>
 
                   {ingVeg.map((val, id) => (
@@ -350,7 +350,7 @@ const Basket = () => {
 
 
                 {/* seasonings */}
-                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden'>
+                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full'>
                   <h1 className='text-sm font-normal tablet:font-medium text-mainBlack text-center mb-[0.5rem]'>Seasonings</h1>
 
                   {ingSon.map((val, id) => (
@@ -382,7 +382,7 @@ const Basket = () => {
                 </div>
 
                 {/* seafoods */}
-                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden'>
+                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full'>
                   <h1 className='text-sm font-normal tablet:font-medium text-mainBlack text-center mb-[0.5rem]'>Seafood</h1>
 
                   {ingSea.map((val, id) => (
@@ -415,7 +415,7 @@ const Basket = () => {
 
 
                 {/* miscellaneous */}
-                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem]  overflow-y-scroll overflow-x-hidden'>
+                <div className='laptop:max-w-[14.75rem] w-full max-h-[16rem] bg-primary rounded-md px-[1rem] py-[0.5rem]  overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full'>
                   <h1 className='text-sm font-normal tablet:font-medium text-mainBlack text-center mb-[0.5rem]'>Miscellaneous</h1>
 
                   {ingMisc.map((val, id) => (
@@ -453,7 +453,7 @@ const Basket = () => {
           </div>
 
           {/* suggestions section */}
-          <div className='col-gap-1 py-[1rem] max-h-[64rem] sm:py-[2rem] px-[1rem] laptop:px-[0.5rem] bg-primary rounded-b-md sm:rounded-r-md  overflow-y-scroll'>
+          <div className='col-gap-1 py-[1rem] max-h-[64rem] sm:py-[2rem] px-[1rem] laptop:px-[0.5rem] bg-primary rounded-b-md sm:rounded-r-md  overflow-y-scroll scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full '>
             <div className='flex flex-col items-center gap-[1rem]'>
               <div className='p-[0.5rem] bg-bgColorTwo rounded-md'>
                 <label className='text-sm font-normal tablet:font-medium text-secondary'>Recipe Suggestions</label>

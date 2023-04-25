@@ -75,7 +75,9 @@ const Profile = () => {
                                     </div>
 
                                     {/* total posts */}
+
                                     <span className='text-sm font-light tablet:font-normal text-fadeBlack'>{posts.length} total posts</span>
+
                                 </div>
 
                                 {/* option list */}
@@ -95,8 +97,7 @@ const Profile = () => {
                                 <span className='text-sm font-normal tablet:font-medium text-mainBlack'>All Post</span>
 
 
-                                <button onClick={() => setOpenModal(true)} className='p-[0.5rem] text-sm font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] mb-[1rem]'><img src={CreatePost} alt='post' className='w-[0.875rem]'></img>Create New</button>
-
+                                {/* <button onClick={() => setOpenModal(true)} className='p-[0.5rem] text-sm font-medium text-mainBlack bg-primary flex gap-[0.5rem] items-center rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] mb-[1rem]'><img src={CreatePost} alt='post' className='w-[0.875rem]'></img>Create New</button> */}
                             </div>
 
                             {/* posts */}
@@ -118,7 +119,7 @@ const Profile = () => {
                                             <img src={recipe.imgUrls} alt='recipeimg' className='w-full h-full object-cover'></img>
                                         </div>
 
-                                        <div className='col-span-1 sm:col-span-2 w-full p-[1rem] overflow-y-scroll'>
+                                        <div className='col-span-1 sm:col-span-2 w-full p-[1rem] overflow-y-scroll bg-white  scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full'>
                                             <div className='flex flex-col gap-[1rem] relative'>
                                                 {/* user profile and icon */}
                                                 <div className='flex justify-between items-center w-full'>

@@ -142,7 +142,7 @@ const Favorites = () => {
                                     </div>
                                 </Link>
 
-                                <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
+                                <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center bg-primary`}>
                                     <div className='flex flex-col'>
                                         <Link to={"/recipeview/" + val.id} key={id}>
                                             <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{val.title}</label>
