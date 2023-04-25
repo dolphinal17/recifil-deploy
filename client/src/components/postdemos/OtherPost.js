@@ -463,7 +463,7 @@ async function handleSubmit(e) {
                                 value={ingredient} 
                                 onChange={e => handleIngredient(e, i)} 
                             />
-                            { i == 0 ? "" :<button onClick={() => onRemoveIng(i)}><FontAwesomeIcon icon={faTrash}/></button> }
+                            { i === 0 ? "" :<button onClick={() => onRemoveIng(i)}><FontAwesomeIcon icon={faTrash}/></button> }
                             </div>
                         ))
                     }
@@ -482,11 +482,11 @@ async function handleSubmit(e) {
                     <textarea 
                         type="text"
                         placeholder='Add procedure'
-                        className='p-[10px] sm:w-[400px] w-[300px] h-[80px] bg-[#F2F1F0] resize-none mb-[12px] focus:outline-none placeholder-[#949494] text-[14px] font-[500]'
+                        className='p-[10px] sm:w-[400px] w-[300px] h-[40px] bg-[#F2F1F0] resize-none mb-[12px] focus:outline-none placeholder-[#949494] text-[14px] font-[500]'
                         key={i}
                         value={step} 
                         onChange={e => handleStep(e, i)} />
-                        { i == 0 ? "" :<button onClick={() => onRemoveStep(i)}><FontAwesomeIcon icon={faTrash}/></button> }
+                        { i ===  0 ? "" :<button onClick={() => onRemoveStep(i)}><FontAwesomeIcon icon={faTrash}/></button> }
                     </div> 
                     ))
                 }

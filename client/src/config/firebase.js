@@ -3,17 +3,6 @@ import { getFirestore } from 'firebase/firestore'
 import {getAuth, updateProfile} from 'firebase/auth'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 
-// Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDyOaoKf5SYhu-1fC1Gsm_2q5a1Q8B29iU",
-//   authDomain: "firestore-328db.firebaseapp.com",
-//   projectId: "firestore-328db",
-//   storageBucket: "firestore-328db.appspot.com",
-//   messagingSenderId: "792728774707",
-//   appId: "1:792728774707:web:707d090b3f4dbb53bfdb46"
-// };
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyCHFx0B0krQVivgCkaOPhLmMx8tfdV7Qso",
   authDomain: "recifil.firebaseapp.com",
@@ -25,6 +14,16 @@ const firebaseConfig = {
   measurementId: "G-BF98SLQW1L"
 };
 
+
+// Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDyOaoKf5SYhu-1fC1Gsm_2q5a1Q8B29iU",
+//   authDomain: "firestore-328db.firebaseapp.com",
+//   projectId: "firestore-328db",
+//   storageBucket: "firestore-328db.appspot.com",
+//   messagingSenderId: "792728774707",
+//   appId: "1:792728774707:web:707d090b3f4dbb53bfdb46"
+// };
 
 
 const app = initializeApp(firebaseConfig);
