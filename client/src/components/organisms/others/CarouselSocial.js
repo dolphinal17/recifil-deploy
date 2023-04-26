@@ -24,18 +24,18 @@ export default function CarouselSocial() {
         RecipeData();
     }, []);
 
-    if (info.length < 4){
-        return null;
-    }
+    // if (info.length < 4){
+    //     return null;
+    // }
 
   return (
     <div>
-        <div className='w-full flex justify-between items-center px-[1rem] laptop:px-0'>
-                <span className='text-base laptop:text-2xl font-normal laptop:font-medium text-mainBlack'>Share Your Own Recipes</span>
+        <div className='w-full flex justify-between items-center mt-10 px-[1rem] laptop:px-0'>
+                <span className='text-base laptop:text-2xl font-normal laptop:font-[600] mb-2 text-mainBlack'>Share Your Own Recipes</span>
 
                 <Link to='/socials'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>View More</span></Link>
         </div>
-            <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-center desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[1rem] scrollbar-hide scroll-smooth'>
+            <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-start desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[1rem] scrollbar-hide scroll-smooth'>
 
                 {
                     info.map((val, id) => {
@@ -46,6 +46,7 @@ export default function CarouselSocial() {
                             image={val.imgUrls}
                             name={val.title}
                             author= {val.userName}
+                            proimg={val.userPhoto}
                         />
                         </Link>
                         )
