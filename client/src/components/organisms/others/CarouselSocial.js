@@ -31,7 +31,7 @@ export default function CarouselSocial() {
   return (
     <div>
         <div className='w-full flex justify-between items-center px-[1rem] laptop:px-0'>
-                <span className='text-base laptop:text-2xl font-normal laptop:font-medium text-mainBlack'>Post Your Own Recipes</span>
+                <span className='text-base laptop:text-2xl font-normal laptop:font-medium text-mainBlack'>Share Your Own Recipes</span>
 
                 <Link to='/socials'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>View More</span></Link>
         </div>
