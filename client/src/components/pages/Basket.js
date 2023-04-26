@@ -488,6 +488,7 @@ const Basket = () => {
                 
                   
                 {outResult.map((res, id) => (
+                  <Link to={'/recipeview/' + res.id}>
                   <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
                     <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
                       <img src={res.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
@@ -503,6 +504,7 @@ const Basket = () => {
                       <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
                     </div>
                   </div>
+                  </Link>
                 ))}
                 </>
                 )}
