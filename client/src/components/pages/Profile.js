@@ -75,7 +75,9 @@ const Profile = () => {
                                     </div>
 
                                     {/* total posts */}
-                                    {/* <span className='text-sm font-light tablet:font-normal text-fadeBlack'>3 total posts</span> */}
+
+                                    <span className='text-sm font-light tablet:font-normal text-fadeBlack'>{posts.length} total posts</span>
+
                                 </div>
 
                                 {/* option list */}

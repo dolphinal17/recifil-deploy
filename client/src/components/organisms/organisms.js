@@ -24,6 +24,8 @@ import TableUser from "./tables/TableUser";
 import SignUpJerud from "./forms/SignUpJerud";
 import NewSignUpForm from "./forms/NewSignUpForm";
 import CardRecipeProcess from "./cards/CardRecipeProcess";
+import CarouselFavorite from "./others/CarouselFavorite";
+import FavoriteCard from "./cards/FavoriteCard";
 
 export {
     CardSuggRecipeBasket,
@@ -51,5 +53,7 @@ export {
     TableUser,
     SignUpJerud,
     NewSignUpForm,
-    CardRecipeProcess
+    CardRecipeProcess,
+    CarouselFavorite,
+    FavoriteCard
 }
