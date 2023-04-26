@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 const Library = () => {
   //for recipe filtering
   const [info, setInfo] = useState([]);
+  const [favinfo, setfavInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
   const [document, setDocument] = useState("");
@@ -68,11 +69,9 @@ const Library = () => {
     } else {
       recipesQuery = "";
     }
-     const recipesRef = query(collection(db, 'recipes'), recipesQuery);
-
+    const recipesRef = query(collection(db, 'recipes'), recipesQuery);
     const querySnapshot = await getDocs(recipesRef);
     const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-
     setInfo(recipeDataWithId);
     setLoading(false)
 
@@ -113,11 +112,20 @@ const Library = () => {
     setCategory("vegetable");
   };
 
+  const getfav = async () => {
+    const favRef = collection(db, `userinfo/${user.uid}/favorites`);
+    const querySnapfav = await getDocs(favRef);
+    const favDataWithId = querySnapfav.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    setfavInfo(favDataWithId);
+    
+  }
+  useEffect(() => {
+    getfav();
+  }, [category])
 
   const handleFavoriteClick = async (recipeId, recipeTitle) => {
     try {
       const favoritesRef = collection(db, `userinfo/${user.uid}/favorites`);
-
       const querySnapshot = await getDocs(favoritesRef);
       const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
       setFavDoc(favoriteDoc);
@@ -131,10 +139,11 @@ const Library = () => {
         toast.success('Removed from Favorites');
       } else {
         setLoading(true)
-        await addDoc(favoritesRef, recipeId);
-        setFavorites([...favorites, recipeTitle]);
+        await addDoc(favoritesRef, recipeId, { id:recipeId, title: recipeTitle });
+        setFavorites([...favorites, recipeTitle, { id: recipeId, title: recipeTitle}]);
         setLoading(false)
         toast.success('Added to Favorites');
+        
       }
     } catch (error) {
       console.log(error);
@@ -202,14 +211,13 @@ const Library = () => {
                     </div>
 
                     <button onClick={() => handleFavoriteClick(val, val.title)}>
-
-                      {
-                        favorites.some(favorite => favorite.title === val.title) ? (
-                          <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
-                        ) : (
-                          <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
-                        )
-                      }
+                       {
+                          favinfo.some(favinfo => favinfo.title === val.title) ? (
+                            <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                          ) : (
+                            <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
+                          )
+                        }
                     </button>
 
                   </div>

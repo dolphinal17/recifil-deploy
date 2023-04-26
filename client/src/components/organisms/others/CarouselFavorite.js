@@ -24,18 +24,18 @@ export default function CarouselFavorite() {
         RecipeData();
     }, []);
 
-    if (info.length < 4){
+    if (info.length == 0){
         return null;
     }
 
   return (
     <div>
-        <div className='w-full flex justify-between items-center px-[1rem] laptop:px-0'>
-                <span className='text-base laptop:text-2xl font-normal laptop:font-medium text-mainBlack'>Recently Favorite Recipes</span>
+        <div className='w-full flex justify-between items-center px-[1rem] mt-10 laptop:px-0'>
+                <span className='text-base laptop:text-2xl font-normal laptop:font-[600] mb-2 text-mainBlack'>Recently Favorite Recipes</span>
 
                 <Link to='/favorites'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>Explore More</span></Link>
         </div>
-            <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-center desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[1rem] scrollbar-hide scroll-smooth'>
+            <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-start  desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[1rem] scrollbar-hide scroll-smooth'>
 
                 {
                     info.map((val, id) => {
