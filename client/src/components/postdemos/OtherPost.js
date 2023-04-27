@@ -347,7 +347,7 @@ async function handleSubmit(e) {
                     </div>
                           
 
-                    <div className="w-full border-t border-zinc-300 tablet:absolute tablet:bottom-0 tablet:right-0 z-5 bg-primary mt-[1rem] tablet:mt-0">
+                    <div className="w-full border-t border-zinc-300 tablet:absolute tablet:bottom-0 tablet:right-0 z-2 bg-primary mt-[1rem] tablet:mt-0">
                         <div className="flex justify-between items-center px-[4rem] my-[0.5rem]">
                           <Link to={'/postview/' + recipe.uid} key={i}>
                             <h5 className="flex items-center text-sm text-mainBlack cursor-pointer"><FontAwesomeIcon icon={faComment} className="text-sm text-fadeBlack mr-[0.5rem]"/>Comments</h5>
