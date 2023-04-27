@@ -295,11 +295,11 @@ async function handleSubmit(e) {
                           </Link> */}
                       </div>
 
-                      <div className="h-[10rem] tablet:h-[9rem] flex flex-col gap-[0.5rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem] pb-0 tablet:pb-[1rem]">
+                      <div className="h-[10rem] tablet:h-[9rem] flex flex-col gap-[0.5rem] overflow-y-auto scroll-smooth scrollbar-hide pb-0 tablet:pb-[1rem]">
                         {/* about recipe and recipe name */}
                         <div className='flex flex-col gap-[0.5rem]'>
                             <div className='flex gap-[0.5rem] items-center'>
-                                <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/>
+                                {/* <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/> */}
 
                                 <label className='text-md font-semibold tablet:font-bold text-textMainBlack'>{recipe.title}</label>
                             </div>
@@ -321,7 +321,7 @@ async function handleSubmit(e) {
                     </div>
                           
 
-                    <div className="w-full border-t border-zinc-300 tablet:absolute tablet:bottom-0 tablet:right-0 z-10 bg-primary mt-[1rem] tablet:mt-0">
+                    <div className="w-full border-t border-zinc-300 tablet:absolute tablet:bottom-0 tablet:right-0 z-5 bg-primary mt-[1rem] tablet:mt-0">
                         <div className="flex justify-between items-center px-[4rem] my-[0.5rem]">
                           <Link to={'/postview/' + recipe.uid} key={i}>
                             <h5 className="flex items-center text-sm text-mainBlack cursor-pointer"><FontAwesomeIcon icon={faComment} className="text-sm text-fadeBlack mr-[0.5rem]"/>Comments</h5>
@@ -369,38 +369,39 @@ async function handleSubmit(e) {
 
 
     { openModal && <div className='min-h-screen w-full flex justify-center items-center fixed z-20 bg-textFadeBlack'>
-        <div className='sm:max-w-[450px] max-h-[calc(100vh_-_4rem)] max-w-[340px] border-solid border-[1px] rounded-[5px] px-5 py-4 bg-[#FFFFFF] overflow-auto scrollbar-hide'>
+        <div className='w-full sm:max-w-[450px] max-h-[calc(100vh_-_4rem)] max-w-[340px] border-solid border-[1px] rounded-lg px-5 py-4 bg-[#FFFFFF] overflow-auto scrollbar-hide'>
 
             <form onSubmit={handleSubmit}>
 
-            <div className='w-full flex justify-between items-center'>
-                <h1 className='text-[16px] font-[600] text-[#000000]'>Create new post</h1>
-                <FontAwesomeIcon onClick={() => setOpenModal(false)} icon={faXmark} className='text-[16px] font-[500] text-[#949494] cursor-pointer'/>
+            <div className='w-full flex justify-between items-center mb-[0.5rem] tablet:mb-[1rem]'>
+                <h1 className='text-base tablet:text-lg font-medium text-mainBlack'>Create new post</h1>
+
+                <FontAwesomeIcon onClick={() => setOpenModal(false)} icon={faXmark} className='text-base tablet:text-lg text-fadeBlack cursor-pointer'/>
             </div>
 
-            <div className='pb-2 pt-5 flex flex-col justify-start items-left'>
-              <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Name:</h1>
+            <div className='flex flex-col gap-[0.25rem] mb-[0.5rem] tablet:mb-[0.55rem]'>
+              <h1 className='text-sm tablet:text-base font-normal text-mainBlack ml-[0.25rem]'>Name:</h1>
                   <input 
                       type="text"
                       id="title" 
                       placeholder='Recipe name' 
-                      className='placeholder-[#949494] text-[14px] font-[500] border-b border-[#949494] focus:outline-none w-[12  rem]' 
+                      className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-sm tablet:text-base border border-zinc-300 rounded-md focus:border-secondary focus:outline-none'
                       value={title}
                       onChange={onChange}
                   />
                 {/* <img src="https://cdn-icons-png.flaticon.com/512/685/685685.png" alt='recipe' className='w-[57px] h-[57px]' /> */}      
             </div>
 
-            <div className="pt-[10px] pb-[20px]">
-            <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Image:</h1>
-            {/* <input
-                    type='file'
-                    id="images"
-                    onChange={onChange}
-                    required
-                    
-            /> */}
-            <input 
+            <div className="flex flex-col gap-[0.25rem] mb-[0.5rem] tablet:mb-[0.75rem]">
+              <h1 className='text-sm tablet:text-base font-normal text-mainBlack ml-[0.25rem]'>Image:</h1>
+              {/* <input
+                      type='file'
+                      id="images"
+                      onChange={onChange}
+                      required
+                      
+              /> */}
+              <input 
                 type="file"
                 id="images" 
                 required
@@ -410,7 +411,7 @@ async function handleSubmit(e) {
                     file:bg-gradient-to-b file:from-lime-500 file:to-lime-600
                     file:px-4 file:py-1 file:m-1
                     file:border-none
-                    file:rounded-full
+                    file:rounded-sm
                     file:text-primary
                     file:cursor-pointer
                     font-thin
@@ -420,85 +421,74 @@ async function handleSubmit(e) {
                     border 
                     border-zinc-300
                     text-mainBlack
-                    rounded-full
+                    rounded-md
                     cursor-pointer
                     text-sm
+                    w-full
+                    focus:border-secondary
                 '
-                ></input>
+              ></input>
             </div>
 
-            <div className='pt-[10px]'>
-            <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Description:</h1>
-                <textarea 
-                    typeof='text'
-                    id="desc" 
-                    placeholder='About recipe' 
-                    className='p-[20px] sm:w-[400px] w-[300px] h-[150px] bg-[#F2F1F0] resize-none mb-[12px] focus:outline-none placeholder-[#949494] text-[16px] font-[500]'
-                    value={desc}
-                    onChange={onChange} 
-                />
+            <div className='flex flex-col gap-[0.25rem] mb-[0.5rem] tablet:mb-[0.75rem]'>
+              <h1 className='text-sm tablet:text-base font-normal text-mainBlack ml-[0.25rem]'>Description:</h1>
+
+              <textarea 
+                  typeof='text'
+                  id="desc" 
+                  placeholder='About recipe' 
+                  className='w-full resize-none px-[0.75rem] py-[0.5rem] text-mainBlack text-sm tablet:text-base border border-zinc-300 rounded-md focus:border-secondary focus:outline-none scrollbar-hide'
+                  value={desc}
+                  onChange={onChange} 
+              />
             </div>
 
-            
+            <div className='flex flex-col px-[0.75rem] py-[0.5rem] w-full border border-zinc-300 rounded-md mb-[0.5rem] tablet:mb-[0.75rem] max-h-[200px] overflow-y-auto scrollbar-hide'>
+              <span className='text-sm tablet:text-base font-normal text-mainBlack mb-[0.5rem]'>Ingredients:</span>
 
-            <div className='sm:w-[60%] w-[80%] mt-[15px]'>
-                <h1 className='text-[14px] font-[500] text-[#000000] mb-[10px]'>Ingredients:</h1>
-                {/* <div className='flex flex-row items-center mb-[10px]'>
-                    <div className='w-[11px] h-[11px] bg-[#B2D33D] rounded-[50%] mr-[5px]'></div>
-                    <h2 className='text-[14px] font-[500] mr-[10px]'>Chicken</h2>
-                    <div className='w-[11px] h-[11px] bg-[#B2D33D] rounded-[50%] mr-[5px]'></div>
-                    <h2 className='text-[14px] font-[500] mr-[10px]'>Potato</h2>
-                    <div className='w-[11px] h-[11px] bg-[#B2D33D] rounded-[50%] mr-[5px]'></div>
-                    <h2 className='text-[14px] font-[500] mr-[10px]'>Carrots</h2>
-                </div> */}
-                <div className='pb-2'>
-                    {
-                        form.ingredients.map((ingredient, i) => (
-                          <div>
-                            <input 
-                                type="text"
-                                placeholder='Add ingredients'
-                                className='placeholder-[#949494] text-[14px] font-[500] border-b border-[#949494] focus:outline-none mb-[15px]'
-                                key={i}
-                                value={ingredient} 
-                                onChange={e => handleIngredient(e, i)} 
-                            />
-                            { i === 0 ? "" :<button onClick={() => onRemoveIng(i)}><FontAwesomeIcon icon={faTrash}/></button> }
-                            </div>
-                        ))
-                    }
-                    <button type="button" className="text-[0.8rem] bg-secondary text-white p-1.5 rounded-lg mb-5" onClick={handleIngredientCount}>Add ingredient</button>
-                </div>
-            </div>
-
-            <div className='w-[100%]'>
-                <h1 className='text-[14px] font-[500] text-[#000000] mb-[7px]'>Procedure:</h1>
-                {/*<h2 className='text-[14px] font-[500] text-[#949494] mb-[10px]'>1. Combine chicken, garlic, peppercorn, vinegar, Oyster Sauce, soy sauce and water in a pot. Simmer for 15 minutes.</h2> */}
-                
-                <div className='pb-2'>
                 {
-                    form.steps.map((step, i) => (
-                    <div>
-                    <textarea 
-                        type="text"
-                        placeholder='Add procedure'
-                        className='p-[10px] sm:w-[400px] w-[300px] h-[40px] bg-[#F2F1F0] resize-none mb-[12px] focus:outline-none placeholder-[#949494] text-[14px] font-[500]'
-                        key={i}
-                        value={step} 
-                        onChange={e => handleStep(e, i)} />
-                        { i ===  0 ? "" :<button onClick={() => onRemoveStep(i)}><FontAwesomeIcon icon={faTrash}/></button> }
-                    </div> 
+                    form.ingredients.map((ingredient, i) => (
+                      <div className="px-[0.75rem] py-[0.5rem] border border-zinc-300 rounded-sm mb-[0.25rem] flex items-center gap-[0.5rem]">
+                        <input 
+                            type="text"
+                            placeholder='Add ingredient'
+                            className='w-full text-mainBlack text-sm focus:outline-none'
+                            key={i}
+                            value={ingredient} 
+                            onChange={e => handleIngredient(e, i)} 
+                        ></input>
+                        { i === 0 ? "" : <button onClick={() => onRemoveIng(i)}><FontAwesomeIcon icon={faTrash} className="text-fadeBlack hover:text-secondary text-sm"/></button> }
+                        </div>
                     ))
                 }
-                <button type="button" className="text-[0.8rem] bg-secondary text-white p-1.5 rounded-lg mb-5" onClick={handleStepCount}>Add procedure</button>
-                </div>
 
-                <div className='flex justify-center'>
-                    <button type="submit" className='sm:w-[400px] w-[290px] h-[54px] bg-secondary rounded-[5px] text-[16px] font-[500] text-[#fff]'>Post</button>
-                </div>
+                <button type="button" className="text-sm bg-secondary text-white p-1.5 rounded-sm" onClick={handleIngredientCount}>Add new</button>
                 
             </div>
 
+            <div className='flex flex-col px-[0.75rem] py-[0.5rem] w-full border border-zinc-300 rounded-md mb-[0.5rem] tablet:mb-[1rem] max-h-[200px] overflow-y-auto scrollbar-hide'>
+              <span className='text-sm tablet:text-base font-normal text-mainBlack mb-[0.5rem]'>Procedures:</span>
+          
+              {
+                  form.steps.map((step, i) => (
+                  <div className="px-[0.75rem] py-[0.5rem] border border-zinc-300 rounded-sm mb-[0.25rem] flex gap-[0.5rem]">
+                  <textarea 
+                      type="text"
+                      placeholder='Add procedure'
+                      className='w-full text-mainBlack text-sm focus:outline-none resize-none scrollbar-hide'
+                      key={i}
+                      value={step} 
+                      onChange={e => handleStep(e, i)} />
+                      { i ===  0 ? "" :<button onClick={() => onRemoveStep(i)}><FontAwesomeIcon icon={faTrash} className="text-fadeBlack hover:text-secondary text-sm"/></button> }
+                  </div> 
+                  ))
+              }
+              <button type="button" className="text-sm bg-secondary text-white p-1.5 rounded-sm hover:bg-lime-700" onClick={handleStepCount}>Add new</button> 
+            </div>
+
+        
+            <button type="submit" className='py-[0.5rem] tablet:py-[1rem] w-full bg-secondary hover:bg-lime-700 rounded-md text-base font-normal text-[#fff]'>Post</button>
+             
             </form>
 
 
