@@ -231,18 +231,44 @@ async function handleSubmit(e) {
     })
   }
 
+  // const handleIngredientCount = () => {
+  //   setForm({
+  //     ...form,
+  //     ingredients: [...ingredients, ""]
+  //   })
+  // }
+
   const handleIngredientCount = () => {
+    const lastIngredient = form.ingredients[form.ingredients.length - 1];
+    if (lastIngredient === "") {
+      toast.error('Empty ingredient field detected. Please input an ingredient first.')
+      return;
+    }
+  
     setForm({
       ...form,
-      ingredients: [...ingredients, ""]
-    })
+      ingredients: [...form.ingredients, ""]
+    });
   }
 
+  // const handleStepCount = () => {
+  //   setForm({
+  //     ...form,
+  //     steps: [...steps, ""]
+  //   })
+  // }
+
   const handleStepCount = () => {
+    const lastStep = form.steps[form.steps.length - 1];
+    if (lastStep === "") {
+      toast.error('Empty procedures field detected. Please input a procedure first.')
+      return;
+    }
+  
     setForm({
       ...form,
-      steps: [...steps, ""]
-    })
+      steps: [...form.steps, ""]
+    });
   }
 
   const removeRecipe = id => {
