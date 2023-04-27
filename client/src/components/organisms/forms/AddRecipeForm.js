@@ -129,13 +129,11 @@ export default function AddRecipeForm() {
                         <input type="file" accept='.jpg, .jpeg' onChange={handleImageChange} className='border-2 text-[0.7rem] mx-2' />
                         <button type='button' onClick={handleImageUpload} className='w-[rem] bg-[#84cc16] text-white rounded md'>Change Image</button>
                     </div>
+
                     {/* img and name */}
-                    <div className='flex justify-end items-end'>
-
-
-
+                    <div className=''>
                         <input
-                            className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md'
+                            className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md focus:outline-zinc-400'
                             placeholder='Recipe Name'
                             type='text'
                             name='title'
