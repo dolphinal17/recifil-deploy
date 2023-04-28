@@ -97,8 +97,8 @@ const CardPostView = () => {
                                     {/* recipe name and author*/}
                                     <div className='flex justify-between items-center'>
                                         <div className='flex flex-col gap-[0.25rem]'>
-                                            <span className='text-sm font-normal laptop:font-medium text-secondary'>{info.userName}</span>
-                                            <span className='text-2xl font-medium text-primary'>{info.title}</span>
+                                            {/* <span className='text-sm font-normal laptop:font-medium text-secondary'>{info.userName}</span> */}
+                                            <span className='text-2xl font-medium text-secondary'>{info.title}</span>
                                         </div>
 
                                         
