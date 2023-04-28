@@ -213,7 +213,7 @@ const Basket = () => {
             <div className='w-full grid laptop:grid-cols-2 px-[1rem] divide-y laptop:divide-x laptop:divide-y-0 my-[1rem]'>
               {/* filtered in */}
               <div className={`col-span-1 flex flex-col items-center justify-start px-[1rem]`}>
-                <h3 className='text-sm font-normal tablet:font-medium text-primary mb-[10px]'>FILTERED IN</h3>
+                <h3 className='text-sm font-normal tablet:font-medium text-primary mb-[10px]'>WITH</h3>
                 {/* 
                 <div className='flex flex-wrap'>
 
@@ -253,7 +253,7 @@ const Basket = () => {
 
               {/* filtered out */}
               <div className={`col-span-1 flex flex-col items-center justify-start px-[1rem]`}>
-                <h3 className='text-sm font-normal tablet:font-medium text-primary mb-[10px] mt-[0.5rem] laptop:mt-0'>FILTERED OUT</h3>
+                <h3 className='text-sm font-normal tablet:font-medium text-primary mb-[10px] mt-[0.5rem] laptop:mt-0'>WITHOUT</h3>
 
                 {outTemp.length === 0 ? (
                   <p className="text-primary text-sm font-light">
@@ -488,6 +488,7 @@ const Basket = () => {
                 
                   
                 {outResult.map((res, id) => (
+                  <Link to={'/recipeview/' + res.id}>
                   <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
                     <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
                       <img src={res.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
@@ -503,6 +504,7 @@ const Basket = () => {
                       <FontAwesomeIcon icon={faHeart} className='text-secondary text-2xl' />
                     </div>
                   </div>
+                  </Link>
                 ))}
                 </>
                 )}

@@ -97,8 +97,8 @@ const CardPostView = () => {
                                     {/* recipe name and author*/}
                                     <div className='flex justify-between items-center'>
                                         <div className='flex flex-col gap-[0.25rem]'>
-                                            <span className='text-sm font-normal laptop:font-medium text-secondary'>{info.userName}</span>
-                                            <span className='text-2xl font-medium text-primary'>{info.title}</span>
+                                            {/* <span className='text-sm font-normal laptop:font-medium text-secondary'>{info.userName}</span> */}
+                                            <span className='text-2xl font-medium text-secondary'>{info.title}</span>
                                         </div>
 
                                         
@@ -209,7 +209,7 @@ const CardPostView = () => {
 
                     {/* comments */}
                     <div className='flex flex-col gap-[0.25rem] h-auto'>
-                        <div className='flex flex-col gap-[0.5rem] tablet:gap-[1rem] h-[10rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                        <div className='flex flex-col gap-[0.5rem] tablet:gap-[1rem] h-[14rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                             {commentInfo.map((com, i) => (
                                 <div  key={i} className='flex justify-start items-start gap-[0.5rem]'>
                                     {/* <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover'></img> */}
