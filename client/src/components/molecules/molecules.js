@@ -9,7 +9,7 @@ import EmailVerificationModal from "./modals/EmailVerificationModal";
 import ModalAccountSuccess from "./modals/ModalAccountSuccess";
 import InputBoxPassword from "./InputBoxPassword";
 import InputGroup from "./InputGroup";
-
+import ModalDeletePost from "./modals/ModalDeletePost";
 
 
 export {
@@ -23,5 +23,6 @@ export {
     EmailVerificationModal,
     ModalAccountSuccess,
     InputBoxPassword,
-    InputGroup
+    InputGroup,
+    ModalDeletePost
 }

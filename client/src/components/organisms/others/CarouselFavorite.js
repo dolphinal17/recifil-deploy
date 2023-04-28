@@ -30,8 +30,8 @@ export default function CarouselFavorite() {
 
   return (
     <div>
-        <div className='w-full flex justify-between items-center px-[1rem] mt-10 laptop:px-0'>
-                <span className='text-base laptop:text-2xl font-normal laptop:font-[600] mb-2 text-mainBlack'>Recently Favorite Recipes</span>
+        <div className='w-full flex justify-between items-center px-[1rem] mb-[0.5rem] tablet:mb-[1rem] laptop:px-0'>
+                <span className='text-base laptop:text-2xl font-normal laptop:font-[600] text-mainBlack'>Recently Favorite Recipes</span>
 
                 <Link to='/favorites'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>Explore More</span></Link>
         </div>

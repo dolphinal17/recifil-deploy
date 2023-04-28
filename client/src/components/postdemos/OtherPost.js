@@ -8,7 +8,7 @@ import {
   getDocs
 } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faTag, faTrash, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faTrash, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../style'
 import { CardPost, RecipeCard, Navbar, CardCreatePost, InsideFooter } from '../organisms/organisms.js'
@@ -324,24 +324,25 @@ function OtherPost() {
                             <img src={recipe.userPhoto} alt='userimg' className='w-full h-full object-cover rounded-full'></img>
                           </div>
 
-                          <label className='text-sm tablet:text-lg font-medium text-textMainBlack'>{recipe.userName}</label>
+                          <label className='text-base tablet:text-lg font-medium text-textMainBlack'>{recipe.userName}</label>
                         </div>
 
                         {/* <Link to={'/postview/' + recipe.uid} key={i}>
                             <button className='bg-[#84cc16] text-white p-2 rounded-md mb-2'>View More</button>
                           </Link> */}
                       </div>
-
+                      
+                      {/* about and ingredients */}
                       <div className="w-full h-[10rem] tablet:h-[9rem] flex flex-col gap-[0.5rem] overflow-y-auto scroll-smooth scrollbar-hide pb-0 tablet:pb-[1rem]">
                         {/* about recipe and recipe name */}
                         <div className='flex flex-col gap-[0.5rem]'>
                           <div className='flex gap-[0.5rem] items-center'>
                             {/* <FontAwesomeIcon icon={faTag} className='text-secondary text-[0.75rem]'/> */}
 
-                            <label className='text-md font-semibold tablet:font-bold text-textMainBlack'>{recipe.title}</label>
+                            <label className='text-base font-semibold tablet:font-bold text-textMainBlack'>{recipe.title}</label>
                           </div>
 
-                          <label className='text-sm font-ligt tablet:font-normal text-textMainBlack'>{recipe.desc}</label>
+                          <label className='text-sm font-ligth tablet:font-normal text-textMainBlack'>{recipe.desc}</label>
                         </div>
 
                         {/* Ingredients */}

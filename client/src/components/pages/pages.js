@@ -12,7 +12,7 @@ import Verify from "./Verify";
 import UploadImg from "./UploadImg";
 import ForgotPassword from "./ForgotPassword";
 import EmailVerification from "./EmailVerification";
-
+import AdminTestPage from "./AdminTestPage";
 
 export {
   Login, 
@@ -28,5 +28,6 @@ export {
   Verify,
   UploadImg,
   ForgotPassword,
-  EmailVerification
+  EmailVerification,
+  AdminTestPage
 };

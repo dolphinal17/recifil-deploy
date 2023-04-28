@@ -10,7 +10,7 @@ export default function FavoriteCard( {image, name} ) {
             <img src={image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
         </div>
 
-        <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
+        <div className={`bg-primary w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center`}>
             <div className='flex flex-col'>
                 <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{name}</label>
 

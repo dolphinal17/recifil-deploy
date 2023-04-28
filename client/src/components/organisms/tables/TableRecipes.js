@@ -39,7 +39,7 @@ export default function TableRecipes() {
     }, [])
 
     return (
-        <div className='w-full flex justify-center bg-bgColor'>
+        <div className='w-full flex justify-center bg-bgColor'> 
             <div className='max-w-[80rem] w-full bg-primary rounded-xl overflow-auto pb-[2rem]'>
                 {/* name and search bar */}
                 <div className='flex justify-between items-center px-[1rem] tablet:px-[2rem] my-[0.5rem] tablet:my-[1rem]'>

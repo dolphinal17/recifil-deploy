@@ -33,7 +33,7 @@ const Discover = () => {
         <div className={`${styles.container}`}>
           <DiscImgWText/>
 
-          <div className='w-full flex flex-col gap-[0.5rem] my-10'>
+          <div className='w-full flex flex-col gap-[0.5rem] my-[0.5rem] tablet:my-[1rem]'>
             {/* header */}
             <div className='w-full flex justify-between items-center px-[1rem] laptop:px-0'>
               <span className='text-base laptop:text-2xl font-normal laptop:font-medium text-mainBlack'>Famous Filipino Recipes</span>
