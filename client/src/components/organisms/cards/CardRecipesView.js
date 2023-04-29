@@ -134,7 +134,7 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
                             <div className='flex flex-col gap-[0.25rem]'>
                                 <span className='text-sm font-normal laptop:font-medium text-primary'>About</span>
 
-                                <div className='flex-auto scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                                <div className='flex-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                                 <p className='text-sm font-thin laptop:font-light text-primary max-h-[6rem]'>{info.desc}</p>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
                         <span className='text-sm font-normal laptop:font-medium text-primary'>Procedures</span>
 
                         {/* steps list */}
-                        <div className='flex scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                        <div className='flex scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                             <ul className='flex flex-col gap-[0.25rem] max-h-[8.5rem]'>
                                 {
                                     info.steps.map((steps, i) => (

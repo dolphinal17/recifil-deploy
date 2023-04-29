@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function SidebarAdmin() {
     const [open, setOpen] = useState(true)
   return (
-    <div className={`${open ? "w-[20rem] px-[0.5rem] tablet:px-[1rem]" : "w-[4rem] flex flex-col items-center"} h-screen bg-bgColorTwo py-[0.5rem] tablet:py-[1rem] duration-300 sticky top-0`}>
+    <div className={`${open ? "w-[16rem] px-[0.5rem] tablet:px-[1rem]" : "w-[4rem] flex flex-col items-center"} h-screen bg-bgColorTwo py-[0.5rem] tablet:py-[1rem] duration-300 sticky top-0`}>
         {/* minimize sidebar */}
         <div className={`${open ? "justify-end" : "justify-center"} flex mb-[0.5rem] tablet:mb-[1rem]`}>
             <button onClick={() => setOpen(!open)}>

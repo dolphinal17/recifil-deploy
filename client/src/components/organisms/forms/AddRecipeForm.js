@@ -108,7 +108,7 @@ export default function AddRecipeForm() {
 
     return (
         <div className='w-full'>
-            <form onSubmit={handleSubmit} className='w-full max-w-[30rem] border border-zinc-400 mx-auto p-[2rem]'>
+            <form onSubmit={handleSubmit} className='w-full max-w-[30rem] mx-auto p-[2rem] bg-primary'>
                 <div className='flex justify-between items-center'>
                     <span className='text-lg tablet:text-xl desktop:text-2xl text-mainBlack font-normal tablet:font-medium'>Edit Recipe</span>
 
@@ -133,7 +133,7 @@ export default function AddRecipeForm() {
                     {/* img and name */}
                     <div className=''>
                         <input
-                            className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md focus:outline-zinc-400'
+                            className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 rounded-md focus:outline-zinc-400'
                             placeholder='Recipe Name'
                             type='text'
                             name='title'
@@ -176,7 +176,7 @@ export default function AddRecipeForm() {
                         <div className='flex justify-center items-center gap-[0.5rem] mt-[0.5rem]'>
 
                             <input
-                                className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md'
+                                className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 rounded-md'
                                 placeholder='Ingredient'
                                 value={newIngredient}
                                 onChange={(e) => setNewIngredient(e.target.value)}
@@ -224,7 +224,7 @@ export default function AddRecipeForm() {
                         <div className='flex justify-center items-center gap-[0.5rem] mt-[0.5rem]'>
 
                             <input
-                                className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 ml-[0.5rem] rounded-md'
+                                className='px-[0.75rem] py-[0.5rem] w-full text-mainBlack text-lg border border-zinc-300 rounded-md'
                                 placeholder='Procedure'
                                 value={newStep}
                                 onChange={(e) => setNewStep(e.target.value)}

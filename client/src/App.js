@@ -7,11 +7,11 @@ import { auth } from './config/firebase';
 
 
 // here to import components like pages
-import { Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg, ForgotPassword, EmailVerification } from './components/pages/pages.js'
+import { Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg, ForgotPassword, EmailVerification, AdminTestPage } from './components/pages/pages.js'
 import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, NewSignUpForm, SidebarAdmin, SignUpJerud, TableUser, UploadImage, Comment, CardRecipeProcess } from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
-import { ModalAccountSuccess } from './components/molecules/molecules';
+import { ModalAccountSuccess, ModalDeletePost } from './components/molecules/molecules';
 import Post from './components/postdemos/Post';
 import OtherPost from './components/postdemos/OtherPost';
 import { ToastContainer } from 'react-toastify';
@@ -222,7 +222,7 @@ function App() {
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
 
-          {/* <Route path="/adminsidebar" element={<SidebarAdmin />} />
+          <Route path="/adminsidebar" element={<SidebarAdmin />} />
           <Route path="/adminnav" element={<NavbarAdmin />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/table" element={<TableUser />} />
@@ -232,13 +232,15 @@ function App() {
           <Route path='/editrecipes/:id' element={<EditRecipes />} />
           <Route path='/addrecipesform' element={<AddRecipeForm />} />
           <Route path='/addrecipes' element={<AddRecipes />} />
-          <Route path='/adminposts' element={<AdminPosts />} /> */}
+          <Route path='/adminposts' element={<AdminPosts />} />
+          <Route path='/admintest' element={<AdminTestPage />} />
 
           
           <Route path='/jerud' element={<SignUpJerud />} />
           <Route path='/newsignup' element={<NewSignUpForm />} />
           <Route path='/comms' element={<Comment />} />
           <Route path='/recipepro' element={<CardRecipeProcess />} />
+          <Route path='/del' element={<ModalDeletePost />} />
         </Routes>
 
         <ToastContainer

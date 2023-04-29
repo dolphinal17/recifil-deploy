@@ -28,6 +28,10 @@ import CarouselFavorite from "./others/CarouselFavorite";
 import FavoriteCard from "./cards/FavoriteCard";
 import SocialCard from "./cards/SocialCard";
 import CarouselSocial from "./others/CarouselSocial";
+import Dashboard from "./others/Dashboard";
+import TablePosts from "./tables/TablePosts";
+import TableRecipes from "./tables/TableRecipes";
+import AddRecipeForm from "./forms/AddRecipeForm";
 
 
 export {
@@ -60,5 +64,9 @@ export {
     CarouselFavorite,
     FavoriteCard,
     SocialCard,
-    CarouselSocial
+    CarouselSocial,
+    Dashboard, 
+    TablePosts,
+    TableRecipes, 
+    AddRecipeForm
 }

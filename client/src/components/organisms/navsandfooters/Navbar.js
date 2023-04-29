@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import DropdownProfile from '../../molecules/DropdownProfile.js';
 
@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className='max-w-[80rem] w-full'>
 
           <ul className='flex justify-center gap-[2rem] laptop:gap-[4rem] px-[2rem] laptop:px-[4rem] py-[0.5rem]'>
-            <Link to='/discover'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faMagnifyingGlass} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Discover</span></li></Link>
+            <Link to='/discover'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faGlobe} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Discover</span></li></Link>
 
             <Link to='/library'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBook} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Library</span></li></Link>
 

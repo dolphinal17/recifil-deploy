@@ -128,8 +128,8 @@ export default function CardRecipeProcess() {
                                 styles={buildStyles({
                                     textSize: '1.5rem',
                                     textColor: '#000',
-                                    pathColor: '#B2D33D',
-                                    trailColor: '#D6D6D6'
+                                    pathColor: '#65a30d',
+                                    trailColor: '#e4e4e7'
                                 })}
                                 />
                             </div>
