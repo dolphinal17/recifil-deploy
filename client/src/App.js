@@ -222,7 +222,7 @@ function App() {
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
 
-          <Route path="/adminsidebar" element={<SidebarAdmin />} />
+          {/* <Route path="/adminsidebar" element={<SidebarAdmin />} />
           <Route path="/adminnav" element={<NavbarAdmin />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/table" element={<TableUser />} />
@@ -233,7 +233,7 @@ function App() {
           <Route path='/addrecipesform' element={<AddRecipeForm />} />
           <Route path='/addrecipes' element={<AddRecipes />} />
           <Route path='/adminposts' element={<AdminPosts />} />
-          <Route path='/admintest' element={<AdminTestPage />} />
+          <Route path='/admintest' element={<AdminTestPage />} /> */}
 
           
           <Route path='/jerud' element={<SignUpJerud />} />
