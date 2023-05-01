@@ -71,9 +71,9 @@ export default function CardRecipeProcess() {
             </div>
 
             <div className='h-[24.75rem] w-full flex flex-col laptop:flex-row'>
-                {/* blank section */}
+                {/* blank section  set for animation*/}
                 <div className='laptop:max-w-[24rem] w-full p-[1rem] tablet:p-[2rem] bg-fadeBlack border-t laptop:border-l border-zinc-200'>
-
+                    
                 </div>
 
                 {/* buttons */}
@@ -128,8 +128,8 @@ export default function CardRecipeProcess() {
                                 styles={buildStyles({
                                     textSize: '1.5rem',
                                     textColor: '#000',
-                                    pathColor: '#B2D33D',
-                                    trailColor: '#D6D6D6'
+                                    pathColor: '#65a30d',
+                                    trailColor: '#e4e4e7'
                                 })}
                                 />
                             </div>

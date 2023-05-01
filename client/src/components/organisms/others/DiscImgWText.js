@@ -15,7 +15,7 @@ const DiscImgWText = () => {
 
             <h1 className='absolute bottom-2 left-5 laptop:text-[3rem] tablet:text-[2rem] text-[1.5rem] font-semibold laptop:font-bold text-white'>Explore Different<br />Filipino Recipes</h1>
 
-            <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute top-5 left-5  text-base tablet:text-xl laptop:text-2xl text-primary'/>
+            {/* <FontAwesomeIcon icon={faMagnifyingGlass} className='absolute top-5 left-5  text-base tablet:text-xl laptop:text-2xl text-primary'/> */}
         </div>
     </div>
   )

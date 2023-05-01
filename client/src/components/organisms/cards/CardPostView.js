@@ -80,7 +80,7 @@ const CardPostView = () => {
         <div className="w-full min-h-[65rem] h-auto flex flex-col justify-start items-center bg-bgColor relative">
             <Navbar />
             <div className={`${styles.container} h-auto `}>
-                <div className='w-full h-auto flex flex-col laptop:flex-row min-h-[32rem] px-[0.5rem] mb-[1rem] laptop:px-0'>
+                <div className='w-full h-auto flex flex-col laptop:flex-row px-[0.5rem] mb-[1rem] laptop:px-0'>
                     <div className='flex flex-col justify-center bg-bgColorTwo p-[1rem] desktop:p-[2rem] gap-[1rem] rounded-t-md laptop:max-w-[48rem] laptop:justify-start laptop:rounded-tr-none laptop:rounded-l-md laptop:w-full'>
                         
 
@@ -111,7 +111,7 @@ const CardPostView = () => {
                                 <div className='flex flex-col gap-[0.25rem]'>
                                     <span className='text-sm font-normal laptop:font-medium text-primary'>About</span>
 
-                                    <div className='flex-auto scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                                    <div className='flex-auto scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                                         <p className='text-sm font-thin laptop:font-light text-primary max-h-[6rem]'>{info.desc}</p>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@ const CardPostView = () => {
                             <span className='text-sm font-normal laptop:font-medium text-primary'>Procedures</span>
 
                             {/* steps list */}
-                            <div className='flex scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                            <div className='flex scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                                 <ul className='flex flex-col gap-[0.25rem] max-h-[8.5rem]'>
                                     {
                                         info.steps.map((steps, i) => (
@@ -209,7 +209,7 @@ const CardPostView = () => {
 
                     {/* comments */}
                     <div className='flex flex-col gap-[0.25rem] h-auto'>
-                        <div className='flex flex-col gap-[0.5rem] tablet:gap-[1rem] h-[14rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
+                        <div className='flex flex-col gap-[0.5rem] tablet:gap-[1rem] max-h-[14rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                             {commentInfo.map((com, i) => (
                                 <div  key={i} className='flex justify-start items-start gap-[0.5rem]'>
                                     {/* <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover'></img> */}

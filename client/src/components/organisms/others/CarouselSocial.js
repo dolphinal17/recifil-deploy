@@ -30,10 +30,10 @@ export default function CarouselSocial() {
 
   return (
     <div>
-        <div className='w-full flex justify-between items-center mt-10 px-[1rem] laptop:px-0'>
-                <span className='text-base laptop:text-2xl font-normal laptop:font-[600] mb-2 text-mainBlack'>Share Your Own Recipes</span>
+        <div className='w-full flex justify-between items-center px-[1rem] laptop:px-0 mb-[0.5rem] tablet:mb-[1rem]'>
+                <span className='text-base laptop:text-2xl font-normal laptop:font-[600] text-mainBlack'>Share Your Own Recipes</span>
 
-                <Link to='/socials'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>View More</span></Link>
+                <Link to='/socials'><span className='text-sm laptop:text-base font-normal laptop:font-medium text-secondary'>Explore More</span></Link>
         </div>
             <div className='max-w-[64rem] w-full flex items-center gap-[1rem] laptop:justify-start desktop:gap-[2rem] overflow-x-auto px-[1rem] laptop:px-0 pb-[1rem] scrollbar-hide scroll-smooth'>
 
