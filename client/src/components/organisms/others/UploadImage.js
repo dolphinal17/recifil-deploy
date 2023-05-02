@@ -16,6 +16,7 @@ export default function UploadImage() {
 
     const {currentuser} = useAuth()
     const [photoURL, setPhotoURL] = useState("https://i.pinimg.com/564x/25/65/46/25654639ef43d6cd59e062bc2cec1a2c.jpg")
+    const [defaultAvatarURL, setDefaultAvatarURL] = useState("https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5")
     const [photo, setPhoto] = useState(null)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -61,7 +62,7 @@ export default function UploadImage() {
             const userinforef = doc(db, "userinfo", currentuser.uid);
             setDoc(userinforef, { photoURL: currentuser.photoURL }, { merge: true });
           } else {
-            const defaultAvatarURL = "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5";
+            // const defaultAvatarURL = "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5";
             setPhotoURL(defaultAvatarURL);
             const userinforef = doc(db, "userinfo", currentuser.uid);
             setDoc(userinforef, { photoURL: defaultAvatarURL }, { merge: true });
@@ -85,6 +86,7 @@ export default function UploadImage() {
 
                 <input 
                 type="file" 
+                accept='image/*'
                 className='
                     flex
                     file:bg-gradient-to-b file:from-lime-500 file:to-lime-600
@@ -122,7 +124,9 @@ export default function UploadImage() {
                 disabled={loading || !photo}
                 >Change</button>
 
-                <Link to='/discover'><button className='w-full border border-zinc-400 py-[0.5rem] rounded-md hover:bg-zinc-500 hover:text-primary hover:border-zinc-500 duration-200 text-sm tablet:text-base font-normal mx-auto'>Skip</button></Link>
+                <Link to='/discover'><button className='w-full border border-zinc-400 py-[0.5rem] rounded-md hover:bg-zinc-500 hover:text-primary hover:border-zinc-500 duration-200 text-sm tablet:text-base font-normal mx-auto'>
+                {photoURL && photoURL !== defaultAvatarURL ? 'Next' : 'Skip'}
+                  </button></Link>
             </div>
         </div>
     </div>

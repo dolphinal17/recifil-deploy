@@ -24,6 +24,7 @@ import AddRecipeForm from './components/organisms/forms/AddRecipeForm';
 import AddRecipes from './components/pages/AddRecipes';
 import AdminPosts from './components/pages/AdminPosts';
 import CardPostView from './components/organisms/cards/CardPostView';
+import EditProfile from './components/pages/EditProfile';
 
 
 
@@ -197,15 +198,6 @@ function App() {
             }
           />
 
-          {/* <Route
-              exact
-              path="/upload"
-              element={
-                <WithPrivateRoute>
-                  <UploadImg /> 
-                </WithPrivateRoute>
-              }
-            /> */}
 
           <Route
             exact
@@ -217,10 +209,22 @@ function App() {
             }
           />
 
-          {/* <Route path='/postlmao' element={<Post/>} /> */}
+
+          <Route
+            exact
+            path="/editprofile"
+            element={
+              <WithPrivateRoute>
+                <EditProfile />
+              </WithPrivateRoute>
+            }
+          />
+
+          
 
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
+          <Route path='/adminposts' element={<AdminPosts />} />
 
           {/* <Route path="/adminsidebar" element={<SidebarAdmin />} />
           <Route path="/adminnav" element={<NavbarAdmin />} />
@@ -232,10 +236,10 @@ function App() {
           <Route path='/editrecipes/:id' element={<EditRecipes />} />
           <Route path='/addrecipesform' element={<AddRecipeForm />} />
           <Route path='/addrecipes' element={<AddRecipes />} />
-          <Route path='/adminposts' element={<AdminPosts />} />
+          
           <Route path='/admintest' element={<AdminTestPage />} /> */}
 
-          
+
           <Route path='/jerud' element={<SignUpJerud />} />
           <Route path='/newsignup' element={<NewSignUpForm />} />
           <Route path='/comms' element={<Comment />} />

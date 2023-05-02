@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
-export default function ModalDeletePost({onOpen, onClose}) {
+export default function ModalDeletePost({onOpen, onClose, onClick}) {
     if (!onOpen) return null 
     return (
       <div className='bg-textFadeBlack fixed inset-0 z-50'>
@@ -16,6 +16,7 @@ export default function ModalDeletePost({onOpen, onClose}) {
                         <button onClick={onClose} className='flex justify-center items-center px-[1rem] tablet:px-[2rem] py-[0.5rem] tablet:py-[1rem] text-base font-thin tablet:font-light text-mainBlack bg-zinc-200 hover:bg-zinc-400 hover:text-primary rounded-md'>Cancel</button>
 
                         <button 
+                        onClick={onClick}
                             className='flex justify-center items-center px-[1rem] tablet:px-[2rem] py-[0.5rem] tablet:py-[1rem] text-base font-light tablet:font-normal text-primary bg-red-500 hover:bg-red-600 rounded-md
                             '>Delete
                         </button>
