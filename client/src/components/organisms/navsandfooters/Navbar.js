@@ -1,13 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart, faGlobe } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import DropdownProfile from '../../molecules/DropdownProfile.js';
+import { Link, useLocation } from 'react-router-dom';
+import DropdownProfile from '../../molecules/DropdownProfile.js'
 
 
 
 const Navbar = () => {
-
+  const location = useLocation();
+  
   return (
     <nav className='w-full fixed top-0 z-10'>
       <div className='flex justify-center bg-secondary'> 
@@ -29,15 +30,15 @@ const Navbar = () => {
         <div className='max-w-[80rem] w-full'>
 
           <ul className='flex justify-center gap-[2rem] laptop:gap-[4rem] px-[2rem] laptop:px-[4rem] py-[0.5rem]'>
-            <Link to='/discover'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faGlobe} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Discover</span></li></Link>
+            <Link to='/discover'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/discover' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faGlobe} className='text-base'/><span className={`text-base font-medium hidden sm:block`}>Discover</span></li></Link>
 
-            <Link to='/library'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBook} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Library</span></li></Link>
+            <Link to='/library'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/library' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faBook} className='text-base'/><span className='text-base font-medium hidden sm:block'>Library</span></li></Link>
 
-            <Link to='/basket'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faBasketShopping} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Basket</span></li></Link>
+            <Link to='/basket'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/basket' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faBasketShopping} className='text-base'/><span className='text-base font-medium hidden sm:block'>Basket</span></li></Link>
 
-            <Link to='/favorites'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faHeart} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Favorites</span></li></Link>
+            <Link to='/favorites'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/favorites' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faHeart} className='text-base'/><span className='text-base font-medium hidden sm:block'>Favorites</span></li></Link>
 
-            <Link to='/socials'><li className='flex items-center gap-[0.5rem]'><FontAwesomeIcon icon={faUsers} className='text-base text-secondary'/><span className='text-base font-medium text-fadeBlack hidden sm:block hover:text-secondary'>Socials</span></li></Link>
+            <Link to='/socials'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/socials' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faUsers} className='text-bas'/><span className='text-base font-medium hidden sm:block'>Socials</span></li></Link>
           </ul>
         </div>
       </div>

@@ -100,7 +100,7 @@ export default function TablePosts() {
                                 </div>
                                 
                                 {/* about and ingredients */}
-                                <div className="w-full flex flex-col gap-[0.5rem] overflow-y-auto scroll-smooth scrollbar-hide pb-0 tablet:pb-[1rem]">
+                                <div className="w-full flex flex-col gap-[0.5rem] h-[180px] overflow-auto scroll-smooth scrollbar-hide pb-0 tablet:pb-[1rem]">
                                     {/* about recipe and recipe name */}
                                     <div className='flex flex-col gap-[0.5rem]'>
                                         <div className='flex gap-[0.5rem] items-center'>
@@ -116,7 +116,7 @@ export default function TablePosts() {
                                     <div className='flex flex-col gap-[0.5rem]'>
                                         <label className='text-sm tablet:text-base font-medium text-textFadeBlack'>Ingredients</label>
 
-                                        <ul className='flex flex-wrap items-center gap-[0.25rem] overflow-x-auto laptop:px-0 pb-[1rem]'>
+                                        <ul className='flex flex-wrap items-center gap-[0.25rem] laptop:px-0 pb-[1rem]'>
                                             {recipe.ingredients.map((ingredient, i) => (
                                                 <li className='flex-none text-xs font-normal text-primary py-[0.25rem] px-[0.5rem] bg-bgColorTwo rounded-md' key={i}>{ingredient}</li>
                                             ))}
