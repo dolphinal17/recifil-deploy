@@ -4,8 +4,10 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, setDoc } from 'firebase/firestore';
 import { auth, db, storage } from '../../config/firebase';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { PreLoader } from '../atoms/atoms';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -95,7 +97,10 @@ export default function EditProfile() {
     return (
         <div className='flex justify-center items-center h-screen'>
         <form onSubmit={handleUpdateProfile} className='w-[30rem] h-auto flex flex-col gap-3 justify-center items-center bg-primary border-2 border-[#84cc16] rounded-md p-4'>
-            <h1 className='text-[1.5rem] my-2 font-[600] '>Edit Profile</h1>
+            <div className='w-full flex flex-row justify-between items-center'>
+            <h1 className='text-[1.5rem] my-2 font-[600] ml-auto mr-[-2rem]'>Edit Profile</h1>
+            <Link to='/profile' className='ml-auto mr-3 cursor-pointer'><FontAwesomeIcon icon={faTimes} /></Link>
+            </div>
             <div>
                 <label htmlFor="firstname">First Name:</label>
                 <input type="text" id="firstname" value={firstname} onChange={handleFirstNameChange} className='w-[10rem] border-2 border-black ml-2 p-1' />
