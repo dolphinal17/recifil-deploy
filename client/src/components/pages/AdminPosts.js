@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavbarAdmin, SidebarAdmin, TablePosts } from '../organisms/organisms.js'
+import { Link } from 'react-router-dom'
 
 
 export default function AdminPosts() {
@@ -12,8 +13,11 @@ export default function AdminPosts() {
                 <NavbarAdmin/>
                 
                 <div className='bg-bgColor h-full p-[1rem]'>
-                    <div className='flex justify-between items-center mb-[1.5rem]'>
-                        <h1 className='text-xl font-medium text-mainBlack'>Manage Posts</h1>
+                    <div className='flex flex-row justify-start gap-3 items-center mb-[1.5rem]'>
+                        
+                        <Link to='/pendingposts'><button className='p-2 rounded-xl border-2 bg-[#84cc16] text-white border-transparent'>Pending Posts</button></Link>
+                        <Link to='/approvedposts'><button className='p-2 rounded-xl border-black text-black border-2 hover:bg-[#84cc16] hover:text-white hover:border-transparent'>Approved Posts</button></Link>
+                        <Link to='/archivedposts'><button className='p-2 rounded-xl border-black text-black border-2 hover:bg-[#84cc16] hover:text-white hover:border-transparent'>Archived Posts</button></Link>
 
                         {/* button here */}
                     </div>

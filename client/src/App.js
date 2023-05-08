@@ -25,6 +25,9 @@ import AddRecipes from './components/pages/AddRecipes';
 import AdminPosts from './components/pages/AdminPosts';
 import CardPostView from './components/organisms/cards/CardPostView';
 import EditProfile from './components/pages/EditProfile';
+import AdminPostsSec from './components/pages/AdminPostsSec';
+import AdminPostsThird from './components/pages/AdminPostsThird';
+
 
 
 
@@ -224,9 +227,11 @@ function App() {
 
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
-          <Route path='/adminposts' element={<AdminPosts />} />
 
-          {/* <Route path="/adminsidebar" element={<SidebarAdmin />} />
+          <Route path='/pendingposts' element={<AdminPosts />} />
+          <Route path="/approvedposts" element={<AdminPostsSec />} />
+          <Route path='/archivedposts' element={<AdminPostsThird />} />
+          <Route path="/adminsidebar" element={<SidebarAdmin />} />
           <Route path="/adminnav" element={<NavbarAdmin />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/table" element={<TableUser />} />
@@ -237,7 +242,7 @@ function App() {
           <Route path='/addrecipesform' element={<AddRecipeForm />} />
           <Route path='/addrecipes' element={<AddRecipes />} />
           
-          <Route path='/admintest' element={<AdminTestPage />} /> */}
+          <Route path='/admintest' element={<AdminTestPage />} />
 
 
           <Route path='/jerud' element={<SignUpJerud />} />

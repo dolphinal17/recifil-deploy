@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../../config/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,22 +7,18 @@ import { faTag, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
 
-
-
-export default function TablePosts() {
+export default function TablePostsSec() {
 
     const [posts, setPosts] = useState([])
     const [approvePost, setApprovePost] = useState([])
-    const [archivepost, setArchivePost] = useState([])
     const [loading, setLoading] = useState(false)
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const fetchRecipes = async () => {
-        const recipesCollectionRef = query(collection(db, "createpost"));
+        const recipesCollectionRef = query(collection(db, "approvepost"));
 
         const snapshot = await getDocs(recipesCollectionRef);
         const recipes = snapshot.docs.map((doc) => ({
-            uid: doc.id,
+            id: doc.id,
             viewing: false,
             ...doc.data(),
         }));
@@ -34,92 +30,50 @@ export default function TablePosts() {
     }, []);
 
 
-    const handleFavoriteClick = async (recipeDoc, recipeId) => {
-        try {
-            const { title, desc, imgUrls, ingredients, steps, userName, userPhoto, userRef, viewing } = recipeDoc;
-            const approveRef = collection(db, `approvepost`);
-            setIsButtonDisabled(true); 
+    // const handleFavoriteClick = async (recipeId, recipeTitle) => {
+    //     try {
+    //         const approveRef = collection(db, `approvepost`);
 
-            setLoading(true)
-            await addDoc(approveRef, {title, desc, imgUrls, ingredients, steps, userName, userPhoto, userRef, viewing});
-            if (recipeDoc) {
-                const postRef = doc(db, 'createpost', recipeId);
-                await deleteDoc(postRef);
-                fetchRecipes();
-                setLoading(false)
-                toast.success('Post Approved');
-            }
-
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setTimeout(() => setIsButtonDisabled(false), 1000); // enable the button after a short delay
-          }
-    };
+    //         const querySnapshot = await getDocs(approveRef);
+    //         const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
+    //         setApprovePost(favoriteDoc);
 
 
+    //         setLoading(true)
+    //         await addDoc(approveRef, recipeId);
+    //         setLoading(false)
+    //         toast.success('Post Approved');
+
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
 
-    const handleArchiveClick = async (recipeDoc, recipeId) => {
-        try {
-
-            const { title, desc, imgUrls, ingredients, steps, userName, userPhoto, userRef, viewing } = recipeDoc;
-            const archiveRef = collection(db, 'archivepost');
-            setIsButtonDisabled(true); 
-
-            setLoading(true)
-            await addDoc(archiveRef, {title, desc, imgUrls, ingredients, steps, userName, userPhoto, userRef, viewing});
-            console.log(recipeId)
-            if (recipeDoc) { 
-                             
-                const postRef = doc(db, 'createpost', recipeId);
-                await deleteDoc(postRef);
-                fetchRecipes();
-                setLoading(false)
-                toast.success('Post Archived');
-            } else {
-                console.log('Error')
-            }
-
-        } catch (error) {
-            console.log(error);
-            toast.error("Error archiving post");
-        } finally {
-            setTimeout(() => setIsButtonDisabled(false), 1000); // enable the button after a short delay
-          }
-    };
-
-
-
-
-    return (
-        <div className='flex flex-col justify-center items-center gap-[1rem]'>
-            { posts.length === 0 ? (
-                <h1>No Pending Posts</h1>
-            ) : <>
+  return (
+    <div className='flex flex-col justify-center items-center gap-[1rem]'>
+            {posts.length === 0 ? (
+                <h1>No Approved Posts at the moment</h1>
+            ) :( <>
             {posts.map((recipe, i) => (
                 <div>
                     <div className='flex justify-between items-center px-[1rem] py-[0.5rem] bg-bgColorTwo'>
-                        <h1 className='text-primary text-lg font-normal'>Pending</h1>
+                        <h1 className='text-primary text-lg font-normal'>Approved</h1>
 
                         <div className='flex items-center gap-[0.5rem]'>
-                            <button onClick={() => handleFavoriteClick(recipe, recipe.uid)}
-                            disabled={isButtonDisabled}
-                            className='py-[0.25rem] w-[88px] bg-secondary hover:bg-lime-700 flex items-center justify-center gap-[0.25rem] text-primary rounded-sm text-sm'>
+                            {/* <button  className='py-[0.25rem] w-[88px] bg-secondary hover:bg-lime-700 flex items-center justify-center gap-[0.25rem] text-primary rounded-sm text-sm'>
                                 <FontAwesomeIcon icon={faCheck} className='text-primary text-sm' />
 
                                 Approve
                             </button>
 
                             <button className='py-[0.25rem] w-[88px] bg-red-600 hover:bg-red-700 flex items-center justify-center gap-[0.25rem] text-primary rounded-sm text-sm'
-                                onClick={() => handleArchiveClick(recipe, recipe.uid)}
-                                disabled={isButtonDisabled}
-                                key={i}
+                                
                             >
                                 <FontAwesomeIcon icon={faTrash} className='text-primary text-sm' />
 
                                 Archive
-                            </button>
+                            </button> */}
                         </div>
                     </div>
 
@@ -180,7 +134,7 @@ export default function TablePosts() {
                     </div>
                 </div>
             ))}
-            </>}
+            </>)}
         </div>
-    )
+  )
 }

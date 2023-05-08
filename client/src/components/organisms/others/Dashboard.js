@@ -61,7 +61,7 @@ export default function Dashboard() {
         </div>
         </Link>
 
-        <Link to='/adminposts'>
+        <Link to='/pendingposts'>
         <div className="w-[21rem] h-[10.75rem] flex justify-center items-center bg-primary border border-zinc-300 shadow-md rounded-md p-4 gap-5 ">
             <div className='w-[5.313rem] h-[5.313rem] bg-primary rounded-[50%] flex items-center justify-center'>
             <img src='https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Flike.png?alt=media&token=c34080da-0d64-4cff-a126-4c0521edc02a' className='w-[3rem] h-[2.688rem]' />
