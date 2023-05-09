@@ -11,7 +11,7 @@ import { Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, 
 import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, NewSignUpForm, SidebarAdmin, SignUpJerud, TableUser, UploadImage, Comment, CardRecipeProcess } from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
-import { ModalAccountSuccess, ModalDeletePost } from './components/molecules/molecules';
+import { DropdownNotif, ModalAccountSuccess, ModalDeletePost } from './components/molecules/molecules';
 import Post from './components/postdemos/Post';
 import OtherPost from './components/postdemos/OtherPost';
 import { ToastContainer } from 'react-toastify';
@@ -228,7 +228,7 @@ function App() {
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
 
-          <Route path='/pendingposts' element={<AdminPosts />} />
+          <Route path='/adminposts' element={<AdminPosts />} />
           <Route path="/approvedposts" element={<AdminPostsSec />} />
           <Route path='/archivedposts' element={<AdminPostsThird />} />
           <Route path="/adminsidebar" element={<SidebarAdmin />} />
@@ -250,6 +250,7 @@ function App() {
           <Route path='/comms' element={<Comment />} />
           <Route path='/recipepro' element={<CardRecipeProcess />} />
           <Route path='/del' element={<ModalDeletePost />} />
+          <Route path='/drop' element={<DropdownNotif />} />
         </Routes>
 
         <ToastContainer

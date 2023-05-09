@@ -7,13 +7,13 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { PreLoader } from '../atoms/atoms';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes} from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 
 
 
-export default function EditProfile() {
+export default function EditProfile({ open, onClose }) {
 
     const navigate = useNavigate();
     const [firstname, setFirstName] = useState('');
@@ -93,26 +93,31 @@ export default function EditProfile() {
     }
 
 
-
+    if (!open) return null 
+    
     return (
-        <div className='flex justify-center items-center h-screen'>
-        <form onSubmit={handleUpdateProfile} className='w-[30rem] h-auto flex flex-col gap-3 justify-center items-center bg-primary border-2 border-[#84cc16] rounded-md p-4'>
-            <div className='w-full flex flex-row justify-between items-center'>
+        <div className='min-h-screen w-full flex justify-center items-center fixed z-20 bg-textFadeBlack'>
+        <form onClick={(e) => {
+            e.stopPropagation()
+            }} onSubmit={handleUpdateProfile} className='w-full max-w-[30rem] mx-auto p-[2rem] bg-primary max-h-[calc(100vh_-_2rem)] overflow-auto scrollbar-hide'>
+            {/* <div className='w-full flex flex-row justify-between items-center'>
             <h1 className='text-[1.5rem] my-2 font-[600] ml-auto mr-[-2rem]'>Edit Profile</h1>
             <Link to='/profile' className='ml-auto mr-3 cursor-pointer'><FontAwesomeIcon icon={faTimes} /></Link>
+            </div> */}
+            <div className='flex justify-between items-center'>
+                <span className='text-lg tablet:text-xl desktop:text-2xl text-mainBlack font-normal tablet:font-medium'>Edit Profile</span>
+
+                <FontAwesomeIcon onClick={onClose} icon={faXmark} className='text-lg tablet:text-xl text-mainBlack cursor-pointer' />
             </div>
-            <div>
-                <label htmlFor="firstname">First Name:</label>
-                <input type="text" id="firstname" value={firstname} onChange={handleFirstNameChange} className='w-[10rem] border-2 border-black ml-2 p-1' />
-            </div>
-            <div>
-                <label htmlFor="lastname">Last Name:</label>
-                <input type="text" id="lastname" value={lastname} onChange={handleLastNameChange} className='w-[10rem] border-2 border-black ml-2 p-1' />
-            </div>
-            <div className='mt-4 text-center flex flex-col justify-between items-center gap-4'>
-                <label htmlFor="photoFile" className='-2'>Profile Photo:</label>
+
+            <div className='mt-4 text-center flex flex-col items-center gap-4'>
+                <label htmlFor="photoFile" className='text-base text-mainBlack font-normal'>Profile Photo:</label>
+
+                {photoURL && <img src={photoURL} alt="Profile" className='w-[10rem] h-[10rem] rounded-[50%] object-cover border border-zinc-200' />}
+
                 <input type="file" id="photoFile" accept="image/*" onChange={handlePhotoFileChange}
                     className='
+                    w-full
                     flex
                     file:bg-gradient-to-b file:from-lime-500 file:to-lime-600
                     file:px-4 file:py-1 file:m-1
@@ -129,17 +134,27 @@ export default function EditProfile() {
                     text-mainBlack
                     rounded-full
                     cursor-pointer
-                    text-sm
-      '
+                    text-sm'
                 />
-                {photoURL && <img src={photoURL} alt="Profile" className='w-[10rem] h-[10rem] rounded-[50%]' />}
+            </div>
+
+            <div className='mt-4 flex flex-col gap-1'>
+                <label htmlFor="firstname" className='flex-none text-sm text-mainBlack font-normal'>First Name:</label>
+
+                <input type="text" id="firstname" value={firstname} onChange={handleFirstNameChange} className='w-full border border-zinc-400 px-2 py-1 text-base text-mainBlack font-normal focus:border-2 focus:border-zinc-400 focus:outline-none'/>
+            </div>
+
+            <div className='mt-2 flex flex-col gap-1'>
+                <label htmlFor="lastname" className='flex-none text-sm  text-mainBlack font-normal'>Last Name:</label>
+
+                <input type="text" id="lastname" value={lastname} onChange={handleLastNameChange} className='w-full border border-zinc-400 px-2 py-1 text-base text-mainBlack font-normal focus:border-2 focus:border-zinc-400 focus:outline-none'/>
             </div>
                     {/* <div>
                 <label htmlFor="newPassword">New Password:</label>
                 <input type="password" id="newPassword" value={newPassword} onChange={handleNewPasswordChange} />
                 </div> */}
             <button type="submit" disabled={isLoading}
-                className='flex p-4 justify-center items-center border border-[#84cc16] py-[0.5rem] mt-[1rem] rounded-md hover:bg-lime-500 hover:text-primary hover:border-lime-500 duration-200 text-sm tablet:text-base font-normal mb-[0.25rem] tablet:mb-[0.5rem]'
+                className='flex p-4 justify-center items-center border border-secondary text-mainBlack py-[0.5rem] mt-[1rem] rounded-md hover:bg-secondary hover:text-primary hover:secondary duration-200 text-sm tablet:text-base font-normal mb-[0.25rem] tablet:mb-[0.5rem] mx-auto'
             >Update Profile</button>
             {error && <div>{error}</div>}
         </form>

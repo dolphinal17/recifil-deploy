@@ -81,7 +81,7 @@ export default function UploadImage() {
                 
 
                 <div className='flex justify-center my-6'>
-                    <img alt='Profile Image' src={photoURL} className='w-[10rem] h-[10rem] rounded-[50%]'/>
+                    <img alt='Profile Image' src={photoURL} className='w-[10rem] h-[10rem] rounded-[50%] object-cover border border-zinc-200'/>
                 </div>
 
                 <input 
