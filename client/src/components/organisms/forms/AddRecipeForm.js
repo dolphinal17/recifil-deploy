@@ -10,10 +10,7 @@ import { toast } from 'react-toastify'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 
 
-export default function AddRecipeForm() {
-
-
-
+export default function AddRecipeForm({ open, onClose }) {
     const [recipe, setRecipe] = useState(null)
     const [loading, setLoading] = useState(false)
     const [tempIng, setTempIng] = useState([]);
@@ -105,14 +102,18 @@ export default function AddRecipeForm() {
         return <PreLoader />;
     }
 
+    if (!open) return null
 
     return (
-        <div className='w-full'>
-            <form onSubmit={handleSubmit} className='w-full max-w-[30rem] mx-auto p-[2rem] bg-primary'>
+        
+        <div onClick={onClose} className='min-h-screen w-full flex justify-center items-center fixed z-20 bg-textFadeBlack'>
+            <form onClick={(e) => {
+            e.stopPropagation()
+            }} onSubmit={handleSubmit} className='w-full max-w-[30rem] mx-auto p-[2rem] bg-primary max-h-[calc(100vh_-_2rem)] overflow-auto scrollbar-hide'>
                 <div className='flex justify-between items-center'>
                     <span className='text-lg tablet:text-xl desktop:text-2xl text-mainBlack font-normal tablet:font-medium'>Edit Recipe</span>
 
-                    <Link to='/adminrecipes'><FontAwesomeIcon icon={faXmark} className='text-lg tablet:text-xl text-mainBlack' /></Link>
+                    <FontAwesomeIcon onClick={onClose} icon={faXmark} className='text-lg tablet:text-xl text-mainBlack cursor-pointer' />
                 </div>
 
                 {/* inputs */}
@@ -202,7 +203,7 @@ export default function AddRecipeForm() {
                     <div className='px-[0.75rem] py-[0.5rem] w-full border border-zinc-300 rounded-md mt-[0.5rem]'>
                         <span className='text-base tablet:text-lg font-normal text-mainBlack'>Procedures</span>
 
-                        <div className='flex flex-col h-[10rem] justify-start gap-[0.5rem] overflow-y-auto mt-[0.5rem] pb-4'>
+                        <div className='flex flex-col max-h-[10rem] justify-start gap-[0.5rem] overflow-y-auto mt-[0.5rem] pb-4'>
                             {tempSteps.map((step, index) => (
 
 

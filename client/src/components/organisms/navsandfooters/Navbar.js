@@ -1,10 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faMagnifyingGlass, faBook, faBasketShopping, faUsers, faHeart, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faBasketShopping, faUsers, faHeart, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
-import DropdownProfile from '../../molecules/DropdownProfile.js'
-
-
+import {DropdownProfile, DropdownNotif}  from '../../molecules/molecules.js'
 
 const Navbar = () => {
   const location = useLocation();
@@ -18,10 +16,10 @@ const Navbar = () => {
               <h4 className='text-primary text-base tablet:text-2xl font-[500] mx-1'>ReciFil</h4>
           </div></Link>
           <div className='flex flex-row items-center gap-[1rem]'>
-              <FontAwesomeIcon icon={faBell} className=' text-primary text-base tablet:text-2xl cursor-pointer' />
+              {/* <FontAwesomeIcon icon={faBell} className=' text-primary text-base tablet:text-2xl cursor-pointer' /> */}
+              <DropdownNotif/>
 
               <DropdownProfile/>
-              
           </div>
         </div>
       </div>

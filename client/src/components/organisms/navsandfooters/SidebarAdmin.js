@@ -17,7 +17,7 @@ export default function SidebarAdmin() {
 
         {/* logo */}
         <div className={`flex items-center justify-center gap-[0.5rem] tablet:gap-[1rem]`}>
-            <img src='https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FNewLogoSecondary.png?alt=media&token=0c0d1f96-61bb-405a-99b1-9e8a51974677' className='w-[1rem] tablet:w-[1.5rem]'></img>
+            <img src='https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2FLogoMainG.png?alt=media&token=c25b6fd5-4217-4b56-af19-4aa6208abcc8' className='w-[1rem] tablet:w-[1.5rem]'></img>
 
             <span className={`${!open && "hidden"} text-base tablet:text-2xl font-normal tablet:font-medium text-primary duration-200`}>ReciFil</span>
         </div>
@@ -33,7 +33,7 @@ export default function SidebarAdmin() {
 
                 <Link to='/adminuser'><li className={`${open ? "" : "justify-center"} ${location.pathname === '/adminuser' ? 'active border-r-[3px] border-secondary text-secondary' : 'text-primary'} hover:text-secondary flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faUserGroup} className='text-sm w-[14px]'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium duration-200`}>Users</span></li></Link>
 
-                <Link to='/pendingposts'><li className={`${open ? "" : "justify-center"} ${location.pathname === '/adminposts' ? 'active border-r-[3px] border-secondary text-secondary' : 'text-primary'} hover:text-secondary flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faNoteSticky} className='text-sm w-[14px]'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium duration-200`}>Posts</span></li></Link>
+                <Link to='/adminposts'><li className={`${open ? "" : "justify-center"} ${location.pathname === '/adminposts' ? 'active border-r-[3px] border-secondary text-secondary' : 'text-primary'} hover:text-secondary flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faNoteSticky} className='text-sm w-[14px]'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium duration-200`}>Posts</span></li></Link>
 
                 <Link to='/adminrecipes'><li className={`${open ? "" : "justify-center"} ${location.pathname === '/adminrecipes' ? 'active border-r-[3px] border-secondary text-secondary' : 'text-primary'} hover:text-secondary flex items-center py-[0.25rem] tablet:py-[0.5rem]  cursor-pointer gap-[1rem] tablet:gap-[2rem] duration-200`}><FontAwesomeIcon icon={faBookOpen} className='text-sm w-[14px]'/><span className={`${!open && "hidden"} text-sm font-normal tablet:font-medium duration-200`}>Recipes</span></li></Link>
 

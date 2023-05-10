@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faComment } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faBasketShopping, faGear, faTag, faTrash, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import CreatePost from '../../assets/create-post.png'
-import { CardCreatePost, CardPost, InsideFooter, Navbar } from '../organisms/organisms.js'
+import { CardCreatePost, CardPost, InsideFooter, Navbar, } from '../organisms/organisms.js'
+import {EditProfile} from '../pages/pages.js'
 import { ModalDeletePost } from '../molecules/molecules.js'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/UserAuthContext';
@@ -23,6 +24,7 @@ const Profile = () => {
     const [openModal, setOpenModal] = useState(false)
     const [posts, setPosts] = useState([])
     const [openModalDelete, setOpenModalDelete] = useState(false)
+    const [openModalEP, setOpenModalEP] = useState(false)
 
 
     const fetchRecipes = async () => {
@@ -58,6 +60,7 @@ const Profile = () => {
             <div className={`${styles.boxWidth}`}>
                 <Navbar />
                 <CardCreatePost open={openModal} onClose={() => setOpenModal(false)} />
+                <EditProfile open={openModalEP} onClose={() => setOpenModalEP(false)} />
                 
                 <div className={`${styles.container}`}>
                     <div className='w-full flex flex-col laptop:flex-row gap-[1rem] laptop:gap-[2rem]'>
@@ -76,7 +79,7 @@ const Profile = () => {
                                     <div className='flex justify-between items-start'>
                                         <span className='text-base font-normal tablet:font-medium text-primary'>{currentuser?.displayName}</span>
 
-                                        <Link to='/editprofile'><FontAwesomeIcon icon={faPenToSquare} className='text-primary text-xs' /></Link>
+                                        <FontAwesomeIcon onClick={() => setOpenModalEP(true)} icon={faPenToSquare} className='text-primary text-xs cursor-pointer'/>
                                     </div>
 
                                     {/* total posts */}
@@ -87,7 +90,7 @@ const Profile = () => {
 
                                 {/* option list */}
                                 <ul className='flex flex-col gap-[0.5rem] laptop:gap-[1rem]'>
-                                    <Link to='/editprofile'><li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary cursor-pointer hover:text-secondary duration-200'><FontAwesomeIcon icon={faPenToSquare} className='text-secondary text-sm' />Edit Profile</li></Link>
+                                    <li onClick={() => setOpenModalEP(true)} className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary cursor-pointer hover:text-secondary duration-200'><FontAwesomeIcon icon={faPenToSquare} className='text-secondary text-sm' />Edit Profile</li>
                                     <Link to='/favorites'><li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary cursor-pointer hover:text-secondary duration-200'><FontAwesomeIcon icon={faHeart} className='text-secondary text-sm' />Favorites</li></Link>
                                     <Link to='/basket'><li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary cursor-pointer hover:text-secondary duration-200'><FontAwesomeIcon icon={faBasketShopping} className='text-secondary text-sm' />Basket</li></Link>
                                     <li className='flex items-center gap-[0.25rem] tablet:gap-[0.5rem] text-sm font-normal tablet:font-medium text-primary cursor-pointer hover:text-secondary duration-200'><FontAwesomeIcon icon={faGear} className='text-secondary text-sm' />Settings</li>

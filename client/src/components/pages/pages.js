@@ -13,6 +13,7 @@ import UploadImg from "./UploadImg";
 import ForgotPassword from "./ForgotPassword";
 import EmailVerification from "./EmailVerification";
 import AdminTestPage from "./AdminTestPage";
+import EditProfile from "./EditProfile";
 
 export {
   Login, 
@@ -29,5 +30,6 @@ export {
   UploadImg,
   ForgotPassword,
   EmailVerification,
-  AdminTestPage
+  AdminTestPage,
+  EditProfile
 };

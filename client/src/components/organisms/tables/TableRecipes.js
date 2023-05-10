@@ -45,7 +45,7 @@ export default function TableRecipes() {
                 <div className='flex justify-between items-center px-[1rem] tablet:px-[2rem] my-[0.5rem] tablet:my-[1rem]'>
                     <span className='text-base tablet:text-xl font-normal tablet:font-medium text-mainBlack'>Recipes</span>
 
-                    <Link to='/addrecipes'><button className='w-[9rem] bg-[#84cc16] text-white p-2 rounded-lg'>Add a New Recipe</button></Link>
+                    {/* <Link to='/addrecipes'><button className='w-[9rem] bg-[#84cc16] text-white p-2 rounded-lg'>Add a New Recipe</button></Link> */}
 
                     <SearchBarWBG
                         placeHolder="Search recipes"
