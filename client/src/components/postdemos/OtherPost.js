@@ -8,8 +8,8 @@ import {
   getDocs
 } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faTrash, faAngleRight, faHeart as regularHeart, faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'
-import { faComment } from '@fortawesome/free-regular-svg-icons'
+import { faXmark, faTrash, faAngleRight, faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../style'
 import { CardPost, RecipeCard, Navbar, CardCreatePost, InsideFooter } from '../organisms/organisms.js'
 import CreatePost from '../../assets/create-post.png'
@@ -77,12 +77,13 @@ function OtherPost() {
     const postref = collection(db, "approvepost")
     const snapshot = await getDocs(postref)
     const recipes = snapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }))
-    console.log(recipes)
+    // console.log(recipes)
     setRecipes(recipes)
   }
 
   useEffect(() => {
-    fetchPost()
+    fetchPost();
+    getfav()
   }, [])
 
 
@@ -288,37 +289,46 @@ function OtherPost() {
 
   const removeRecipe = id => {
     deleteDoc(doc(db, "createpost", id))
-  }
+  }  
 
-  //  Set Social post to favorite
-      const handleFavoriteSocial = async (recipeId, recipeTitle) => {
-        try {
-          const favoritesRef = collection(db, `userinfo/${user.uid}/socialfavorite`);
-          const querySnapshot = await getDocs(favoritesRef);
-          const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
-          setFavDoc(favoriteDoc);
+        //this function is for icon solid if its in favorite
+    const getfav = async () => {
+      const favRef = collection(db, `userinfo/${user.uid}/socialfavorite`);
+      const querySnapfav = await getDocs(favRef);
+      const favDataWithId = querySnapfav.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      setfavInfo(favDataWithId);
+    }
+        //  Set Social post to favorite
+    const handleFavoriteSocial = async (recipeId, recipeTitle) => {
+      try {
+        const favoritesRef = collection(db, `userinfo/${user.uid}/socialfavorite`);
+        const querySnapshot = await getDocs(favoritesRef);
+        const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
+        setFavDoc(favoriteDoc);
 
-          if (favoriteDoc) {
-            // Recipe already exists in favorites, remove it
-            setLoading(true)
-            await deleteDoc(doc(favoritesRef, favoriteDoc.id));
-            setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
-            setLoading(false)
-            toast.success('Removed from Favorites');
-          } else {
-            setLoading(true)
-            await addDoc(favoritesRef,recipeId,{ id: recipeId, title: recipeTitle });
-            setFavorites([...favorites,recipeTitle, { id: recipeId, title: recipeTitle }]);
-            setLoading(false)
-            toast.success('Added to Favorites');
-            
-          }
-        } catch (error) {
-          console.log(error);
+        if (favoriteDoc) {
+          // Recipe already exists in favorites, remove it
+          await deleteDoc(doc(favoritesRef, favoriteDoc.id));
+          setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
+          toast.success('Removed from Favorites');
+        } else {
+          await addDoc(favoritesRef,recipeId,{ id: recipeId, title: recipeTitle });
+          setFavorites([...favorites,recipeTitle, { id: recipeId, title: recipeTitle }]);
+          toast.success('Added to Favorites');
+          
         }
-      };
-  //
+        //reload after the function of favorite 3s
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000); 
 
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    console.log(recipes)
+///////
 
   return (
     <div className={`${styles.boxWidth}`}>
@@ -362,7 +372,7 @@ function OtherPost() {
                           <button onClick={() => handleFavoriteSocial(recipe, recipe.title)}>
                             {
                               favinfo.some(favinfo => favinfo.title === recipe.title) ? (
-                                <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                                <FontAwesomeIcon icon={solidHeart   } className='text-lime-400 text-2xl' />
                               ) : (
                                 <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
                               )
