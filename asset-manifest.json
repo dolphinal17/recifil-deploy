@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/recifil-deploy/static/css/main.6abab0be.css",
-    "main.js": "/recifil-deploy/static/js/main.5bbe99f0.js",
+    "main.js": "/recifil-deploy/static/js/main.e0eebf4c.js",
     "static/media/mainimg.jpg": "/recifil-deploy/static/media/mainimg.5e32690d6b4f19b1a097.jpg",
     "static/media/create-post.png": "/recifil-deploy/static/media/create-post.42717be331d5bed32ad7.png",
     "index.html": "/recifil-deploy/index.html",
     "main.6abab0be.css.map": "/recifil-deploy/static/css/main.6abab0be.css.map",
-    "main.5bbe99f0.js.map": "/recifil-deploy/static/js/main.5bbe99f0.js.map"
+    "main.e0eebf4c.js.map": "/recifil-deploy/static/js/main.e0eebf4c.js.map"
   },
   "entrypoints": [
     "static/css/main.6abab0be.css",
-    "static/js/main.5bbe99f0.js"
+    "static/js/main.e0eebf4c.js"
   ]
 }
