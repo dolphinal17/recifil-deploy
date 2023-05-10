@@ -27,6 +27,7 @@ import CardPostView from './components/organisms/cards/CardPostView';
 import EditProfile from './components/pages/EditProfile';
 import AdminPostsSec from './components/pages/AdminPostsSec';
 import AdminPostsThird from './components/pages/AdminPostsThird';
+import AdminIng from './components/pages/AdminIng';
 
 
 
@@ -227,7 +228,7 @@ function App() {
 
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
-
+          <Route path='/admining' element={<AdminIng />} />
           <Route path='/pendingposts' element={<AdminPosts />} />
           <Route path="/approvedposts" element={<AdminPostsSec />} />
           <Route path='/archivedposts' element={<AdminPostsThird />} />
