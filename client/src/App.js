@@ -239,7 +239,7 @@ function App() {
           <Route path='/jerud' element={<SignUpJerud />} />
           <Route path='/newsignup' element={<NewSignUpForm />} />
           <Route path='/comms' element={<Comment />} />
-          <Route path='/recipepro' element={<CardRecipeProcess />} />
+          <Route path='/recipepro/:id' element={<CardRecipeProcess />} />
           <Route path='/del' element={<ModalDeletePost />} />
         </Routes>
 
