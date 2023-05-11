@@ -11,6 +11,7 @@ import InputBoxPassword from "./InputBoxPassword";
 import InputGroup from "./InputGroup";
 import ModalDeletePost from "./modals/ModalDeletePost";
 import DropdownNotif from "./DropdownNotif";
+import DropdownIngredients from "./DropdownIngredients";
 
 export {
     FiltInIngBasket,
@@ -25,5 +26,6 @@ export {
     InputBoxPassword,
     InputGroup,
     ModalDeletePost,
-    DropdownNotif
+    DropdownNotif,
+    DropdownIngredients
 }

@@ -97,7 +97,7 @@ const Favorites = () => {
             <div className={`${styles.boxWidth}`}>
                 <Navbar />
 
-                <div className={`${styles.container}`}>
+                <div className={`${styles.container} mb-[2rem]`}>
                     {/* search bar and category list*/}
                     <div className='flex flex-col w-full items-center sm:items-start sm:pl-[1rem]'>
                         <div className='w-full flex justify-between items-center px-[0.5rem]'>
@@ -165,9 +165,9 @@ const Favorites = () => {
                    {/* )
             } */}
                 </div>
-          
+                
+                <InsideFooter />
             </div>
-            <InsideFooter />
         </div>
     )
 }
