@@ -69,7 +69,7 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
     if (loading) {
         return <PreLoader/>;
     }
-
+    
   return (
     <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -236,7 +236,7 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
                             </div>
                         </div>
 
-                        <Link to='/recipepro'><button className='w-full p-3 flex justify-center items-center mt-[1rem] bg-gradient-to-r from-[#B2D33D] to-[#59981A] text-primary text-sm font-normal laptop:font-medium py-[0.5rem] rounded-sm laptop:rounded-md laptop:mt-auto'>Try Now</button></Link>
+                        <Link to={ '/recipepro/' + id } key={id}><button className='w-full p-3 flex justify-center items-center mt-[1rem] bg-gradient-to-r from-[#B2D33D] to-[#59981A] text-primary text-sm font-normal laptop:font-medium py-[0.5rem] rounded-sm laptop:rounded-md laptop:mt-auto'>Try Now</button></Link>
                     </div>
                 </div>
             </div>
