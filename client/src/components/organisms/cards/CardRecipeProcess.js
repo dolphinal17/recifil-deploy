@@ -20,11 +20,15 @@ import { doc, getDoc } from "firebase/firestore";
 export default function CardRecipeProcess() {
   //for db
   const { id } = useParams();
-  const [steps, setSteps] = useState(null);
+  const [steps, setSteps] = useState([]);
+  const [steptitle, setSteptitle ] = useState([]);
+  const [stepapproach, setStepapproach ] = useState([]);
   const [loading, setLoading] = useState(true);
   const [timer, setTimer] = useState(null);
   
   const user = auth.currentUser;
+  //set for the next and back button
+  const [currentstep, SetCurrentstep ] = useState(0);
   
   useEffect(() => {
     async function fetchRecipe() {
@@ -33,6 +37,8 @@ export default function CardRecipeProcess() {
         .then((doc) => {
           if (doc.exists()) {
             setSteps(doc.data().steps);
+            setSteptitle(doc.data().titlesteps)
+            setStepapproach(doc.data().stepapproach)
             setLoading(false);
           } else {
             console.log('No such document!');
@@ -67,7 +73,7 @@ export default function CardRecipeProcess() {
 
   useEffect(() => {
     let interval;
-    if (isRunning && seconds < 2) {
+    if (isRunning && seconds < 24) {
       // 40 minutes = 2400 seconds
       interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
@@ -107,16 +113,32 @@ export default function CardRecipeProcess() {
     setIsPaused(false);
     setIsStopped(true);
   };
-  console.log("2",steps)
+  console.log("test",stepapproach)
+
+
+//next and back function
+const handleNextStep = () => {
+  SetCurrentstep(currentstep + 1);
+  setSeconds(0);
+};
+const handleBackStep = () => {
+  SetCurrentstep(currentstep - 1);
+  setSeconds(0);
+};
+
+
+// console.log('step: ', currentstep)
+// console.log("total",steps.length)
   return (
     <div className={`${styles.boxWidth}`}>
       <Navbar />
 
       <div className={`${styles.container} px-[1rem] desktop:px-0`}>
         <div className="w-full p-[1rem] bg-bgColorTwo text-primary flex justify-between items-center">
-          <h1 className="font-normal tablet:font-medium text-sm tablet:text-base">
-            Cooking ...{" "}
-          </h1>
+        {stepapproach && stepapproach[currentstep] && (
+        <h1 className="font-normal tablet:font-medium text-sm tablet:text-base">{stepapproach[currentstep ]}...</h1>
+            )}
+          
         </div>
 
         <div className="h-[24.75rem] w-full flex flex-col laptop:flex-row">
@@ -126,27 +148,40 @@ export default function CardRecipeProcess() {
           {/* buttons */}
           <div className="laptop:max-w-[40rem] w-full p-[1rem] tablet:p-[2rem] bg-primary">
             <div className="flex items-center space-x-64">
-              <h1 className="text-[1.5rem] font-medium">Step 1: Boiling</h1>
+            {steptitle && steptitle[currentstep] && (
+              <h1 className="text-[1.5rem] font-medium">Step {`${ currentstep + 1 }`}: {steptitle[currentstep ]}</h1>
+            )}
+              
 
               <div className="flex items-center space-x-2 mt-3">
+              {currentstep !== 0 && (
+                <React.Fragment>
+                  <p className="text-[1rem]" onClick={handleBackStep}>
                 <FontAwesomeIcon
                   icon={faArrowAltCircleLeft}
                   className="text-xl"
-                />
-                <p className="text-[1rem]">Back</p>
-                <p className="text-[1rem]">Next</p>
+                /> Back</p>
+                </React.Fragment>
+              )}
+              {currentstep !==  steps.length - 1  && (
+                <React.Fragment>
+                  <p className="text-[1rem]" onClick={handleNextStep} >Next
                 <FontAwesomeIcon
                   icon={faArrowAltCircleRight}
                   className="text-xl"
                 />
+                </p>
+                </React.Fragment>
+                )
+              }
               </div>
             </div>
             
-            {steps.slice(0,1)?.map((step, index) => (
-              <p className="text-[1rem] font-light mt-2" key={index}>
-                {index + 1}. {step}
+            {steps && steps[currentstep] && (
+              <p className="text-[1rem] font-light mt-2">
+                {steps[currentstep ]}
               </p>
-            ))}
+            )}
 
             {/* pomodoro timer */}
             {/* <div className='flex justify-center items-center w-[9.375rem] h-[9.375rem] rounded-full shadow-xl bg-bgColor'> */}
