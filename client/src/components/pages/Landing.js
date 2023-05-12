@@ -19,7 +19,7 @@ const Landing = () => {
   // }, []);
   return (
     <div className={`${styles.boxWidth} scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-      <div className='w-full bg-primary grid-cols-1 gap-[2rem] pb-[2rem] min-h-screen'>
+      <div className='w-full bg-primary grid-cols-1 gap-[2rem] pb-[2rem] laptop:min-h-screen'>
         <LandingNavbar />
 
         {/* shadow-[5px_0_10px_rgb(0,0,0,0.1)] */}

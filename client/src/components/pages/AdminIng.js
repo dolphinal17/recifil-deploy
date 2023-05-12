@@ -1,13 +1,10 @@
-import React, {useState} from 'react'
-import { NavbarAdmin, SidebarAdmin, TableRecipes, AddRecipeForm } from '../organisms/organisms'
+import React from 'react'
+import { NavbarAdmin, SidebarAdmin, TableRecipes } from '../organisms/organisms'
+import TableIng from '../organisms/tables/TableIng'
 
-export default function AdminRecipes() {
-  const [openModal, setOpenModal] = useState(false)
-
-  return (  
+export default function AdminIng() {
+  return (
     <div className='h-screen w-full bg-green-400 relative'>
-        <AddRecipeForm open={openModal} onClose={() => setOpenModal(false)}/>
-
         <div className='flex'>
           <SidebarAdmin/>
 
@@ -16,12 +13,12 @@ export default function AdminRecipes() {
               
               <div className='bg-bgColor h-full p-[1rem]'>
                   <div className='flex justify-between items-center mb-[1.5rem]'>
-                      <h1 className='text-xl font-medium text-mainBlack'>Manage Recipes</h1>
+                      <h1 className='text-xl font-medium text-mainBlack'>Manage Ingredients</h1>
 
-                      <button onClick={() => setOpenModal(true)} className='w-[9rem] bg-secondary text-white p-2 rounded-lg'>Add a New Recipe</button>
+                      {/* button here */}
                   </div>
 
-                  <TableRecipes/>
+                  <TableIng/>
               </div>
           </div>
         </div>
@@ -33,5 +30,5 @@ export default function AdminRecipes() {
             <TableRecipes />
         </div> */}
     </div>
-  ) 
+  )
 }

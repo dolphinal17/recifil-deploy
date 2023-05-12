@@ -177,8 +177,10 @@ const Favorites = () => {
                     {/* recipe grid */}
                 {/* {loading ? (<PreLoader />) :
                     ( */}
+
                     <div className='w-full grid sm:grid-cols-3 laptop:grid-cols-4 gap-[1rem] laptop:gap-[2rem] justify-items-center mb-8'>
                         { favs.length && socfav.leght === 0 ? 
+
                         <><h1 className='col-span-4 text-center text-lg text-fadeBlack'>You have no favorites yet.</h1></> : <>
                         {favs.map((val, id) => (
                             <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>

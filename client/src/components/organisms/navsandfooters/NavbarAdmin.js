@@ -14,7 +14,7 @@ export default function NavbarAdmin() {
                     <span className='text-sm font-light tablet:font-normal text-mainBlack'>Admin</span>
                 </div>
 
-                <FontAwesomeIcon icon={faGear} className='text-sm text-fadeBlack'/>
+                {/* <FontAwesomeIcon icon={faGear} className='text-sm text-fadeBlack'/> */}
             </div>
         </div>
     </nav>

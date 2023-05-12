@@ -10,7 +10,7 @@ import ModalAccountSuccess from "./modals/ModalAccountSuccess";
 import InputBoxPassword from "./InputBoxPassword";
 import InputGroup from "./InputGroup";
 import ModalDeletePost from "./modals/ModalDeletePost";
-
+import DropdownNotif from "./DropdownNotif";
 
 export {
     FiltInIngBasket,
@@ -24,5 +24,6 @@ export {
     ModalAccountSuccess,
     InputBoxPassword,
     InputGroup,
-    ModalDeletePost
+    ModalDeletePost,
+    DropdownNotif
 }

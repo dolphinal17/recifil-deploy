@@ -31,6 +31,7 @@ function OtherPost() {
   const [openModal, setOpenModal] = useState(false)
   const [disableStepButton, setDisableStepButton] = useState(false);
   const [disableIngButton, setDisableIngButton] = useState(false);
+  const [disableSubmitButton, setDisableSubmitButton] = useState(false);
   const [loading, setLoading] = useState(false)
   const { currentuser } = useAuth()
   const [recipes, setRecipes] = useState([])
@@ -54,6 +55,7 @@ function OtherPost() {
     steps,
   } = form;
 
+  
 
 
   function onChange(e) {
@@ -71,6 +73,12 @@ function OtherPost() {
     }
   }
 
+
+  useEffect(() => {
+    const hasEmptyFields = !title || !desc || !ingredients || !steps || !image || ingredients.length === 0 || steps.length === 0 || ingredients.some(ingredient => ingredient.trim() === "") || steps.some(step => step.trim() === "");
+  
+    setDisableSubmitButton(hasEmptyFields);
+  }, [title, desc, ingredients, steps, image]);
   
   const fetchPost = async () => {
 
@@ -88,33 +96,7 @@ function OtherPost() {
 
 
 
-  //   const handleSubmit = e => {
-  //     e.preventDefault()
-
-  //     if (
-  //       !form.title ||
-  //       !form.desc ||
-  //       !form.ingredients ||
-  //       !form.steps
-  //     ) {
-  //       alert("Please fill out all fields")
-  //       return
-  //     }
-
-  //     addDoc(recipesCollectionRef, form)
-
-  //     setForm({
-  //       title: "",
-  //       image: {},
-  //       desc: "",
-  //       ingredients: [],
-  //       steps: []
-  //     })
-
-  //     setLoading(true)
-  //     setOpenModal(false)
-  //   }
-
+ 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -126,10 +108,8 @@ function OtherPost() {
       !steps ||
       !image
     ) {
-      toast.error("Please fill out all the fields!");
       setLoading(false)
-      return
-
+      toast.error("Please fill out all the fields!");
     }
 
     async function storeImage(image) {
@@ -188,7 +168,7 @@ function OtherPost() {
     delete formCopy.image;
     const docRef = await addDoc(collection(db, "createpost"), formCopy);
     setLoading(false);
-    toast.success("Post Created")
+    toast.success("Post is sent to the admin. Please wait for approval.")
     setOpenModal(false)
   }
 
@@ -572,7 +552,9 @@ function OtherPost() {
             </div>
 
 
-            <button type="submit" className='py-[0.5rem] tablet:py-[1rem] w-full bg-secondary hover:bg-lime-700 rounded-md text-base font-normal text-[#fff]'>Post</button>
+            <button type="submit" disabled={disableSubmitButton}className={`py-[0.5rem] tablet:py-[1rem] w-full rounded-md text-base font-normal text-white 
+              bg-secondary hover:bg-lime-700 
+              ${disableSubmitButton ? 'opacity-50 cursor-not-allowed bg-lime-400' : ''}`} >Post</button>
 
           </form>
 

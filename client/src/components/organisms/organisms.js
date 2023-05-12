@@ -32,6 +32,9 @@ import Dashboard from "./others/Dashboard";
 import TablePosts from "./tables/TablePosts";
 import TableRecipes from "./tables/TableRecipes";
 import AddRecipeForm from "./forms/AddRecipeForm";
+import TablePostsSec from "./tables/TablePostsSec";
+import TablePostsThird from "./tables/TablePostsThird";
+import RecipesForm from "./forms/RecipesForm";
 
 
 export {
@@ -68,5 +71,8 @@ export {
     Dashboard, 
     TablePosts,
     TableRecipes, 
-    AddRecipeForm
+    AddRecipeForm,
+    TablePostsSec,
+    TablePostsThird,
+    RecipesForm
 }

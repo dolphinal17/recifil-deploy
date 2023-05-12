@@ -3,7 +3,7 @@ import styles from "../../style";
 import { RecipeCard, Navbar, InsideFooter } from "../organisms/organisms.js";
 import { SearchBarWBG } from "../molecules/molecules.js";
 import { auth, db } from "../../config/firebase";
-import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc, where } from "firebase/firestore";
+import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, deleteDoc, where, orderBy, limit } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { PreLoader } from "../atoms/atoms";
@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faFilter, faMagnifyingGlass, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+
 
 
 
@@ -29,6 +30,8 @@ const Library = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [favDoc, setFavDoc] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [matchingRecipes, setMatchingRecipes] = useState([]);
   const user = auth.currentUser;
 
 
@@ -135,12 +138,16 @@ const Library = () => {
         setLoading(true)
         await deleteDoc(doc(favoritesRef, favoriteDoc.id));
         setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
+        
+        window.location.reload()
         setLoading(false)
         toast.success('Removed from Favorites');
       } else {
         setLoading(true)
         await addDoc(favoritesRef, recipeId, { id:recipeId, title: recipeTitle });
         setFavorites([...favorites, recipeTitle, { id: recipeId, title: recipeTitle}]);
+ 
+        window.location.reload()
         setLoading(false)
         toast.success('Added to Favorites');
         
@@ -149,6 +156,26 @@ const Library = () => {
       console.log(error);
     }
   };
+
+
+  
+
+const handleSearchInputChange = (event) => {
+  setSearchQuery(event.target.value);
+};
+
+const handleSearchButtonClick = async () => {
+  const recipesRef = collection(db, 'recipes');
+  const q = query(
+    recipesRef,
+    where('title', '>=', searchQuery),
+    orderBy('title'),
+    limit(10)
+  );
+  const querySnapshot = await getDocs(q);
+  const matchingRecipes = querySnapshot.docs.map((doc) => doc.data());
+  setMatchingRecipes(matchingRecipes);
+};
 
 
   return (
@@ -161,28 +188,28 @@ const Library = () => {
 
           {/* search bar */}
           <div className={`py-[0.5rem] px-[1rem] max-w-[22rem] w-full bg-white rounded-full flex flex-row justify-center items-center`}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} className='text-fadeText text-sm mr-[0.5rem]' />
+            
+            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' onChange={handleSearchInputChange} ></input>
 
-            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' ></input>
+            <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearchButtonClick} className='text-fadeText text-sm mr-[0.5rem cursor-pointer hover:text-[#84cc16]' />
 
-            <FontAwesomeIcon icon={faFilter} className='text-textMainBlack text-sm ml-[0.5rem]' />
           </div>
 
           {/* category list */}
           <ul className="flex gap-[1rem] my-[2rem]">
-            <li className={`text-sm font-normal tablet:font-medium ${category === "All" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={() => setCategory("")}>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={() => setCategory("")}>
               All
             </li>
-            <li className={`text-sm font-normal tablet:font-medium ${category === "Main Dish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleMainDishClick}>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "maindish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleMainDishClick}>
               Main Dish
             </li>
-            <li className={`text-sm font-normal tablet:font-medium ${category === "Side Dish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleSideDishClick}>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "sidedish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleSideDishClick}>
               Side Dish
             </li>
-            <li className={`text-sm font-normal tablet:font-medium ${category === "Dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
               Dessert
             </li>
-            <li className={`text-sm font-normal tablet:font-medium ${category === "Vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
+            <li className={`text-sm font-normal tablet:font-medium ${category === "vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
               Vegetable
             </li>
           </ul>

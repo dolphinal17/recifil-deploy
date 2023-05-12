@@ -11,7 +11,7 @@ import { Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, 
 import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, NewSignUpForm, SidebarAdmin, SignUpJerud, TableUser, UploadImage, Comment, CardRecipeProcess } from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
-import { ModalAccountSuccess, ModalDeletePost } from './components/molecules/molecules';
+import { DropdownNotif, ModalAccountSuccess, ModalDeletePost } from './components/molecules/molecules';
 import Post from './components/postdemos/Post';
 import OtherPost from './components/postdemos/OtherPost';
 import { ToastContainer } from 'react-toastify';
@@ -24,6 +24,11 @@ import AddRecipeForm from './components/organisms/forms/AddRecipeForm';
 import AddRecipes from './components/pages/AddRecipes';
 import AdminPosts from './components/pages/AdminPosts';
 import CardPostView from './components/organisms/cards/CardPostView';
+import EditProfile from './components/pages/EditProfile';
+import AdminPostsSec from './components/pages/AdminPostsSec';
+import AdminPostsThird from './components/pages/AdminPostsThird';
+import AdminIng from './components/pages/AdminIng';
+
 
 
 
@@ -197,15 +202,6 @@ function App() {
             }
           />
 
-          {/* <Route
-              exact
-              path="/upload"
-              element={
-                <WithPrivateRoute>
-                  <UploadImg /> 
-                </WithPrivateRoute>
-              }
-            /> */}
 
           <Route
             exact
@@ -217,12 +213,28 @@ function App() {
             }
           />
 
-          {/* <Route path='/postlmao' element={<Post/>} /> */}
+
+          <Route
+            exact
+            path="/editprofile"
+            element={
+              <WithPrivateRoute>
+                <EditProfile />
+              </WithPrivateRoute>
+            }
+          />
+
+          
 
           <Route path='/success' element={<ModalAccountSuccess />} />
           <Route path="/loadings" element={<PreLoader />} />
 
-          {/* <Route path="/adminsidebar" element={<SidebarAdmin />} />
+          <Route path='/admining' element={<AdminIng />} />
+          <Route path='/pendingposts' element={<AdminPosts />} />
+
+          <Route path="/approvedposts" element={<AdminPostsSec />} />
+          <Route path='/archivedposts' element={<AdminPostsThird />} />
+          <Route path="/adminsidebar" element={<SidebarAdmin />} />
           <Route path="/adminnav" element={<NavbarAdmin />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/table" element={<TableUser />} />
@@ -232,15 +244,16 @@ function App() {
           <Route path='/editrecipes/:id' element={<EditRecipes />} />
           <Route path='/addrecipesform' element={<AddRecipeForm />} />
           <Route path='/addrecipes' element={<AddRecipes />} />
-          <Route path='/adminposts' element={<AdminPosts />} />
-          <Route path='/admintest' element={<AdminTestPage />} /> */}
-
           
+          <Route path='/admintest' element={<AdminTestPage />} />
+
+
           <Route path='/jerud' element={<SignUpJerud />} />
           <Route path='/newsignup' element={<NewSignUpForm />} />
           <Route path='/comms' element={<Comment />} />
           <Route path='/recipepro/:id' element={<CardRecipeProcess />} />
           <Route path='/del' element={<ModalDeletePost />} />
+          <Route path='/drop' element={<DropdownNotif />} />
         </Routes>
 
         <ToastContainer
