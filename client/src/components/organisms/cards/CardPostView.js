@@ -55,18 +55,24 @@ const CardPostView = () => {
         e.preventDefault();
 
         try {
-            const commentsRef = collection(db, `approvepost/${id}/comments`);
-            await addDoc(commentsRef, {
-                text: comment,
-                user: {
-                    name: auth.currentUser.displayName,
-                    photoURL: auth.currentUser.photoURL,
-                },
-                createdAt: serverTimestamp(),
-            });
-            console.log(comment);
-            setComment('');
-            toast.success('Comment posted!')
+
+            if (comment != 0) {
+                const commentsRef = collection(db, `approvepost/${id}/comments`);
+                await addDoc(commentsRef, {
+                    text: comment,
+                    user: {
+                        name: auth.currentUser.displayName,
+                        photoURL: auth.currentUser.photoURL,
+                    },
+                    createdAt: serverTimestamp(),
+                });
+                console.log(comment);
+                setComment('');
+                toast.success('Comment posted!')
+            }
+            else {
+                toast.error('Comment cannot be empty!')
+            }
         } catch (error) {
             console.error(error);
         }
@@ -82,7 +88,7 @@ const CardPostView = () => {
             <div className={`${styles.container} h-auto `}>
                 <div className='w-full h-auto flex flex-col laptop:flex-row px-[0.5rem] mb-[1rem] laptop:px-0'>
                     <div className='flex flex-col justify-center bg-bgColorTwo p-[1rem] desktop:p-[2rem] gap-[1rem] rounded-t-md laptop:max-w-[48rem] laptop:justify-start laptop:rounded-tr-none laptop:rounded-l-md laptop:w-full'>
-                        
+
 
                         {/* recipe image, author, name, ratings, heart, about */}
                         <div className='flex flex-col gap-[0.5rem] sm:flex-row sm:gap-[1rem]'>
@@ -101,10 +107,10 @@ const CardPostView = () => {
                                             <span className='text-2xl font-medium text-secondary'>{info.title}</span>
                                         </div>
 
-                                        
+
                                     </div>
 
-                                    
+
                                 </div>
 
                                 {/* about */}
@@ -211,12 +217,12 @@ const CardPostView = () => {
                     <div className='flex flex-col gap-[0.25rem] h-auto'>
                         <div className='flex flex-col gap-[0.5rem] tablet:gap-[1rem] max-h-[14rem] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full pr-[1rem]'>
                             {commentInfo.map((com, i) => (
-                                <div  key={i} className='flex justify-start items-start gap-[0.5rem]'>
+                                <div key={i} className='flex justify-start items-start gap-[0.5rem]'>
                                     {/* <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover'></img> */}
-                                    
+
                                     {/* <h1 className='text-lg font-[500]'>{com.user.name}</h1> */}
 
-                                    <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover flex-none'/>
+                                    <img src={com.user.photoURL} alt='sample img' className='w-[3rem] h-[3rem] rounded-full object-cover flex-none' />
 
                                     <div className='w-full flex flex-col p-[0.5rem] rounded-sm bg-zinc-100 gap-[0.25rem]'>
                                         <span className='text-lg font-light laptop:font-normal text-mainBlack'>{com.user.name}</span>
@@ -241,7 +247,7 @@ const CardPostView = () => {
                                 type='submit'
                                 className='p-2 bg-[#84cc16] h-[3rem] text-white rounded-md cursor-pointer'
                             ></input> */}
-                            <button type='submit'><FontAwesomeIcon icon={faPaperPlane} className='cursor-pointer text-2xl text-secondary'/></button>
+                            <button type='submit'><FontAwesomeIcon icon={faPaperPlane} className='cursor-pointer text-2xl text-secondary' /></button>
                         </form>
                     </div>
 
