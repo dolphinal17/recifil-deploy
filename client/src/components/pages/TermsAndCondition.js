@@ -9,7 +9,7 @@ export default function TermsAndCondition() {
     
                 <p className='text-mainBlack text-base tablet:text-lg font-light tablet:font-normal'>Please read these terms and conditions carefully before using Our Service.</p> <br/>
     
-                <p className='text-mainBlack text-base tablet:text-lg font-light tablet:font-normal'>
+                <p className='text-mainBlack text-base tablet:text-lg font-light tablet:font-normal text-justify'>
                     <span className='text-mainBlack text-base tablet:text-lg font-normal tablet:font-medium'>Interpretation and Definitions</span><br/><br/>
                     <span className='text-mainBlack text-base tablet:text-lg font-normal tablet:font-medium'>Interpretation</span> <br/>
                     The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.<br/><br/>
