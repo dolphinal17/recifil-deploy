@@ -348,22 +348,21 @@ function OtherPost() {
                           </div >
 
                           <label className='text-base tablet:text-lg font-medium text-textMainBlack'>{recipe.userName}</label>
-                          <div className="flex item-right ">
-                          <button onClick={() => handleFavoriteSocial(recipe, recipe.title)}>
-                            {
-                              favinfo.some(favinfo => favinfo.title === recipe.title) ? (
-                                <FontAwesomeIcon icon={solidHeart   } className='text-lime-400 text-2xl' />
-                              ) : (
-                                <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
-                              )
-                            }
-                        </button>
-                        </div>
+
                         </div>
 
                         {/* <Link to={'/postview/' + recipe.uid} key={i}>
                             <button className='bg-[#84cc16] text-white p-2 rounded-md mb-2'>View More</button>
                           </Link> */}
+                        <button onClick={() => handleFavoriteSocial(recipe, recipe.title)}>
+                            {
+                              favinfo.some(favinfo => favinfo.title === recipe.title) ? (
+                                <FontAwesomeIcon icon={solidHeart   } className='text-secondary text-2xl' />
+                              ) : (
+                                <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
+                              )
+                            }
+                        </button>
                       </div>
                       
                       {/* about and ingredients */}
@@ -406,10 +405,7 @@ function OtherPost() {
             </div>
           </div>
 
-
-
-
-          <div className='hidden laptop:block'>
+          <div className='hidden laptop:block sticky top-0'>
             <div className='flex justify-between px-[0.5rem] mb-[0.5rem]'>
               <label className='text-sm font-medium text-mainBlack'>Recipes from App</label>
               <Link to='/library'><label className='text-sm font-medium text-secondary cursor-pointer'>All</label></Link>
