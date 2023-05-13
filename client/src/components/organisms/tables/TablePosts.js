@@ -1,10 +1,11 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../../config/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faTag, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
+
 
 
 
@@ -47,6 +48,17 @@ export default function TablePosts() {
                 await deleteDoc(postRef);
                 fetchRecipes();
                 setLoading(false)
+
+                const notificationsRef = collection(db, `userinfo/${userRef}/notifications`);
+                await addDoc(notificationsRef, {
+                  type: "Your post is approved!",
+                  postId: recipeId,
+                  timestamp: serverTimestamp(),
+                    postimage: imgUrls,
+                    postname: title,
+                    profileUrl: '/profile',
+                });
+
                 toast.success('Post Approved');
             }
 

@@ -145,7 +145,7 @@ const Profile = () => {
                                                         type='button' 
                                                         onClick={() => setOpenModalDelete(true)} 
                                                         icon={faTrash} 
-                                                        className='text-base tablet:text-lg text-fadeBlack hover:text-red-600' 
+                                                        className='cursor-pointer text-base tablet:text-lg text-fadeBlack hover:text-red-600' 
                                                     />
                                                     {/* <div className='flex flex-col'>
                                                         <Link to={'/postview/' + recipe.uid} key={i}>
