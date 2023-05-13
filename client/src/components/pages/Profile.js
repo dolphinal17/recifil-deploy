@@ -62,7 +62,7 @@ const Profile = () => {
                 <CardCreatePost open={openModal} onClose={() => setOpenModal(false)} />
                 <EditProfile open={openModalEP} onClose={() => setOpenModalEP(false)} />
                 
-                <div className={`${styles.container}`}>
+                <div className={`${styles.container} mb-[2rem]`}>
                     <div className='w-full flex flex-col laptop:flex-row gap-[1rem] laptop:gap-[2rem]'>
                         {/* user's profile */}
                         <div className='flex flex-col sm:flex-row laptop:flex-col p-[1rem] w-full laptop:max-w-[14.5rem] gap-[0.5rem] sm:gap-[1rem] laptop:gap-[0.5rem] bg-bgColorTwo rounded-t-md'>
@@ -207,9 +207,8 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-
+                <InsideFooter />
             </div>
-            <InsideFooter />
         </div>
     )
 }
