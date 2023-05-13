@@ -23,6 +23,7 @@ export default function CardRecipeProcess() {
   const [steps, setSteps] = useState([]);
   const [steptitle, setSteptitle ] = useState([]);
   const [stepapproach, setStepapproach ] = useState([]);
+  const [stepanime, setStepanime ] = useState([]);
   const [loading, setLoading] = useState(true);
   const [timer, setTimer] = useState(null);
   
@@ -39,6 +40,7 @@ export default function CardRecipeProcess() {
             setSteps(doc.data().steps);
             setSteptitle(doc.data().titlesteps)
             setStepapproach(doc.data().stepapproach)
+            setStepanime(doc.data().animationstep)
             setLoading(false);
           } else {
             console.log('No such document!');
@@ -70,10 +72,11 @@ export default function CardRecipeProcess() {
   const [isRunning, setIsRunning] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
+  const [timers ] = useState(5);
 
   useEffect(() => {
     let interval;
-    if (isRunning && seconds < 24) {
+    if (isRunning && seconds < timers) {
       // 40 minutes = 2400 seconds
       interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
@@ -81,6 +84,17 @@ export default function CardRecipeProcess() {
     }
     return () => clearInterval(interval);
   }, [isRunning, seconds]);
+  //if seconds == time then next step
+  if (isRunning && seconds === timers) {
+    if (currentstep === ((steps.length)-1)) {
+      // Stop countdown
+      setIsRunning(false);
+    } else {
+      // Move to next step
+      SetCurrentstep(currentstep + 1);
+      setSeconds(0);
+    }
+  }
 
   const formatTime = (time) => {
     return time < 10 ? `0${time}` : time;
@@ -89,7 +103,7 @@ export default function CardRecipeProcess() {
   const secondsDisplay = formatTime(seconds % 60);
   const minutesDisplay = formatTime(Math.floor(seconds / 60));
 
-  const progress = (seconds / 2) * 100;
+  const progress = (seconds / timers) * 100;
 
   const handlePauseClick = () => {
     setIsRunning(false);
@@ -113,7 +127,8 @@ export default function CardRecipeProcess() {
     setIsPaused(false);
     setIsStopped(true);
   };
-  console.log("test",stepapproach)
+  console.log("countdown",steps.length)
+  console.log("currentstep",currentstep)
 
 
 //next and back function
@@ -143,7 +158,12 @@ const handleBackStep = () => {
 
         <div className="h-[24.75rem] w-full flex flex-col laptop:flex-row">
           {/* blank section  set for animation*/}
-          <div className="laptop:max-w-[24rem] w-full p-[1rem] tablet:p-[2rem] bg-fadeBlack border-t laptop:border-l border-zinc-200"></div>
+          {stepanime && stepanime[currentstep] && (
+              <div className="laptop:max-w-[24rem] w-full p-[1rem] tablet:p-[2rem] bg-fadeBlack border-t laptop:border-l border-zinc-200">
+              <img src = {stepanime[currentstep ]} style={{width : '900px' , height: '350px'}}/>
+              </div>
+            )}
+          
 
           {/* buttons */}
           <div className="laptop:max-w-[40rem] w-full p-[1rem] tablet:p-[2rem] bg-primary">
