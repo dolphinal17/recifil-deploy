@@ -77,7 +77,7 @@ export default function CardRecipeProcess() {
 
   useEffect(() => {
     let interval;
-    if (isRunning && seconds < (timers[currentstep])) {
+    if (isRunning && seconds < ((timers[currentstep]) * 60)) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
       }, 1000);
@@ -85,7 +85,7 @@ export default function CardRecipeProcess() {
     return () => clearInterval(interval);
   }, [isRunning, seconds]);
   //if seconds == time then next step
-  if (isRunning && seconds === (timers[currentstep])) {
+  if (isRunning && seconds === ((timers[currentstep]) * 60)) {
     if (currentstep === ((steps.length)-1)) {
       // Stop countdown
       setIsRunning(false);
@@ -103,7 +103,7 @@ export default function CardRecipeProcess() {
   const secondsDisplay = formatTime(seconds % 60);
   const minutesDisplay = formatTime(Math.floor(seconds / 60));
 
-  const progress = (seconds / (timers[currentstep])) * 100;
+  const progress = (seconds / ((timers[currentstep]) * 60)) * 100;
 
   const handlePauseClick = () => {
     setIsRunning(true);
@@ -168,10 +168,9 @@ const handleBackStep = () => {
           {/* buttons */}
           <div className="laptop:max-w-[40rem] w-full p-[1rem] tablet:p-[2rem] bg-primary">
             <div className="flex items-center space-x-64">
-            {steptitle && steptitle[currentstep] && (
-              <h1 className="text-[1.5rem] font-medium">Step {`${ currentstep + 1 }`}: {steptitle[currentstep ]}</h1>
+            {timers && timers[currentstep] && (
+              <h1 className="text-[1.5rem] font-medium">Step {`${ currentstep + 1 }`} : {`(${timers[currentstep]} mins)`}</h1>
             )}
-              
 
               <div className="flex items-center space-x-2 mt-3">
               {currentstep !== 0 && (
