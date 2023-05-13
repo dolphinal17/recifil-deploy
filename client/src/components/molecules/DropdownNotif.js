@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 export default function DropdownNotif() {
 
     const [notif, setNotif] = useState([])
+    const [hasNewNotif, setHasNewNotif] = useState(false);
 
 
     const fetchNotif = async () => {
@@ -23,6 +24,10 @@ export default function DropdownNotif() {
             ...doc.data(),
         }));
         setNotif(notifications);
+
+        if (notif.length < snapshot.docs.length) {
+            setHasNewNotif(true);
+        }
     }
 
     useEffect(() => {
@@ -34,7 +39,12 @@ export default function DropdownNotif() {
             <Menu as="div" className='relative z-10'>
                 {({ open }) => (
                     <Fragment>
-                        <Menu.Button as="button"><FontAwesomeIcon icon={faBell} className='text-primary text-base tablet:text-2xl cursor-pointer' /></Menu.Button>
+                        <Menu.Button as="button" onClick={() => setHasNewNotif(false)}>
+                            <FontAwesomeIcon icon={faBell} className='text-primary text-base tablet:text-2xl cursor-pointer' />
+                            {hasNewNotif && (
+                                <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-red-500 rounded-full"></span>
+                            )}
+                        </Menu.Button>
 
                         <Transition
                             show={open}
@@ -52,16 +62,16 @@ export default function DropdownNotif() {
                                     <Menu.Item as='div'>
                                         {notif.map((notif, i) => (
                                             <Link to={notif.profileUrl}>
-                                            <div className='flex flex-row w-full bg-primary'>
-                                                <img src={notif.postimage} className='w-[20%] h-auto object-cover'/>
-                                            <div className='p-2 bg-primary rounded-sm cursor-pointer' key={i}>
-                                                <h1 className='text-sm tablet:text-base text-secondary font-normal'>{notif.postname }</h1>
-                                                <p className='text-sm tablet:text-base text-mainBlack font-normal'>{notif.type}</p>
-                                            </div>
-                                            </div>
+                                                <div className='flex flex-row w-full bg-primary'>
+                                                    <img src={notif.postimage} className='w-[20%] h-auto object-cover' />
+                                                    <div className='p-2 bg-primary rounded-sm cursor-pointer' key={i}>
+                                                        <h1 className='text-sm tablet:text-base text-secondary font-normal'>{notif.postname}</h1>
+                                                        <p className='text-sm tablet:text-base text-mainBlack font-normal'>{notif.type}</p>
+                                                    </div>
+                                                </div>
                                             </Link>
                                         ))}
-                                        
+
                                     </Menu.Item>
                                 </div>
                             </Menu.Items>

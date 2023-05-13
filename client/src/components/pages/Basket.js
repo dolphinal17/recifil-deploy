@@ -41,10 +41,16 @@ const Basket = () => {
 
   useEffect(() => {
     const fetchVeg = async () => {
-      const q = query(collection(db, 'ingdata'), where('ingcat', '==', 'Vegetables'));
-      const querySnapshot = await getDocs(q);
+      // const q = query(collection(db, 'ingdata'), where('ingcat', '==', 'Vegetables'));
+      // const querySnapshot = await getDocs(q);
+      const qVeg = query(collection(db, 'ingdata'), where('ingcat', '==', 'Vegetables'));
+    const qFruits = query(collection(db, 'ingdata'), where('ingcat', '==', 'Fruits'));
+    const [querySnapshotVeg, querySnapshotFruits] = await Promise.all([getDocs(qVeg), getDocs(qFruits)]);
       const items = [];
-      querySnapshot.forEach((doc) => {
+      querySnapshotVeg.forEach((doc) => {
+        items.push({ id: doc.id, ...doc.data() });
+      });
+      querySnapshotFruits.forEach((doc) => {
         items.push({ id: doc.id, ...doc.data() });
       });
       setIngVeg(items);
