@@ -41,6 +41,7 @@ export default function CardRecipeProcess() {
             setSteptitle(doc.data().titlesteps)
             setStepapproach(doc.data().stepapproach)
             setStepanime(doc.data().animationstep)
+            setTimers(doc.data().steptimer)
             setLoading(false);
           } else {
             console.log('No such document!');
@@ -72,12 +73,11 @@ export default function CardRecipeProcess() {
   const [isRunning, setIsRunning] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(false);
-  const [timers ] = useState(5);
+  const [timers,setTimers ] = useState([]);
 
   useEffect(() => {
     let interval;
-    if (isRunning && seconds < timers) {
-      // 40 minutes = 2400 seconds
+    if (isRunning && seconds < (timers[currentstep])) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds + 1);
       }, 1000);
@@ -85,13 +85,13 @@ export default function CardRecipeProcess() {
     return () => clearInterval(interval);
   }, [isRunning, seconds]);
   //if seconds == time then next step
-  if (isRunning && seconds === timers) {
+  if (isRunning && seconds === (timers[currentstep])) {
     if (currentstep === ((steps.length)-1)) {
       // Stop countdown
       setIsRunning(false);
     } else {
       // Move to next step
-      SetCurrentstep(currentstep + 1);
+      SetCurrentstep(currentstep + 1 );
       setSeconds(0);
     }
   }
@@ -103,16 +103,16 @@ export default function CardRecipeProcess() {
   const secondsDisplay = formatTime(seconds % 60);
   const minutesDisplay = formatTime(Math.floor(seconds / 60));
 
-  const progress = (seconds / timers) * 100;
+  const progress = (seconds / (timers[currentstep])) * 100;
 
   const handlePauseClick = () => {
-    setIsRunning(false);
-    setIsPaused(true);
+    setIsRunning(true);
+    setIsPaused(false);
   };
 
   const handleResumeClick = () => {
-    setIsRunning(true);
-    setIsPaused(false);
+    setIsRunning(false);
+    setIsPaused(true);
   };
 
   const handleRepeatClick = () => {
@@ -127,8 +127,8 @@ export default function CardRecipeProcess() {
     setIsPaused(false);
     setIsStopped(true);
   };
-  console.log("countdown",steps.length)
-  console.log("currentstep",currentstep)
+  console.log("timers",timers[currentstep])
+  // console.log("currentstep",currentstep)
 
 
 //next and back function
@@ -246,22 +246,9 @@ const handleBackStep = () => {
 
                 {/* pause repeat button */}
                 <div className="flex flex-col">
-                  {isRunning && !isPaused && (
+                  { isPaused && (
                     <button
                       onClick={handlePauseClick}
-                      className="mr-4 px-4 py-2 flex items-center gap-[1rem]"
-                    >
-                      <FontAwesomeIcon
-                        icon={faPlayCircle}
-                        className="w-[3rem] h-[3rem] text-fadeBlack"
-                      />
-                      Play
-                    </button>
-                  )}
-
-                  {!isRunning && isPaused && (
-                    <button
-                      onClick={handleResumeClick}
                       className="mr-4 px-4 py-2 flex items-center gap-[1rem]"
                     >
                       <FontAwesomeIcon
@@ -272,7 +259,20 @@ const handleBackStep = () => {
                     </button>
                   )}
 
-                  {!isStopped && (
+                  { !isPaused && (
+                    <button
+                      onClick={handleResumeClick}
+                      className="mr-4 px-4 py-2 flex items-center gap-[1rem]"
+                    >
+                      <FontAwesomeIcon
+                        icon={faPlayCircle}
+                        className="w-[3rem] h-[3rem] text-fadeBlack"
+                      />
+                      Play
+                    </button>
+                  )}
+
+                    {!isStopped && (
                     <button
                       onClick={handleStopClick}
                       className="mr-4 px-4 py-2 flex items-center gap-[1rem]"
