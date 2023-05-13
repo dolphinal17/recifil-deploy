@@ -8,8 +8,8 @@ import {
   getDocs
 } from "firebase/firestore"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faTrash, faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { faComment } from '@fortawesome/free-regular-svg-icons'
+import { faXmark, faTrash, faAngleRight, faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons'
+import { faComment, faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
 import styles from '../../style'
 import { CardPost, RecipeCard, Navbar, CardCreatePost, InsideFooter } from '../organisms/organisms.js'
 import CreatePost from '../../assets/create-post.png'
@@ -35,6 +35,10 @@ function OtherPost() {
   const [loading, setLoading] = useState(false)
   const { currentuser } = useAuth()
   const [recipes, setRecipes] = useState([])
+  const user = auth.currentUser;
+  const [favorites, setFavorites] = useState([]);
+  const [favDoc, setFavDoc] = useState([]);
+  const [favinfo, setfavInfo] = useState([]);
   const [form, setForm] = useState({
     title: "",
     image: {},
@@ -81,12 +85,13 @@ function OtherPost() {
     const postref = collection(db, "approvepost")
     const snapshot = await getDocs(postref)
     const recipes = snapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }))
-    console.log(recipes)
+    // console.log(recipes)
     setRecipes(recipes)
   }
 
   useEffect(() => {
-    fetchPost()
+    fetchPost();
+    getfav()
   }, [])
 
 
@@ -264,8 +269,46 @@ function OtherPost() {
 
   const removeRecipe = id => {
     deleteDoc(doc(db, "createpost", id))
-  }
+  }  
 
+        //this function is for icon solid if its in favorite
+    const getfav = async () => {
+      const favRef = collection(db, `userinfo/${user.uid}/socialfavorite`);
+      const querySnapfav = await getDocs(favRef);
+      const favDataWithId = querySnapfav.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      setfavInfo(favDataWithId);
+    }
+        //  Set Social post to favorite
+    const handleFavoriteSocial = async (recipeId, recipeTitle) => {
+      try {
+        const favoritesRef = collection(db, `userinfo/${user.uid}/socialfavorite`);
+        const querySnapshot = await getDocs(favoritesRef);
+        const favoriteDoc = querySnapshot.docs.find(doc => doc.data().title === recipeTitle);
+        setFavDoc(favoriteDoc);
+
+        if (favoriteDoc) {
+          // Recipe already exists in favorites, remove it
+          await deleteDoc(doc(favoritesRef, favoriteDoc.id));
+          setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
+          toast.success('Removed from Favorites');
+        } else {
+          await addDoc(favoritesRef,recipeId,{ id: recipeId, title: recipeTitle });
+          setFavorites([...favorites,recipeTitle, { id: recipeId, title: recipeTitle }]);
+          toast.success('Added to Favorites');
+          
+        }
+        //reload after the function of favorite 3s
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000); 
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    console.log(recipes)
+///////
 
   return (
     <div className={`${styles.boxWidth}`}>
@@ -302,9 +345,20 @@ function OtherPost() {
                         <div className='flex items-center gap-[0.5rem]'>
                           <div className='w-[3rem] h-[3rem] rounded-full'>
                             <img src={recipe.userPhoto} alt='userimg' className='w-full h-full object-cover rounded-full'></img>
-                          </div>
+                          </div >
 
                           <label className='text-base tablet:text-lg font-medium text-textMainBlack'>{recipe.userName}</label>
+                          <div className="flex item-right ">
+                          <button onClick={() => handleFavoriteSocial(recipe, recipe.title)}>
+                            {
+                              favinfo.some(favinfo => favinfo.title === recipe.title) ? (
+                                <FontAwesomeIcon icon={solidHeart   } className='text-lime-400 text-2xl' />
+                              ) : (
+                                <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
+                              )
+                            }
+                        </button>
+                        </div>
                         </div>
 
                         {/* <Link to={'/postview/' + recipe.uid} key={i}>
@@ -326,15 +380,7 @@ function OtherPost() {
                         </div>
 
                         {/* Ingredients */}
-                        <div className='flex flex-col gap-[0.5rem]'>
-                          <label className='text-sm tablet:text-base font-medium text-textFadeBlack'>Ingredients</label>
-
-                          <ul className='flex flex-wrap items-center gap-[0.25rem] overflow-x-auto laptop:px-0 pb-[1rem]'>
-                            {recipe.ingredients.map((ingredient, i) => (
-                              <li className='flex-none text-xs font-normal text-primary py-[0.25rem] px-[0.5rem] bg-bgColorTwo rounded-md' key={i}>{ingredient}</li>
-                            ))}
-                          </ul>
-                        </div>
+                       
                       </div>
                     </div>
 
