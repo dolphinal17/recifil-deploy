@@ -154,22 +154,22 @@ const Favorites = () => {
 
                         {/* category list */}
                         <ul className="flex gap-[1rem] my-[2rem]">
-                            <li className={`text-sm font-normal tablet:font-medium ${category === "All" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={() => setCategory("All")}>
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "all" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={() => setCategory("All")}>
                                 All
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium ${category === "Main Dish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleMainDishClick}>
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "maindish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleMainDishClick}>
                                 Main Dish
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium ${category === "Side Dish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleSideDishClick}>
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "sidedish" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleSideDishClick}>
                                 Side Dish
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium ${category === "Dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "dessert" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleDessertClick}>
                                 Dessert
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium ${category === "Vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
                                 Vegetable
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium  cursor-pointer text-fadeBlack`} onClick={handleSocialClick}>
+                            <li className={`text-sm font-normal tablet:font-medium ${category === "social" ? "text-secondary" : "text-fadeBlack"}  cursor-pointer`} onClick={handleSocialClick}>
                                 Social
                             </li>
                         </ul>

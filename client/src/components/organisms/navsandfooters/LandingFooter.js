@@ -35,7 +35,7 @@ const LandingFooter = () => {
                 </div>
 
 
-                <div className='flex flex-col tablet:flex-col gap-4 tablet:gap-0 tablet:justify-between items-center mt-[4rem]'>
+                <div className='flex flex-col tablet:flex-row gap-4 tablet:gap-0 tablet:justify-between items-center mt-[4rem]'>
                   <span className='text-sm font-normal text-mainBlack'><FontAwesomeIcon icon={faCopyright} /> ReciFil2023 All rights reserved</span>
 
                   <div className='flex gap-4 items-center'>
