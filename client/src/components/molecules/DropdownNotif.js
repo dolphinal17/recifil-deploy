@@ -55,7 +55,7 @@ export default function DropdownNotif() {
                             leaveFrom='opacity-100 scale-100'
                             leaveTo='opacity-0 scale-95'
                         >
-                            <Menu.Items className='w-[16rem] tablet:w-[18.75rem] flex flex-col rounded-sm shadow-lg absolute origin-top-right right-0 mt-2 ring-1 ring-black ring-opacity-5 focus:outline-none bg-zinc-100 py-[0.5rem] max-h-[400px] overflow-auto scrollbar-hide'>
+                            <Menu.Items className='w-[16rem] tablet:w-[22rem] flex flex-col rounded-sm shadow-lg absolute origin-top-right right-0 mt-2 ring-1 ring-black ring-opacity-5 focus:outline-none bg-zinc-100 py-[0.5rem] max-h-[400px] overflow-auto scrollbar-hide'>
                                 <span className='text-lg tablet:text-xl text-fadeBlack ml-[0.5rem] font-medium mb-[0.5rem] tablet:mb-[1rem]'>Notifications</span>
 
                                 <div className='w-full px-[0.125rem] tablet:px-[0.25rem] flex flex-col gap-[2px]'>

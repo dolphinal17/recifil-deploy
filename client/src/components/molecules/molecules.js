@@ -12,6 +12,7 @@ import InputGroup from "./InputGroup";
 import ModalDeletePost from "./modals/ModalDeletePost";
 import DropdownNotif from "./DropdownNotif";
 import DropdownIngredients from "./DropdownIngredients";
+import FQA from "./FQA";
 
 export {
     FiltInIngBasket,
@@ -27,5 +28,6 @@ export {
     InputGroup,
     ModalDeletePost,
     DropdownNotif,
-    DropdownIngredients
+    DropdownIngredients,
+    FQA
 }
