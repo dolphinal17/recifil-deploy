@@ -35,7 +35,7 @@ import AddRecipeForm from "./forms/AddRecipeForm";
 import TablePostsSec from "./tables/TablePostsSec";
 import TablePostsThird from "./tables/TablePostsThird";
 import RecipesForm from "./forms/RecipesForm";
-
+import CardFavoriteView from "./cards/CardFavoriteView";
 
 export {
     CardSuggRecipeBasket,
@@ -74,5 +74,6 @@ export {
     AddRecipeForm,
     TablePostsSec,
     TablePostsThird,
-    RecipesForm
+    RecipesForm,
+    CardFavoriteView
 }

@@ -17,7 +17,7 @@ export default function FavoriteCard( {image, name} ) {
                 <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
             </div>
 
-            <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl'/>
+            {/* <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl'/> */}
         </div>
     </div>
   )

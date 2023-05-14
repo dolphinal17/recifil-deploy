@@ -142,23 +142,19 @@ const Library = () => {
 
       if (favoriteDoc) {
         // Recipe already exists in favorites, remove it
-        setLoading(true)
         await deleteDoc(doc(favoritesRef, favoriteDoc.id));
         setFavorites(favorites.filter(favorite => favorite.title !== recipeTitle));
-
-        window.location.reload()
-        setLoading(false)
         toast.success('Removed from Favorites');
       } else {
-        setLoading(true)
         await addDoc(favoritesRef, recipeId, { id: recipeId, title: recipeTitle });
         setFavorites([...favorites, recipeTitle, { id: recipeId, title: recipeTitle }]);
-
-        window.location.reload()
-        setLoading(false)
         toast.success('Added to Favorites');
 
       }
+      setTimeout(() => {
+        window.location.reload();
+        setLoading(false);
+      },2500)
     } catch (error) {
       console.log(error);
     }
@@ -179,7 +175,8 @@ const Library = () => {
       limit(10)
     );
     const querySnapshot = await getDocs(q);
-    const matchingRecipes = querySnapshot.docs.map((doc) => ({id: doc.data().id, title: doc.data().title, image: doc.data().image}) );
+    const matchingRecipes = querySnapshot.docs.map((doc) => 
+    ({id: doc.data().id, title: doc.data().title, image: doc.data().image}) );
     setMatchingRecipes(matchingRecipes);
   };
 
