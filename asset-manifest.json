@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/recifil-deploy/static/css/main.2efcd5dd.css",
-    "main.js": "/recifil-deploy/static/js/main.7977f1a3.js",
+    "main.css": "/recifil-deploy/static/css/main.bcc51d1a.css",
+    "main.js": "/recifil-deploy/static/js/main.bd0e98d9.js",
+    "static/media/asset-2.png": "/recifil-deploy/static/media/asset-2.0ce242ebf42a6f844add.png",
     "static/media/mainimg.jpg": "/recifil-deploy/static/media/mainimg.5e32690d6b4f19b1a097.jpg",
+    "static/media/dropfood.png": "/recifil-deploy/static/media/dropfood.7505265a4595be219580.png",
     "static/media/create-post.png": "/recifil-deploy/static/media/create-post.42717be331d5bed32ad7.png",
+    "static/media/wavesOpacity.svg": "/recifil-deploy/static/media/wavesOpacity.2316fd1a7f32364de1036bcd51ab7756.svg",
+    "static/media/wavesOpacity2.svg": "/recifil-deploy/static/media/wavesOpacity2.a432d25b343e55bc0c6c2659b881e628.svg",
     "index.html": "/recifil-deploy/index.html",
-    "main.2efcd5dd.css.map": "/recifil-deploy/static/css/main.2efcd5dd.css.map",
-    "main.7977f1a3.js.map": "/recifil-deploy/static/js/main.7977f1a3.js.map"
+    "main.bcc51d1a.css.map": "/recifil-deploy/static/css/main.bcc51d1a.css.map",
+    "main.bd0e98d9.js.map": "/recifil-deploy/static/js/main.bd0e98d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.2efcd5dd.css",
-    "static/js/main.7977f1a3.js"
+    "static/css/main.bcc51d1a.css",
+    "static/js/main.bd0e98d9.js"
   ]
 }
