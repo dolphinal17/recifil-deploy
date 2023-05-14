@@ -169,7 +169,7 @@ const Favorites = () => {
                             <li className={`text-sm font-normal tablet:font-medium ${category === "Vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
                                 Vegetable
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium  cursor-pointer`} onClick={handleSocialClick}>
+                            <li className={`text-sm font-normal tablet:font-medium  cursor-pointer text-fadeBlack`} onClick={handleSocialClick}>
                                 Social
                             </li>
                         </ul>
@@ -199,7 +199,7 @@ const Favorites = () => {
                                     </div>
 
                                     <button onClick={(event) => handleFavoriteClick(event,val, val.title)}>
-                                            <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                                            <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
                                         
                                     </button>
                                 </div>
@@ -234,7 +234,7 @@ const Favorites = () => {
                                         </div>
 
                                     <button onClick={(event) => HandleSocialFav(event,val, val.title)}>
-                                            <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                                            <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
                                         
                                     </button>
                                 </div>

@@ -244,9 +244,9 @@ const Library = () => {
                       <button onClick={() => handleFavoriteClick(val, val.title)}>
                         {
                           favinfo.some(favinfo => favinfo.title === val.title) ? (
-                            <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                            <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
                           ) : (
-                            <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
+                            <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
                           )
                         }
                       </button>
