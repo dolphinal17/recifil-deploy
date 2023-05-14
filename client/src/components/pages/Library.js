@@ -74,7 +74,8 @@ const Library = () => {
     }
     const recipesRef = query(collection(db, 'recipes'), recipesQuery);
     const querySnapshot = await getDocs(recipesRef);
-    const recipeDataWithId = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    const recipeDataWithId = querySnapshot.docs.map(doc => 
+      ({ id: doc.id, title: doc.data().title,image: doc.data().image}))
     setInfo(recipeDataWithId);
     setLoading(false)
 
@@ -95,7 +96,7 @@ const Library = () => {
   // }, [searchTerm]);
 
   // function handleSearch(e) {
-  //   setSearchTerm(e.target.value);
+  //   setSearchTerm(e.target.value)
   // }
 
   useEffect(() => {
@@ -124,7 +125,7 @@ const Library = () => {
   const getfav = async () => {
     const favRef = collection(db, `userinfo/${user.uid}/favorites`);
     const querySnapfav = await getDocs(favRef);
-    const favDataWithId = querySnapfav.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    const favDataWithId = querySnapfav.docs.map(doc => ({ id: doc.id, ...doc.data()}))
     setfavInfo(favDataWithId);
 
   }
@@ -178,11 +179,11 @@ const Library = () => {
       limit(10)
     );
     const querySnapshot = await getDocs(q);
-    const matchingRecipes = querySnapshot.docs.map((doc) => doc.data());
+    const matchingRecipes = querySnapshot.docs.map((doc) => ({id: doc.data().id, title: doc.data().title, image: doc.data().image}) );
     setMatchingRecipes(matchingRecipes);
   };
 
-
+console.log("fetch",info)
   return (
     <div className={`${styles.boxWidth}`}>
       <Navbar />

@@ -160,7 +160,7 @@ const handleBackStep = () => {
           {/* blank section  set for animation*/}
           {stepanime && stepanime[currentstep] && (
               <div className="laptop:max-w-[24rem] w-full p-[1rem] tablet:p-[2rem] bg-fadeBlack border-t laptop:border-l border-zinc-200">
-              <img src = {stepanime[currentstep ]} style={{width : '900px' , height: '350px'}}/>
+              <img src = {stepanime[currentstep ]} style={{width : '900px' , height: '350px', borderRadius: '5px'}}/>
               </div>
             )}
           

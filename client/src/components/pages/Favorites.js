@@ -169,7 +169,7 @@ const Favorites = () => {
                             <li className={`text-sm font-normal tablet:font-medium ${category === "Vegetable" ? "text-secondary" : "text-fadeBlack"} cursor-pointer`} onClick={handleAppetizerClick}>
                                 Vegetable
                             </li>
-                            <li className={`text-sm font-normal tablet:font-medium  cursor-pointer`} onClick={handleSocialClick}>
+                            <li className={`text-sm font-normal tablet:font-medium   cursor-pointer text-fadeBlack`} onClick={handleSocialClick}>
                                 Social
                             </li>
                         </ul>
