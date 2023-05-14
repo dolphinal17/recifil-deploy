@@ -192,7 +192,7 @@ console.log("fetch",info)
           {/* search bar */}
           <div className={`py-[0.5rem] px-[1rem] max-w-[22rem] w-full bg-white rounded-full flex flex-row justify-center items-center`}>
 
-            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' onChange={handleSearchInputChange} ></input>
+            <input className='bg-transparent focus:outline-none text-sm w-full font-light tablet:font-normal' placeholder="Search recipes" onChange={handleSearchInputChange} ></input>
 
             <FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearchButtonClick} className='text-fadeText text-sm mr-[0.5rem cursor-pointer hover:text-[#84cc16]' />
 
@@ -242,9 +242,9 @@ console.log("fetch",info)
                       <button onClick={() => handleFavoriteClick(val, val.title)}>
                         {
                           favinfo.some(favinfo => favinfo.title === val.title) ? (
-                            <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                            <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
                           ) : (
-                            <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
+                            <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
                           )
                         }
                       </button>
@@ -273,9 +273,9 @@ console.log("fetch",info)
                         <button onClick={() => handleFavoriteClick(val, val.title)}>
                           {
                             favinfo.some(favinfo => favinfo.title === val.title) ? (
-                              <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
+                              <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
                             ) : (
-                              <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
+                              <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
                             )
                           }
                         </button>

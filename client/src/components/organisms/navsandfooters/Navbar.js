@@ -32,7 +32,7 @@ const Navbar = () => {
 
             <Link to='/library'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/library' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faBook} className='text-base'/><span className='text-base font-medium hidden sm:block'>Library</span></li></Link>
 
-            <Link to='/basket'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/basket' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faBasketShopping} className='text-base'/><span className='text-base font-medium hidden sm:block'>Basket</span></li></Link>
+            <Link to='/basket'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/basket' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faBasketShopping} className='text-base'/><span className='text-base font-medium hidden sm:block'>Builder</span></li></Link>
 
             <Link to='/favorites'><li className={`flex items-center gap-[0.5rem] hover:text-secondary ${location.pathname === '/favorites' ? 'active text-secondary' : 'text-fadeBlack'}`}><FontAwesomeIcon icon={faHeart} className='text-base'/><span className='text-base font-medium hidden sm:block'>Favorites</span></li></Link>
 
