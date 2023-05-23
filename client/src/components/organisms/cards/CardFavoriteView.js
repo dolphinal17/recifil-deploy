@@ -16,7 +16,7 @@ import { collection, query, getDocs, doc, addDoc, setDoc, getDoc, documentId, de
 
 
 
-const CardRecipesView = () => {
+const CardFavoriteView = () => {
 
     const {id} = useParams();
     const [info, setInfo] = useState(null)
@@ -24,7 +24,7 @@ const CardRecipesView = () => {
 
     useEffect(() => {
         async function fetchRecipe() {
-            const docRef = doc(db, "recipes", id)
+            const docRef =  doc(collection(db, `userinfo/${user.uid}/favorites`), id);
             const docSnap = await getDoc(docRef)
             if (docSnap.exists()){
                 setInfo(docSnap.data())
@@ -37,7 +37,6 @@ const CardRecipesView = () => {
 const [favorites, setFavorites] = useState([]);
 const [favDoc, setFavDoc] = useState([]);
 const user = auth.currentUser;
-
 
 const handleFavoriteClick = async (recipeId, recipeTitle) => {
     try {
@@ -102,9 +101,9 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
 
                                             {
                                                 favorites.some(favorite => favorite.title === info.title) ? (
-                                                <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
+                                                <FontAwesomeIcon icon={solidHeart} className='text-lime-400 text-2xl' />
                                                 ) : (
-                                                <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
+                                                <FontAwesomeIcon icon={regularHeart} className='text-lime-400 text-2xl' />
                                                 )
                                             }
                                     </button>
@@ -236,7 +235,7 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
                             </div>
                         </div>
 
-                        <Link to={ '/recipepro/' + id } key={id}><button className='w-full p-3 flex justify-center items-center mt-[1rem] bg-gradient-to-r from-lime-500 to-lime-600 text-primary text-sm font-normal laptop:font-medium py-[0.5rem] rounded-sm laptop:rounded-md laptop:mt-auto'>Try Now</button></Link>
+                        <Link to={ '/recipepro/' + id } key={id}><button className='w-full p-3 flex justify-center items-center mt-[1rem] bg-gradient-to-r from-[#B2D33D] to-[#59981A] text-primary text-sm font-normal laptop:font-medium py-[0.5rem] rounded-sm laptop:rounded-md laptop:mt-auto'>Try Now</button></Link>
                     </div>
                 </div>
             </div>
@@ -245,5 +244,5 @@ const handleFavoriteClick = async (recipeId, recipeTitle) => {
   )
 }
 
-export default CardRecipesView
+export default CardFavoriteView;
 

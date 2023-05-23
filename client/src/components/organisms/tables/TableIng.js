@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import ModalAddIngredients from '../../molecules/modals/ModalAddIngredients'
 
 export default function TableIng() {
-
+    const [openModal, setOpenModal] = useState(false)
     const [userRecipes, setUserRecipes] = useState([])
 
     const fetchRecipes = async () => {
@@ -21,7 +22,7 @@ export default function TableIng() {
 
     const handleDeleteRecipe = async (recipeId) => {
         try {
-          const docRef = doc(db, 'recipes', recipeId);
+          const docRef = doc(db, 'ingdata', recipeId);
           await deleteDoc(docRef);
           toast.success('Recipe Deleted');
           fetchRecipes()
@@ -37,13 +38,14 @@ export default function TableIng() {
     }, [])
 
   return (
-    <div className='w-full flex justify-center bg-bgColor'> 
+    <div className='w-full flex justify-center bg-bgColor'>
+        <ModalAddIngredients open={openModal} onClose={() => setOpenModal(false)} /> 
     <div className='max-w-[80rem] w-full bg-primary rounded-xl overflow-auto pb-[2rem]'>
         {/* name and search bar */}
         <div className='flex justify-between items-center px-[1rem] tablet:px-[2rem] my-[0.5rem] tablet:my-[1rem]'>
             <span className='text-base tablet:text-xl font-normal tablet:font-medium text-mainBlack'>Ingredients</span>
 
-            <button className='w-[12rem] bg-[#84cc16] text-white p-2 rounded-lg'>Add a New Ingredient</button>
+            <button onClick={() => setOpenModal(true)} className='w-[12rem] bg-secondary text-white p-2 rounded-lg'>Add a New Ingredient</button>
 
             <SearchBarWBG
                 placeHolder="Search recipes"

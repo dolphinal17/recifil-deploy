@@ -8,7 +8,7 @@ import { auth } from './config/firebase';
 
 // here to import components like pages
 import { Login, Signup, Library, Basket, Socials, Favorites, Landing, Discover, RecipeProcess, Profile, Verify, UploadImg, ForgotPassword, EmailVerification, AdminTestPage } from './components/pages/pages.js'
-import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, NewSignUpForm, SidebarAdmin, SignUpJerud, TableUser, UploadImage, Comment, CardRecipeProcess } from './components/organisms/organisms.js'
+import { CardCreatePost, CardEditInfo, CardRecipesView, NavbarAdmin, NewSignUpForm, SidebarAdmin, SignUpJerud, TableUser, UploadImage, Comment, CardRecipeProcess,CardFavoriteView } from './components/organisms/organisms.js'
 import WithPrivateRoute from './utils/WithPrivateRoute';
 import { PreLoader } from './components/atoms/atoms';
 import { DropdownNotif, ModalAccountSuccess, ModalDeletePost } from './components/molecules/molecules';
@@ -178,6 +178,15 @@ function App() {
             element={
               <WithPrivateRoute>
                 <CardRecipesView />
+              </WithPrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/favorites/:id"
+            element={
+              <WithPrivateRoute>
+                <CardFavoriteView />
               </WithPrivateRoute>
             }
           />

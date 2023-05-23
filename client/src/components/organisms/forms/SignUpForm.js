@@ -140,8 +140,8 @@ export default function SignUpForm() {
 
 
     return (
-        <div className='flex justify-center items-center'>
-            <form className='w-full max-w-[28rem] px-[1rem] py-[2rem] sm:px-[3rem] sm:py-[2rem] bg-primary rounded-3xl' onSubmit={SubmitHandler}>
+        <div className='w-full flex justify-center items-center'>
+            <form className='w-full tablet:max-w-[28rem] px-[1rem] py-[2rem] sm:px-[3rem] sm:py-[2rem] bg-primary rounded-none tablet:rounded-3xl' onSubmit={SubmitHandler}>
 
                 {
                     err ? (
