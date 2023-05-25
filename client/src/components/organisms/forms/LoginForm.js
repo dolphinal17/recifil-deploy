@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { BtnLS } from '../../atoms/atoms.js'
 import { InputBox, InputBoxPassword } from '../../molecules/molecules.js'
 import { faAt, faLock } from '@fortawesome/free-solid-svg-icons'
@@ -89,12 +89,15 @@ export default function LoginForm() {
       }
   
     }
+    useEffect(() => {
+      SubmitHandler ();
+    },[])
 
   return (
     <form className='w-full max-w-[28rem] px-[1rem] py-[2rem] tablet:px-[3rem] tablet:py-[4rem] bg-primary rounded-3xl' onSubmit={SubmitHandler}>
         {
 
-        err && <p className='error w-[24rem] rounded-lg text-center bg-red-600 ml-[-1rem] p-2 text-white mb-[1rem]'>{err}</p>
+       err && <p className='error w-[24rem] rounded-lg text-center bg-red-600 ml-[-1rem] p-2 text-white mb-[1rem]'>{err}</p>
 
         }
 
