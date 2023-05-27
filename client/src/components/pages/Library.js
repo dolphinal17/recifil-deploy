@@ -75,7 +75,7 @@ const Library = () => {
     const recipesRef = query(collection(db, 'recipes'), recipesQuery);
     const querySnapshot = await getDocs(recipesRef);
     const recipeDataWithId = querySnapshot.docs.map(doc => 
-      ({ id: doc.id, title: doc.data().title,image: doc.data().image}))
+      ({ id: doc.id, title: doc.data().title,image: doc.data().image,dishcategory: doc.data().dishcategory}))
     setInfo(recipeDataWithId);
     setLoading(false)
 

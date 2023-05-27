@@ -189,7 +189,7 @@ const Favorites = () => {
                         <><h1 className='col-span-4 text-center text-lg text-fadeBlack'>You have no favorites yet.</h1></> : <>
                         {favs.map((val, id) => (
                             <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>
-                                <Link to={"/favorites/" + val.id} key={id}>
+                                <Link to={"/recipeview/" + val.id} key={id}>
                                     <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
                                         <img src={val.image} alt='recipeimg' className='w-full h-full rounded-t-md object-cover'></img>
                                     </div>
@@ -197,7 +197,7 @@ const Favorites = () => {
 
                                 <div className={`w-full h-[4rem] rounded-b-md p-[0.75rem] drop-shadow-md flex justify-between items-center bg-primary`}>
                                     <div className='flex flex-col'>
-                                        <Link to={"/favorites/" + val.id} key={id}>
+                                        <Link to={"/recipeview/" + val.id} key={id}>
                                             <label className='text-base font-normal tablet:font-medium text-mainBlack mb-[0.125rem]'>{val.title}</label>
                                         </Link>
                                         <label className='text-sm font-light tablet:font-normal text-fadeBlack'>From App</label>
