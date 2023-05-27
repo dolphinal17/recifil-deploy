@@ -4,7 +4,7 @@ import { PreLoader } from '../atoms/atoms'
 import { RecipeCard, Navbar, InsideFooter } from '../organisms/organisms.js'
 import { SearchBarWBG } from '../molecules/molecules.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faV } from '@fortawesome/free-solid-svg-icons'
 import { auth, db } from '../../config/firebase'
 import { collection, doc, getDocs, where, query, deleteDoc } from 'firebase/firestore'
 import { faFilter, faMagnifyingGlass, faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons"
@@ -29,6 +29,8 @@ const Favorites = () => {
     //for social favorites
     const [socfav, setSocfav] = useState([]);
     const [socfavorites, setsocFavorites] = useState([]);
+    const [showSocialFavorites, setShowSocialFavorites] = useState(true);
+
 
     //favorite for alldish,maindish,sidedish,dessert
         const fetchData = async () => {
@@ -72,18 +74,24 @@ const Favorites = () => {
 
     const handleMainDishClick = () => {
         setCategory("maindish");
-        setSocfav([])
+        setShowSocialFavorites(false)
     };
     const handleSideDishClick = () => {
         setCategory("sidedish");
+        setShowSocialFavorites(false)
     };
     const handleDessertClick = () => {
         setCategory("dessert");
+        setShowSocialFavorites(false)
+        console.log(favs);
     };
     const handleAppetizerClick = () => {
         setCategory("vegetable");
+        setShowSocialFavorites(false);
+        console.log(favs);   
     };
     const handleSocialClick = () => {
+        setShowSocialFavorites(true);
         setFavs([]);
     };
 
@@ -204,7 +212,8 @@ const Favorites = () => {
                         )
                         )}
                         {/* for social favorites display */}
-                        {socfav.map((val, id) => (
+                        {showSocialFavorites === true && (
+                            socfav.map((val, id) => (
                             <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>
                                 <Link to={'/postview/' + val.uid} key={id}>
                                     <div className='w-[14.5rem] h-[14.5rem] rounded-t-md bg-fadeBlack flex items-center'>
@@ -236,7 +245,7 @@ const Favorites = () => {
                                     </button>
                                 </div>
                             </div>
-                        )
+                        ))
                         )}
                         </>}
 

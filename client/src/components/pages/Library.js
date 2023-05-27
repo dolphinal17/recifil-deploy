@@ -178,6 +178,10 @@ const Library = () => {
     const matchingRecipes = querySnapshot.docs.map((doc) => 
     ({id: doc.data().id, title: doc.data().title, image: doc.data().image}) );
     setMatchingRecipes(matchingRecipes);
+    if (matchingRecipes.length === 0) {
+      // Display "Not Found" message or handle the condition as per your requirement
+      console.log("Not Found in Library");
+    }
   };
 
 console.log("fetch",info)
@@ -245,14 +249,13 @@ console.log("fetch",info)
                             <FontAwesomeIcon icon={solidHeart} className='text-secondary text-2xl' />
                           ) : (
                             <FontAwesomeIcon icon={regularHeart} className='text-secondary text-2xl' />
-                          )
-                        }
-                      </button>
-
+                          )}
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </> : <>
+                  ))
+                  }
+                </>  : <>
                 {
                   info.map((val, id) => (
                     <div className='w-[14.5rem] h-[18.5rem] rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={id}>
@@ -283,7 +286,7 @@ console.log("fetch",info)
                       </div>
                     </div>
                   )
-                  )
+                  ) 
                 }
               </>
               }
