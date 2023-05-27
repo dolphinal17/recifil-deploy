@@ -1,19 +1,18 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../../../config/firebase';
+import { db } from '../../../config/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faTag, faCheck, faTrash, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
+import {ModalDeleteArchive} from '../../molecules/molecules.js'
 
 export default function TablePostsThird() {
-
-
     const [posts, setPosts] = useState([])
     const [approvePost, setApprovePost] = useState([])
     const [archivepost, setArchivePost] = useState([])
     const [loading, setLoading] = useState(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+    const [openModalDA, setOpenModalDA] = useState(false);
 
     const fetchRecipes = async () => {
         const recipesCollectionRef = query(collection(db, "archivepost"));
@@ -77,6 +76,7 @@ export default function TablePostsThird() {
 
     return (
         <div className='flex flex-col justify-center items-center gap-[1rem]'>
+            <ModalDeleteArchive onOpen={openModalDA} onClose={() => setOpenModalDA(false)}/>
             {posts.length === 0 ? (
                 <h1>No Archived Posts</h1>
             ) : <>
@@ -95,8 +95,7 @@ export default function TablePostsThird() {
                                 </button>
 
                                 <button className='py-[0.25rem] w-[88px] bg-red-600 hover:bg-red-700 flex items-center justify-center gap-[0.25rem] text-primary rounded-sm text-sm'
-                                    onClick={() => handleDeleteClick(recipe, recipe.uid)}
-                                    key={i}
+                                    onClick={() => setOpenModalDA(true)}
                                 >
                                     <FontAwesomeIcon icon={faTrash} className='text-primary text-sm' />
 
@@ -107,7 +106,7 @@ export default function TablePostsThird() {
 
                         <div className='w-full max-w-[47.5rem] h-auto sm:h-[17rem] grid sm:grid-cols-3 shadow-[0_3px_10px_rgb(0,0,0,0.2)]' key={i}>
                             <div className='col-span-1 w-full h-[17rem] bg-textFadeBlack'>
-                                <img src={recipe.imgUrls} alt='recipeimg' className='w-full h-full object-cover'></img>
+                                <img src={recipe.imgUrls} alt='recipeimg' className='w-[253px] h-full object-cover'></img>
                             </div>
 
                             <div className='col-span-1 sm:col-span-2 w-full pt-[1rem] px-[1rem] bg-primary h-auto sm:h-[17rem] relative'>

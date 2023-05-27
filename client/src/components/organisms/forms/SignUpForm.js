@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAt, faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faCopyright } from '@fortawesome/free-regular-svg-icons'
 import { BtnLS } from '../../atoms/atoms.js'
 import { InputBox, InputBoxPassword } from '../../molecules/molecules.js'
 import { useAuth } from '../../../context/UserAuthContext.js'
@@ -140,7 +142,7 @@ export default function SignUpForm() {
 
 
     return (
-        <div className='w-full flex justify-center items-center'>
+        <div className='w-full flex flex-col justify-center items-center'>
             <form className='w-full tablet:max-w-[28rem] px-[1rem] py-[2rem] sm:px-[3rem] sm:py-[2rem] bg-primary rounded-none tablet:rounded-3xl' onSubmit={SubmitHandler}>
 
                 {
@@ -152,7 +154,7 @@ export default function SignUpForm() {
                 }
 
 
-                <h1 className='text-mainBlack text-base tablet:text-xl font-normal tablet:font-medium text-center mb-[2rem]'>Sign Up</h1>
+                <h1 className='text-mainBlack text-base tablet:text-xl font-normal tablet:font-medium text-center mb-[1rem]'>Sign Up</h1>
 
                 {/* inputs */}
                 <div className='flex flex-col gap-[1rem]'>
@@ -245,6 +247,12 @@ export default function SignUpForm() {
                     <h3 className='text-xs font-light tablet:font-normal text-mainBlack'>Already have an account?<Link to='/login'><span className='ml-1 text-lime-500 hover:text-lime-600 font-light tablet:font-normal cursor-pointer'>Login here</span></Link></h3>
                 </div>
             </form>
+
+            <div className='flex items-center gap-2 mt-6'>
+                <img src="https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2FLogoMainG.png?alt=media&token=c25b6fd5-4217-4b56-af19-4aa6208abcc8" alt='ReciFil' className='w-[1rem]' />
+                
+                <span className='text-sm font-normal text-mainBlack'>ReciFil2023 All rights reserved</span>  
+            </div>
 
 
 

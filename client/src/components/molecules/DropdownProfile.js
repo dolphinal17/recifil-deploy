@@ -29,14 +29,14 @@ export default function DropdownProfile() {
                         leaveFrom='opacity-100 scale-100'
                         leaveTo='opacity-0 scale-95'
                     >
-                        <Menu.Items className='w-[12.5rem] tablet:w-[18.75rem] flex flex-col bg-zinc-50 rounded-sm shadow-lg absolute origin-top-right right-0 mt-2 ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                        <Menu.Items className='w-[16rem] tablet:w-[18.75rem] flex flex-col bg-zinc-50 rounded-sm shadow-lg absolute origin-top-right right-0 mt-2 ring-1 ring-black ring-opacity-5 focus:outline-none'>
                             {/* profile */}
                             <Link to="/profile"><Menu.Item>
                                 {({active}) => (
                                     <div className={`group flex gap-[0.5rem] p-[0.5rem] items-center cursor-pointer
                                         ${active ? "bg-lime-500" : ""}
                                     `}>
-                                        <img src={currentuser?.photoURL || "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5"} alt='profileimg' className='flex-none w-[2rem] h-[3rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
+                                        <img src={currentuser?.photoURL || "https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2Fdefault.jpg?alt=media&token=86cea402-148b-4303-bcec-3fba92f3a7b5"} alt='profileimg' className='flex-none w-[2rem] h-[2rem] tablet:w-[3rem] tablet:h-[3rem] object-cover rounded-full'></img>
 
                                         {/* name and arrow*/}
                                         <div className='w-full flex justify-between items-center'>

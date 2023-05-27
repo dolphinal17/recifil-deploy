@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../style'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faComment } from '@fortawesome/free-regular-svg-icons';
-import { faHeart, faBasketShopping, faGear, faTag, faTrash, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import CreatePost from '../../assets/create-post.png'
+import { faHeart, faBasketShopping, faGear, faTrash, faAngleRight, faPen } from '@fortawesome/free-solid-svg-icons';
 import { CardCreatePost, CardPost, InsideFooter, Navbar, } from '../organisms/organisms.js'
 import {EditProfile} from '../pages/pages.js'
 import { ModalDeletePost } from '../molecules/molecules.js'
@@ -25,7 +24,6 @@ const Profile = () => {
     const [posts, setPosts] = useState([])
     const [openModalDelete, setOpenModalDelete] = useState(false)
     const [openModalEP, setOpenModalEP] = useState(false)
-
 
     const fetchRecipes = async () => {
         const recipesCollectionRef = query(collection(db, "approvepost"), where("userRef", "==", auth.currentUser.uid));
@@ -79,7 +77,7 @@ const Profile = () => {
                                     <div className='flex justify-between items-start'>
                                         <span className='text-base font-normal tablet:font-medium text-primary'>{currentuser?.displayName}</span>
 
-                                        <FontAwesomeIcon onClick={() => setOpenModalEP(true)} icon={faPenToSquare} className='text-primary text-xs cursor-pointer'/>
+                                        {/* <FontAwesomeIcon onClick={() => setOpenModalEP(true)} icon={faPenToSquare} className='text-primary text-xs cursor-pointer'/> */}
                                     </div>
 
                                     {/* total posts */}
@@ -141,12 +139,22 @@ const Profile = () => {
                                                         <label className='text-base tablet:text-lg font-medium text-textMainBlack'>{recipe.userName}</label>
                                                     </div>
 
-                                                    <FontAwesomeIcon 
-                                                        type='button' 
-                                                        onClick={() => setOpenModalDelete(true)} 
-                                                        icon={faTrash} 
-                                                        className='cursor-pointer text-base tablet:text-lg text-fadeBlack hover:text-red-600' 
-                                                    />
+                                                    <div className='flex items-start gap-4'>
+                                                        <FontAwesomeIcon 
+                                                            type='button' 
+                                                            onClick={() => setOpenModalDelete(true)} 
+                                                            icon={faTrash} 
+                                                            className='cursor-pointer text-base text-fadeBlack hover:text-red-600' 
+                                                        />
+
+                                                        <FontAwesomeIcon 
+                                                            type='button' 
+                                                            // onClick={() => setOpenModalDelete(true)} 
+                                                            icon={faPen} 
+                                                            className='cursor-pointer text-base text-fadeBlack hover:text-zinc-700' 
+                                                        />
+                                                    </div>
+                                                    
                                                     {/* <div className='flex flex-col'>
                                                         <Link to={'/postview/' + recipe.uid} key={i}>
                                                             <button className='bg-[#84cc16] text-white p-2 rounded-md mb-2'>View More</button>

@@ -286,7 +286,7 @@ const Basket = () => {
               
               {/* Meats tags */}
               <div className={`${selected === "Meats" ? "block" : "hidden"} w-full bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-                <div className='w-full flex flex-wrap justify-center gap-[0.5rem]'>
+                <div className='w-full flex flex-wrap justify-start gap-[0.5rem]'>
                   {ingMeat.map((val, id) => (
                     <div className={`p-[5px] rounded-md ${styles.flexCenter} shadow-md border-solid border-[1px] border-[#EDEDED]`} key={id}>
                       <p className='text-sm font-light tablet:font-normal mr-[10px]'>{val.ingname}</p>
@@ -312,7 +312,7 @@ const Basket = () => {
               
               {/* Vg and Fruits tags */}
               <div className={`${selected === "Vegetables and Fruits" ? "block" : "hidden"} w-full bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full max-h-[400px] tablet:max-h-none`}>
-                <div className='w-full flex flex-wrap justify-center gap-[0.5rem]'>
+                <div className='w-full flex flex-wrap justify-start gap-[0.5rem]'>
                   {ingVeg.map((val, id) => (
                     <div className={`p-[5px] rounded-md ${styles.flexCenter} shadow-md border-solid border-[1px] border-[#EDEDED]`} key={id}>
                       <p className='text-sm font-light tablet:font-normal mr-[10px]'>{val.ingname}</p>
@@ -338,7 +338,7 @@ const Basket = () => {
               
               {/* seasonings tags */}
               <div className={`${selected === "Seasonings" ? "block" : "hidden"} w-full bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-                <div className='w-full flex flex-wrap justify-center gap-[0.5rem]'>
+                <div className='w-full flex flex-wrap justify-start gap-[0.5rem]'>
                   {ingSon.map((val, id) => (
                     <div className={`p-[5px] rounded-md ${styles.flexCenter} shadow-md border-solid border-[1px] border-[#EDEDED]`} key={id}>
                       <p className='text-sm font-light tablet:font-normal mr-[10px]'>{val.ingname}</p>
@@ -364,7 +364,7 @@ const Basket = () => {
 
               {/* seafoods tags */}
               <div className={`${selected === "Seafoods" ? "block" : "hidden"} w-full bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-                <div className='w-full flex flex-wrap justify-center gap-[0.5rem]'>
+                <div className='w-full flex flex-wrap justify-start gap-[0.5rem]'>
                   {ingSea.map((val, id) => (
                     <div className={`p-[5px] rounded-md ${styles.flexCenter} shadow-md border-solid border-[1px] border-[#EDEDED]`} key={id}>
                       <p className='text-sm font-light tablet:font-normal mr-[10px]'>{val.ingname}</p>
@@ -390,7 +390,7 @@ const Basket = () => {
               
               {/* miscellaneous tags */}
               <div className={`${selected === "Miscellaneous" ? "block" : "hidden"} w-full bg-primary rounded-md px-[1rem] py-[0.5rem] overflow-y-scroll overflow-x-hidden scroll-smooth scrollbar-thin scrollbar-thumb-secondary scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-                <div className='w-full flex flex-wrap justify-center gap-[0.5rem]'>
+                <div className='w-full flex flex-wrap justify-start gap-[0.5rem]'>
                   {ingMisc.map((val, id) => (
                     <div className={`p-[5px] rounded-md ${styles.flexCenter} shadow-md border-solid border-[1px] border-[#EDEDED]`} key={id}>
                       <p className='text-sm font-light tablet:font-normal mr-[10px]'>{val.ingname}</p>

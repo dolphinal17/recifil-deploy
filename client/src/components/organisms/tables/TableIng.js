@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import ModalAddIngredients from '../../molecules/modals/ModalAddIngredients'
+import {ModalAddIngredients, ModalDeleteIngredient} from '../../molecules/molecules.js'
 
 export default function TableIng() {
     const [openModal, setOpenModal] = useState(false)
     const [userRecipes, setUserRecipes] = useState([])
+    const [openModalDI, setOpenModalDI] = useState(false);
 
     const fetchRecipes = async () => {
 
@@ -39,6 +40,7 @@ export default function TableIng() {
 
   return (
     <div className='w-full flex justify-center bg-bgColor'>
+        <ModalDeleteIngredient onOpen={openModalDI} onClose={() => setOpenModalDI(false)}/>
         <ModalAddIngredients open={openModal} onClose={() => setOpenModal(false)} /> 
     <div className='max-w-[80rem] w-full bg-primary rounded-xl overflow-auto pb-[2rem]'>
         {/* name and search bar */}
@@ -75,7 +77,8 @@ export default function TableIng() {
                             <td className='border-b border-zinc-300 font-light tablet:font-normal p-4 text-center'>{recipe.ingcat}</td>
                             <td className='border-b border-zinc-300 font-light tablet:font-normal p-4 pl-8 text-center'>
                                 <FontAwesomeIcon icon={faPencil} className='w-[1.2rem] h-[1.2rem] mr-2 p-3 text-white rounded-md bg-[#84cc16] cursor-pointer'/>
-                                <FontAwesomeIcon icon={faTrash} onClick={() => handleDeleteRecipe(recipe.id)} className='w-[1.2rem] h-[1.2rem] p-3 text-white rounded-md bg-red-600 cursor-pointer'/>
+                                {/* deleted function here > onClick={() => handleDeleteRecipe(recipe.id)}  */}
+                                <FontAwesomeIcon icon={faTrash} onClick={() => setOpenModalDI(true)} className='w-[1.2rem] h-[1.2rem] p-3 text-white rounded-md bg-red-600 cursor-pointer'/>
                             </td>
                         </tr>
                     </tbody>
