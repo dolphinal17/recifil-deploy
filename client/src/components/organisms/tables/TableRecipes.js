@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import SearchBarWBG from '../../molecules/SearchBarWBG'
+import {SearchBarWBG, ModalDeleteRecipe} from '../../molecules/molecules.js'
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import { db } from '../../../config/firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,6 +12,8 @@ import { toast } from 'react-toastify'
 export default function TableRecipes() {
 
     const [userRecipes, setUserRecipes] = useState([])
+    const [openModalDR, setOpenModalDR] = useState(false);
+    
 
     const fetchRecipes = async () => {
 
@@ -40,6 +42,7 @@ export default function TableRecipes() {
 
     return (
         <div className='w-full flex justify-center bg-bgColor'> 
+            <ModalDeleteRecipe onOpen={openModalDR} onClose={() => setOpenModalDR(false)}/>
             <div className='max-w-[80rem] w-full bg-primary rounded-xl overflow-auto pb-[2rem]'>
                 {/* name and search bar */}
                 <div className='flex justify-between items-center px-[1rem] tablet:px-[2rem] my-[0.5rem] tablet:my-[1rem]'>
@@ -83,9 +86,10 @@ export default function TableRecipes() {
                                     <td className='border-b border-zinc-300 font-light tablet:font-normal p-4 text-center' style={{maxWidth: "140px", maxHeight: "3em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"}}>{recipe.steps.map((step, index) => (
                                         <div key={index}>{step}</div>
                                     ))}</td>
-                                    <td className='border-b border-zinc-300 font-light tablet:font-normal p-4 pl-8 text-center'>
+                                    <td className='border-b border-zinc-300 font-light tablet:font-normal p-4 pl-8'>
                                         <Link to={'/editrecipes/' + recipe.id}><FontAwesomeIcon icon={faPencil} className='w-[1.2rem] h-[1.2rem] mr-2 p-3 text-white rounded-md bg-[#84cc16] cursor-pointer'/></Link>
-                                        <FontAwesomeIcon icon={faTrash} onClick={() => handleDeleteRecipe(recipe.id)} className='w-[1.2rem] h-[1.2rem] p-3 text-white rounded-md bg-red-600 cursor-pointer'/>
+                                        {/* deleted function here > onClick={() => handleDeleteRecipe(recipe.id)} */}
+                                        <FontAwesomeIcon icon={faTrash} onClick={() => setOpenModalDR(true)} className='w-[1.2rem] h-[1.2rem] p-3 text-white rounded-md bg-red-600 cursor-pointer'/>
                                     </td>
                                 </tr>
                             </tbody>

@@ -2,13 +2,13 @@ import React from 'react'
 
 export default function TermsAndCondition() {
     return (
-        <div className='min-h-screen w-full bg-primary p-[1rem] tablet:p-[2rem] desktop:p-[3rem]'>
+        <div className='h-screen w-full bg-primary p-[1rem] tablet:p-[2rem] desktop:p-[3rem]'>
             <div className='max-w-[82rem] w-full mx-auto'>
                 <h1 className='text-mainBlack text-lg tablet:text-2xl font-medium'>Terms and Conditions</h1>
                 <p className='text-fadeBlack text-sm font-normal mb-[1rem]'>Last updated: April 10, 2023</p>
     
                 <p className='text-mainBlack text-base tablet:text-lg font-light tablet:font-normal'>Please read these terms and conditions carefully before using Our Service.</p> <br/>
-    
+                <p className='text-mainBlack text-base tablet:text-lg font-light tablet:font-normal text-justify'>Affiliate means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</p>
                 <p className='text-mainBlack text-base tablet:text-lg font-light tablet:font-normal text-justify'>
                     <span className='text-mainBlack text-base tablet:text-lg font-normal tablet:font-medium'>Interpretation and Definitions</span><br/><br/>
                     <span className='text-mainBlack text-base tablet:text-lg font-normal tablet:font-medium'>Interpretation</span> <br/>

@@ -39,10 +39,10 @@ const Landing = () => {
   ])
   return (
     <div className={`w-full min-h-screen flex flex-col justify-start items-center bg-bgColorTwo relative scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-      <div className='w-full bg-primary laptop:min-h-screen relative flex flex-col tablet:flex-row items-center'>
+      <div className='w-full bg-primary laptop:min-h-screen relative flex flex-col laptop:flex-row items-center'>
         <LandingNavbar />
 
-        <img className='tablet:absolute top-0 right-0 object-cover w-[300px] tablet:w-[700px] mb-2 tablet:mb-0' src={BG1}/>
+        <img className='laptop:absolute top-0 right-0 object-cover w-[300px] laptop:w-[700px] mb-2 laptop:mb-0' src={BG1}/>
         {/* shadow-[5px_0_10px_rgb(0,0,0,0.1)] */}
         {/* <div className='desktop:w-[65rem] laptop:w-[58rem] tablet:w-[43rem] sm:w-[35rem] w-[20rem] laptop:h-[512px] h-auto border border-zinc-300 rounded-t-[2rem] m-auto flex flex-col'>
           <div className='tablet:flex-row flex-col flex tablet:w-[80%] w-[100%] m-auto py-10 gap-[1rem]'>
@@ -72,7 +72,7 @@ const Landing = () => {
             </div>
           </div>
         </div> */}
-        <div className='flex flex-col gap-3 tablet:gap-6 tablet:ml-12 mb-4 tablet:mb-0'>
+        <div className='flex flex-col gap-3 laptop:gap-6 laptop:ml-12 mb-4 laptop:mb-0'>
           <div className='max-w-[400px] flex flex-col gap-1'>
             <p className='text-2xl tablet:text-3xl laptop:text-5xl font-bold text-mainBlack'>A Filipino <span className='text-secondary'>Recipe Builder</span></p>
 

@@ -13,6 +13,12 @@ import ModalDeletePost from "./modals/ModalDeletePost";
 import DropdownNotif from "./DropdownNotif";
 import DropdownIngredients from "./DropdownIngredients";
 import FQA from "./FQA";
+import ModalDeleteArchive from "./modals/ModalDeleteArchive";
+import ModalDeleteApprove from "./modals/ModaDeleteApprove";
+import ModalApprovePost from "./modals/ModalApprovePost";
+import ModalDeleteRecipe from "./modals/ModalDeleteRecipe";
+import ModalDeleteIngredient from "./modals/ModalDeleteIngredient";
+import ModalAddIngredients from "./modals/ModalAddIngredients";
 
 export {
     FiltInIngBasket,
@@ -29,5 +35,11 @@ export {
     ModalDeletePost,
     DropdownNotif,
     DropdownIngredients,
-    FQA
+    FQA, 
+    ModalDeleteArchive,
+    ModalDeleteApprove,
+    ModalApprovePost, 
+    ModalDeleteRecipe,
+    ModalDeleteIngredient,
+    ModalAddIngredients
 }

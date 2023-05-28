@@ -13,7 +13,7 @@ const LandingNavbar = () => {
             </div>
 
             <div className='flex item-center gap-2'>
-                <Link to='/login'><button className='text-fadeBlack text-sm tablet:text-base font-normal hover:text-secondary'>Login</button></Link>
+                <Link to='/login'><button className='text-fadeBlack laptop:text-white text-sm tablet:text-base font-normal hover:text-secondary'>Login</button></Link>
 
                 {/* <Link to='/signup'><button className='sm:w-[9rem] w-[4rem] sm:h-[3rem] h-[2rem] bg-primary rounded-[10px] border border-zinc-200   text-secondary sm:text-[18px] text-[15px] font-[400] hover:border-zinc-400'>Sign Up</button></Link> */}
             </div>
