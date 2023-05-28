@@ -7,6 +7,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { sendEmailVerification, updateProfile, AuthErrorCodes } from 'firebase/auth'
 import { auth, db } from '../../../config/firebase.js'
 import { doc, setDoc } from 'firebase/firestore'
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 export default function SignUpForm() {
@@ -24,7 +27,31 @@ export default function SignUpForm() {
         password: "",
         confirmPassword: ""
     })
+    const [formError, setFormError] = useState({
+        firstname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    })
+    const [isPasswordHidden, setIsPasswordHidden] = useState(true)
+    const [isIconHidden, setIsIconHidden] = useState(true)
+    const [passwordType, setPasswordType] = useState("password");
+    const passwordRegex = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>])^(?=.*\d)^(?=.*[a-zA-Z]).{8,15}$/;
+    const [isChecked, setIsChecked] = useState(false);
 
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+    };
+
+
+    const togglePassword = () => {
+        if (passwordType === "password") {
+            setPasswordType("text")
+            return;
+        }
+        setPasswordType("password")
+    }
 
 
     const handleClick = () => {
@@ -46,7 +73,6 @@ export default function SignUpForm() {
     }, [error, currentuser])
     const UserHandler = (e) => {
         const { name, value } = e.target;
-        console.log(name + "::::::::::" + value)
         setUser((pre) => {
             return {
                 ...pre,
@@ -63,31 +89,101 @@ export default function SignUpForm() {
 
 
     const SubmitHandler = async (e) => {
+
         e.preventDefault()
+
         const { email, password, confirmPassword, firstname, lastname, photoURL, uid } = user
-        if (password === "" || confirmPassword === "" || email === "" || firstname === "" || lastname === "") {
-            setInterval(() => {
-                setError("")
-            }, 5000)
-            return setError("Please fill all the fields! ")
+
+        setFormError({
+            email: "",
+            password: ""
+        });
+
+        let isValid = true;
+
+        if (firstname === "") {
+            setFormError((prevState) => ({
+                ...prevState,
+                firstname: "Please enter your firstname"
+            }));
+            isValid = false;
         }
+
+        if (lastname === "") {
+            setFormError((prevState) => ({
+                ...prevState,
+                lastname: "Please enter your lastname"
+            }));
+            isValid = false;
+        }
+
+        if (email === "") {
+            setFormError((prevState) => ({
+                ...prevState,
+                email: "Please enter your email"
+            }));
+            isValid = false;
+        }
+
+        if (password === "") {
+            setFormError((prevState) => ({
+                ...prevState,
+                password: "Please enter your password"
+            }));
+            isValid = false;
+        }
+
+        if (confirmPassword === "") {
+            setFormError((prevState) => ({
+                ...prevState,
+                confirmPassword: "Please re-enter your password"
+            }));
+            isValid = false;
+        }
+
+
         else if (password !== confirmPassword) {
-            setInterval(() => {
-                setError("")
-            }, 5000)
-            return setError("Password does not match!")
+            setFormError((prevState) => ({
+                ...prevState,
+                password: "Passwords do not match",
+                confirmPassword: "Passwords do not match"
+            }));
+            isValid = false;
         }
-        else if (regex.test(firstname) || regex.test(lastname)) {
-            setInterval(() => {
-                setError("")
-            }, 5000)
-            return setError("Firstname and Lastname should not include special characters and numbers!")
+        else if (regex.test(firstname)) {
+            setFormError((prevState) => ({
+                ...prevState,
+                firstname: "Firstname cannot contain special characters",
+            }));
+            isValid = false;
         }
-        else if (firstname.length === 1 || lastname.length === 1) {
-            setInterval(() => {
-                setError("")
-            }, 5000)
-            return setError("Firstname and Lastname must be more than 1 character!")
+        else if (regex.test(lastname)) {
+            setFormError((prevState) => ({
+                ...prevState,
+                lastname: "Firstname cannot contain special characters",
+            }));
+            isValid = false;
+        }
+        else if (firstname.length === 1) {
+            setFormError((prevState) => ({
+                ...prevState,
+                firstname: "Firstname must be more than 1 character",
+            }));
+            isValid = false;
+        }
+        else if (lastname.length === 1) {
+            setFormError((prevState) => ({
+                ...prevState,
+                lastname: "Lastname must be more than 1 character",
+            }));
+            isValid = false;
+        }
+        else if (!passwordRegex.test(password)) {
+            setFormError((prevState) => ({
+                ...prevState,
+                password: "Password must contain atleast 1 special character, 1 number, and 1 letter. Length should be between 8 and 15 characters.",
+            }));
+            isValid = false;
         }
         else {
 
@@ -109,24 +205,25 @@ export default function SignUpForm() {
 
             } catch (err) {
                 if (err.code === "auth/email-already-in-use") {
-                    setInterval(() => {
-                        setError("")
-                    }, 5000)
-                    setError("Email is already used. Please try another email.")
+                    setFormError((prevState) => ({
+                        ...prevState,
+                        email: "Email already exists",
+                    }));
+                    isValid = false;
                 }
                 else if (err.code === "auth/invalid-email") {
-
-                    setInterval(() => {
-                        setError("")
-                    }, 5000)
-                    setError("Email is not valid. Please try a valid email.")
+                    setFormError((prevState) => ({
+                        ...prevState,
+                        email: "Invalid email",
+                    }));
+                    isValid = false;
                 }
                 else if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
-
-                    setInterval(() => {
-                        setError("")
-                    }, 5000)
-                    setError("Password must be 6 characters or more!")
+                    setFormError((prevState) => ({
+                        ...prevState,
+                        password: "Password must be 6 characters or more",
+                    }));
+                    isValid = false;
                 }
 
                 else {
@@ -143,13 +240,13 @@ export default function SignUpForm() {
         <div className='w-full flex justify-center items-center'>
             <form className='w-full tablet:max-w-[28rem] px-[1rem] py-[2rem] sm:px-[3rem] sm:py-[2rem] bg-primary rounded-none tablet:rounded-3xl' onSubmit={SubmitHandler}>
 
-                {
+                {/* {
                     err ? (
                         err && <p className='error w-[24rem] rounded-lg text-center bg-red-600 ml-[-1rem] p-2 text-white mb-[1rem]'>{err}</p>
                     ) : (
                         backError && <p className='error w-[24rem] rounded-lg text-center bg-red-600 ml-[-1rem] p-2 text-white mb-[1rem]'>{backError}</p>
                     )
-                }
+                } */}
 
 
                 <h1 className='text-mainBlack text-base tablet:text-xl font-normal tablet:font-medium text-center mb-[2rem]'>Sign Up</h1>
@@ -157,47 +254,78 @@ export default function SignUpForm() {
                 {/* inputs */}
                 <div className='flex flex-col gap-[1rem]'>
                     {/* firstname */}
-                    <InputBox
+                    {/* <InputBox
                         type="text"
                         icon={faUser}
                         placeHolder="Enter your firstname"
                         name="firstname"
                         value={user.firstname}
                         onChange={UserHandler}
-                    />
+                    /> */}
+                    <div className='flex flex-col gap-[0.5rem]'>
+                        <label className='ml-1'>Firstname:</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.firstname ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+                            <input
+                                type='text'
+                                placeholder='Enter your firstname'
+                                name='firstname'
+                                value={user.firstname}
+                                onChange={UserHandler}
+                                className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack' />
+                        </div>
+                        {formError.firstname && <p className='w-[12.5rem] rounded-lg text-center text-red-600 mb-[0.5rem]'>{formError.firstname}</p>}
+                    </div>
 
                     {/* lastname */}
-                    <InputBox
+                    {/* <InputBox
                         type="text"
                         icon={faUser}
                         placeHolder="Enter your lastname"
                         name="lastname"
                         value={user.lastname}
                         onChange={UserHandler}
-                    />
+                    /> */}
 
-                    {/* username */}
-                    {/* <InputBox
-                type="text" 
-                icon={faUser}
-                placeHolder="Enter your username"
-                name="username"
-                value={user.username}
-                onChange={UserHandler}
-            /> */}
+                    <div className='flex flex-col gap-[0.5rem]'>
+                        <label className='ml-1'>Lastname:</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.lastname ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+                            <input
+                                type='text'
+                                placeholder='Enter your lastname'
+                                name='lastname'
+                                value={user.lastname}
+                                onChange={UserHandler}
+                                className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack' />
+                        </div>
+                        {formError.lastname && <p className='w-[12.5rem] rounded-lg text-center text-red-600 mb-[0.5rem]'>{formError.lastname}</p>}
+                    </div>
 
                     {/* email */}
-                    <InputBox
+                    {/* <InputBox
                         type="text"
                         icon={faAt}
                         placeHolder="Enter your email"
                         name="email"
                         value={user.email}
                         onChange={UserHandler}
-                    />
+                    /> */}
+
+                    <div className='flex flex-col gap-[0.5rem]'>
+                        <label className='ml-1'>Email:</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.email ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+                            <input
+                                type='text'
+                                placeholder='Enter your email'
+                                name='email'
+                                value={user.email}
+                                onChange={UserHandler}
+                                className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack' />
+                        </div>
+                        {formError.email && <p className='w-[11rem] rounded-lg text-center text-red-600 mb-[0.5rem]'>{formError.email}</p>}
+                    </div>
 
                     {/* password */}
-                    <InputBoxPassword
+                    {/* <InputBoxPassword
                         type="password"
                         icon={faLock}
                         placeHolder="Enter your password"
@@ -211,10 +339,34 @@ export default function SignUpForm() {
                             e.preventDefault()
                             return false;
                         }}
-                    />
+                    /> */}
+                    <div className='flex flex-col gap-[0.5rem]'>
+                        <label className='ml-1'>Password:</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.password ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+                            <input
+                                type={passwordType}
+                                placeholder='Enter your password'
+                                name='password'
+                                value={user.password}
+                                onChange={UserHandler}
+                                onPaste={(e) => {
+                                    e.preventDefault()
+                                    return false;
+                                }} onCopy={(e) => {
+                                    e.preventDefault()
+                                    return false;
+                                }}
+                                className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack' />
+                            <FontAwesomeIcon onClick={() => {
+                                setIsPasswordHidden(!isPasswordHidden);
+                                togglePassword();
+                            }} icon={isPasswordHidden ? faEye : faEyeSlash} className='text-sm text-fadeBlack pr-[1rem] cursor-pointer' />
+                        </div>
+                        {formError.password && <p className='w-[13rem] rounded-lg text-center text-red-600 mb-[0.5rem]'>{formError.password}</p>}
+                    </div>
 
                     {/* confirm password */}
-                    <InputBoxPassword
+                    {/* <InputBoxPassword
                         type="password"
                         icon={faLock}
                         placeHolder="Confirm your password"
@@ -228,19 +380,47 @@ export default function SignUpForm() {
                             e.preventDefault()
                             return false;
                         }}
-                    />
+                    /> */}
+                    <div className='flex flex-col gap-[0.5rem]'>
+                        <label className='ml-1'>Confirm Password:</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.confirmPassword ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+                            <input
+                                type={passwordType}
+                                placeholder='Confirm your password'
+                                name='confirmPassword'
+                                value={user.confirmPassword}
+                                onChange={UserHandler}
+                                onPaste={(e) => {
+                                    e.preventDefault()
+                                    return false;
+                                }} onCopy={(e) => {
+                                    e.preventDefault()
+                                    return false;
+                                }}
+                                className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack' />
+                            <FontAwesomeIcon onClick={() => {
+                                setIsPasswordHidden(!isPasswordHidden);
+                                togglePassword();
+                            }} icon={isPasswordHidden ? faEye : faEyeSlash} className='text-sm text-fadeBlack pr-[1rem] cursor-pointer' />
+                        </div>
+                        {formError.confirmPassword && <p className='w-[14.5rem] rounded-lg text-center text-red-600 mb-[0.5rem]'>{formError.confirmPassword}</p>}
+                    </div>
+
+
                 </div>
 
-                <p className='text-xs font-thin tablet:font-light text-fadeBlack text-center mt-[2rem]'>By clicking Sign Up, you agree to our <span onClick={handleClick} className='text-lime-500 hover:underline cursor-pointer'>Terms and Privacy Policy</span></p>
+                <div className='flex flex-row  mt-[2rem] gap-2'>
+                    <input type='checkbox' onChange={handleCheckboxChange}  />
+                    <p className='text-xs font-thin tablet:font-light text-fadeBlack text-center'>By clicking the box, you agree to our <span onClick={handleClick} className='text-lime-500 hover:underline cursor-pointer'>Terms and Privacy Policy</span></p>
+                </div>
 
                 <div className='flex items-center flex-col gap-[1rem] mt-[0.25rem] tablet:mt-[0.5rem]'></div>
 
                 {/* button Create and Login link*/}
                 <div className='flex items-center flex-col gap-[1rem] mt-[2rem]'>
-                    <BtnLS
-                        val="Sign Up"
-                        type="submit"
-                    />
+
+                    <button className={`text-primary bg-lime-500 px-[4rem] py-[0.75rem] text-base font-normal tablet:font-medium rounded-md hover:bg-lime-600 ${!isChecked ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                        }`} disabled={!isChecked}>Sign Up</button>
 
                     <h3 className='text-xs font-light tablet:font-normal text-mainBlack'>Already have an account?<Link to='/login'><span className='ml-1 text-lime-500 hover:text-lime-600 font-light tablet:font-normal cursor-pointer'>Login here</span></Link></h3>
                 </div>
@@ -279,7 +459,7 @@ export default function SignUpForm() {
                         <li>d. Redistribute content from ReciFil</li>
                     </ul>
 
-                    
+
 
                     <p className='mb-3'>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. ReciFil does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of ReciFil,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, ReciFil shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
 
@@ -373,9 +553,9 @@ export default function SignUpForm() {
 
 
                 </div>
-                
+
                 <button className='sm:max-w-[450px] max-w-[340px] border-solid border-[1px] rounded-[5px] px-5 py-2 bg-[#FFFFFF] overflow-auto p-2 mt-2' onClick={() => setOpenModal(false)}>Close</button>
-                
+
             </div>
             }
 
