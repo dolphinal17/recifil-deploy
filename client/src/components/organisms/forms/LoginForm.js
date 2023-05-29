@@ -157,17 +157,17 @@ export default function LoginForm() {
                 name='email'
                 onChange={UserHandler}
             /> */}
-        <div className='flex flex-col gap-[0.5rem]'>
-          <label className='ml-1'>Email:</label>
-          <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.email ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+        <div className='flex flex-col'>
+          <label className='text-base text-mainBlack ml-1'>Email</label>
+          <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.email ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
             <input
               type='text'
               placeholder='Enter your email'
               name='email' value={user.email}
               onChange={UserHandler}
-              className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack' />
+              className='bg-transparent border-none mx-[1rem] outline-none w-full text-sm font-light tablet:font-normal text-mainBlack'/>
           </div>
-          {formError.email && <p className='w-[11rem] rounded-lg text-center text-red-600 mb-[1rem]'>{formError.email}</p>}
+          {formError.email && <p className='text-red-700 text-sm'>{formError.email}</p>}
         </div>
         {/* password */}
         {/* <InputBoxPassword
@@ -185,9 +185,9 @@ export default function LoginForm() {
             return false;
           }}
         /> */}
-        <div className='flex flex-col gap-[0.5rem]'>
-          <label className='ml-1'>Password:</label>
-          <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.password ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
+        <div className='flex flex-col'>
+          <label className='text-base text-mainBlack ml-1'>Password</label>
+          <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.password ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
             <input
               type={passwordType}
               placeholder='Enter your password'
@@ -207,7 +207,7 @@ export default function LoginForm() {
               togglePassword();
             }} icon={isPasswordHidden ? faEye : faEyeSlash} className='text-sm text-fadeBlack pr-[1rem] cursor-pointer' />
           </div>
-          {formError.password && <p className='w-[13rem] rounded-lg text-center text-red-600 mb-[1rem]'>{formError.password}</p>}
+          {formError.password && <p className='text-red-700 text-sm'>{formError.password}</p>}
         </div>
         
       </div>
