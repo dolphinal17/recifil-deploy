@@ -19,6 +19,7 @@ import ModalApprovePost from "./modals/ModalApprovePost";
 import ModalDeleteRecipe from "./modals/ModalDeleteRecipe";
 import ModalDeleteIngredient from "./modals/ModalDeleteIngredient";
 import ModalAddIngredients from "./modals/ModalAddIngredients";
+import ModalTermsAndCondition from "./modals/ModalTermsAndCondition";
 
 export {
     FiltInIngBasket,
@@ -41,5 +42,6 @@ export {
     ModalApprovePost, 
     ModalDeleteRecipe,
     ModalDeleteIngredient,
-    ModalAddIngredients
+    ModalAddIngredients, 
+    ModalTermsAndCondition
 }
