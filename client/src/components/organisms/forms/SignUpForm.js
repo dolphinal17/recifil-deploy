@@ -10,7 +10,7 @@ import { sendEmailVerification, updateProfile, AuthErrorCodes } from 'firebase/a
 import { auth, db } from '../../../config/firebase.js'
 import { doc, setDoc } from 'firebase/firestore'
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 
 
@@ -41,6 +41,7 @@ export default function SignUpForm() {
     const [passwordType, setPasswordType] = useState("password");
     const passwordRegex = /^(?=.*[!@#$%^&*()\-_=+{};:,<.>])^(?=.*\d)^(?=.*[a-zA-Z]).{8,15}$/;
     const [isChecked, setIsChecked] = useState(false);
+    const [isTooltipVisible, setTooltipVisible] = useState(false);
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
@@ -343,7 +344,33 @@ export default function SignUpForm() {
                         }}
                     /> */}
                     <div className='flex flex-col gap-[0.5rem]'>
-                        <label className='ml-1'>Password:</label>
+                        <div className="flex items-center">
+                            <label className="ml-1">Password:</label>
+                            <div className="relative ml-2">
+                                <span
+                                    className="tooltip-trigger"
+                                    onMouseEnter={() => setTooltipVisible(true)}
+                                    onMouseLeave={() => setTooltipVisible(false)}
+                                >
+                                    <svg
+                                        className="w-4 h-4 text-gray-500"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                    </svg>
+                                    {isTooltipVisible && (
+                                        <div className="tooltip absolute w-[15rem] mt-2 bg-gray-800 text-white py-1 px-2 rounded opacity-100 transition-opacity duration-300">
+                                            Password must contain atleast 1 special character, 1 number and 1 letter. The password must be 8-15 characters.
+                                        </div>
+                                    )}
+                                </span>
+                            </div>
+                        </div>
                         <div className={`w-full h-14 flex justify-between items-center bg-[#EDF1F2] rounded-md ${formError.password ? "border-2 border-red-600" : "border-2 border-green-500"}`}>
                             <input
                                 type={passwordType}
@@ -412,7 +439,7 @@ export default function SignUpForm() {
                 </div>
 
                 <div className='flex flex-row  mt-[2rem] gap-2'>
-                    <input type='checkbox' onChange={handleCheckboxChange}  />
+                    <input type='checkbox' onChange={handleCheckboxChange} />
                     <p className='text-xs font-thin tablet:font-light text-fadeBlack text-center'>By clicking the box, you agree to our <span onClick={handleClick} className='text-lime-500 hover:underline cursor-pointer'>Terms and Privacy Policy</span></p>
                 </div>
 
@@ -430,8 +457,8 @@ export default function SignUpForm() {
 
             <div className='flex items-center gap-2 mt-6'>
                 <img src="https://firebasestorage.googleapis.com/v0/b/recifil.appspot.com/o/webimages%2FLogoMainG.png?alt=media&token=c25b6fd5-4217-4b56-af19-4aa6208abcc8" alt='ReciFil' className='w-[1rem]' />
-                
-                <span className='text-sm font-normal text-mainBlack'>ReciFil2023 All rights reserved</span>  
+
+                <span className='text-sm font-normal text-mainBlack'>ReciFil2023 All rights reserved</span>
             </div>
 
 
