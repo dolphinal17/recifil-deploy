@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
-export default function ModalApprovePost({onOpen, onClose, onClick}) {
+export default function ModalApprovePost({onOpen, onClose, handleFavoriteClick}) {
     if (!onOpen) return null 
     return (
       <div className='bg-textFadeBlack fixed inset-0 z-50'>
@@ -16,7 +16,7 @@ export default function ModalApprovePost({onOpen, onClose, onClick}) {
                         <button onClick={onClose} className='flex justify-center items-center px-[1rem] tablet:px-[2rem] py-[0.5rem] tablet:py-[1rem] text-base font-thin tablet:font-light text-mainBlack bg-zinc-200 hover:bg-zinc-400 hover:text-primary rounded-md'>Cancel</button>
 
                         <button 
-                        onClick={onClick}
+                        onClick={handleFavoriteClick}
                             className='flex justify-center items-center px-[1rem] tablet:px-[2rem] py-[0.5rem] tablet:py-[1rem] text-base font-light tablet:font-normal text-primary bg-lime-600 hover:bg-lime-700 rounded-md
                             '>Approve
                         </button>

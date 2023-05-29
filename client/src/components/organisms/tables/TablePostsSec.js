@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../config/firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,19 +7,21 @@ import { toast } from 'react-toastify';
 import { ModalDeleteApprove } from '../../molecules/molecules.js'
 
 
+
 export default function TablePostsSec() {
 
     const [posts, setPosts] = useState([])
     const [approvePost, setApprovePost] = useState([])
     const [loading, setLoading] = useState(false)
     const [openModalDA, setOpenModalDA] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     const fetchRecipes = async () => {
         const recipesCollectionRef = query(collection(db, "approvepost"));
 
         const snapshot = await getDocs(recipesCollectionRef);
         const recipes = snapshot.docs.map((doc) => ({
-            id: doc.id,
+            uid: doc.id,
             viewing: false,
             ...doc.data(),
         }));
@@ -50,15 +52,40 @@ export default function TablePostsSec() {
     //     }
     // };
 
+    const handleReturnClick = async (recipeDoc, recipeId) => {
+        try {
+
+            const { title, desc, imgUrls, ingredients, steps, userName, userPhoto, userRef, viewing } = recipeDoc;
+            const createRef = collection(db, `createpost`);
+            setIsButtonDisabled(true); 
+
+            setLoading(true)
+            await addDoc(createRef, {title, desc, imgUrls, ingredients, steps, userName, userPhoto, userRef, viewing});
+            if (recipeDoc) {
+                const approveRef = collection(db, 'approvepost');
+                await deleteDoc(doc(approveRef, recipeId));
+                fetchRecipes();
+                setLoading(false)
+                toast.success('Post Returned to Pending');
+            }
+
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setTimeout(() => setIsButtonDisabled(false), 1000); // enable the button after a short delay
+          }
+    };
+
 
   return (
     <div className='flex flex-col justify-center items-center gap-[1rem]'>
-        <ModalDeleteApprove onOpen={openModalDA} onClose={() => setOpenModalDA(false)}/>
+        
             {posts.length === 0 ? (
                 <h1>No Approved Posts at the moment</h1>
             ) :( <>
             {posts.map((recipe, i) => (
                 <div>
+                    <ModalDeleteApprove onOpen={openModalDA} onClose={() => setOpenModalDA(false)} handleReturnClick={() => handleReturnClick(recipe, recipe.uid)}/>
                     <div className='flex justify-between items-center px-[1rem] py-[0.5rem] bg-bgColorTwo'>
                         <h1 className='text-primary text-lg font-normal'>Approved</h1>
 
@@ -74,7 +101,7 @@ export default function TablePostsSec() {
                             >
                                 <FontAwesomeIcon icon={faTrash} className='text-primary text-sm' />
 
-                                Delete
+                                Return
                             </button>
                         </div>
                     </div>

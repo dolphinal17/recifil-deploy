@@ -106,12 +106,13 @@ export default function TablePosts() {
 
     return (
         <div className='flex flex-col justify-center items-center gap-[1rem]'>
-            <ModalApprovePost onOpen={openModalAP} onClose={() => setOpenModalAP(false)}/>
+            
             { posts.length === 0 ? (
                 <h1>No Pending Posts</h1>
             ) : <>
             {posts.map((recipe, i) => (
                 <div>
+                    <ModalApprovePost onOpen={openModalAP} onClose={() => setOpenModalAP(false)} handleFavoriteClick={() => handleFavoriteClick(recipe, recipe.uid)}/>
                     <div className='flex justify-between items-center px-[1rem] py-[0.5rem] bg-bgColorTwo'>
                         <h1 className='text-primary text-lg font-normal'>Pending</h1>
 

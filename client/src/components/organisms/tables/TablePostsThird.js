@@ -76,12 +76,13 @@ export default function TablePostsThird() {
 
     return (
         <div className='flex flex-col justify-center items-center gap-[1rem]'>
-            <ModalDeleteArchive onOpen={openModalDA} onClose={() => setOpenModalDA(false)}/>
+            
             {posts.length === 0 ? (
                 <h1>No Archived Posts</h1>
             ) : <>
                 {posts.map((recipe, i) => (
                     <div>
+                        <ModalDeleteArchive onOpen={openModalDA} onClose={() => setOpenModalDA(false)} handleDeleteClick={() => handleDeleteClick(recipe, recipe.uid)}/>
                         <div className='flex justify-between items-center px-[1rem] py-[0.5rem] bg-bgColorTwo'>
                             <h1 className='text-primary text-lg font-normal'>Archived</h1>
 
