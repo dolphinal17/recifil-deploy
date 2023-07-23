@@ -1,19 +1,18 @@
 {
   "files": {
-    "main.css": "/recifil-deploy/static/css/main.bcc51d1a.css",
-    "main.js": "/recifil-deploy/static/js/main.eb2bdb9d.js",
-    "static/media/asset-2.png": "/recifil-deploy/static/media/asset-2.0ce242ebf42a6f844add.png",
+    "main.css": "/recifil-deploy/static/css/main.57aeb412.css",
+    "main.js": "/recifil-deploy/static/js/main.4f45361d.js",
+    "static/media/asset1.png": "/recifil-deploy/static/media/asset1.91ca6b8f25814a2f8452.png",
     "static/media/mainimg.jpg": "/recifil-deploy/static/media/mainimg.5e32690d6b4f19b1a097.jpg",
     "static/media/dropfood.png": "/recifil-deploy/static/media/dropfood.7505265a4595be219580.png",
     "static/media/create-post.png": "/recifil-deploy/static/media/create-post.42717be331d5bed32ad7.png",
-    "static/media/wavesOpacity.svg": "/recifil-deploy/static/media/wavesOpacity.2316fd1a7f32364de1036bcd51ab7756.svg",
-    "static/media/wavesOpacity2.svg": "/recifil-deploy/static/media/wavesOpacity2.a432d25b343e55bc0c6c2659b881e628.svg",
+    "static/media/waves2.svg": "/recifil-deploy/static/media/waves2.9e44235cd52c2b3b3a86a7f084c18c20.svg",
     "index.html": "/recifil-deploy/index.html",
-    "main.bcc51d1a.css.map": "/recifil-deploy/static/css/main.bcc51d1a.css.map",
-    "main.eb2bdb9d.js.map": "/recifil-deploy/static/js/main.eb2bdb9d.js.map"
+    "main.57aeb412.css.map": "/recifil-deploy/static/css/main.57aeb412.css.map",
+    "main.4f45361d.js.map": "/recifil-deploy/static/js/main.4f45361d.js.map"
   },
   "entrypoints": [
-    "static/css/main.bcc51d1a.css",
-    "static/js/main.eb2bdb9d.js"
+    "static/css/main.57aeb412.css",
+    "static/js/main.4f45361d.js"
   ]
 }
