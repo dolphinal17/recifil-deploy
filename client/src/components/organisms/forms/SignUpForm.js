@@ -265,9 +265,9 @@ export default function SignUpForm() {
                         value={user.firstname}
                         onChange={UserHandler}
                     /> */}
-                    <div className='flex flex-col'>
-                        <label className='ml-1 text-base text-mainBlack'>Firstname</label>
-                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.firstname ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+                    <div className='flex flex-col gap-0.5'>
+                        <label className='ml-1 text-base text-mainBlack font-medium'>Firstname</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.firstname ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
                             <input
                                 type='text'
                                 placeholder='Enter your firstname'
@@ -289,9 +289,9 @@ export default function SignUpForm() {
                         onChange={UserHandler}
                     /> */}
 
-                    <div className='flex flex-col'>
-                        <label className='ml-1 text-base text-mainBlack'>Lastname</label>
-                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.lastname ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+                    <div className='flex flex-col gap-0.5'>
+                        <label className='ml-1 text-base text-mainBlack font-medium'>Lastname</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.lastname ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
                             <input
                                 type='text'
                                 placeholder='Enter your lastname'
@@ -313,9 +313,9 @@ export default function SignUpForm() {
                         onChange={UserHandler}
                     /> */}
 
-                    <div className='flex flex-col'>
-                        <label className='ml-1 text-base text-mainBlack'>Email</label>
-                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.email ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+                    <div className='flex flex-col gap-0.5'>
+                        <label className='ml-1 text-base text-mainBlack font-medium'>Email</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.email ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
                             <input
                                 type='text'
                                 placeholder='Enter your email'
@@ -343,9 +343,9 @@ export default function SignUpForm() {
                             return false;
                         }}
                     /> */}
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col gap-0.5'>
                         <div className="flex items-start justify-start">
-                            <label className="ml-1 text-base text-mainBlack">Password</label>
+                            <label className="ml-1 text-base text-mainBlack font-medium">Password</label>
                             <div className="relative ml-2">
                                 <span
                                     className="tooltip-trigger"
@@ -363,7 +363,7 @@ export default function SignUpForm() {
                                     >
                                         <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                     </svg> */}
-                                    <FontAwesomeIcon icon={faCircleInfo} className='text-xs text-zinc-500'/>
+                                    <FontAwesomeIcon icon={faCircleInfo} className='text-xs text-zinc-400'/>
                                     {isTooltipVisible && (
                                         <div className="tooltip absolute w-[15rem] mt-2 bg-bgColorTwo text-white py-1 px-2 rounded opacity-100 transition-opacity duration-300 text-base font-normal">
                                             Password must contain atleast 1 special character, 1 number and 1 letter. The password must be 8-15 characters.
@@ -372,7 +372,7 @@ export default function SignUpForm() {
                                 </span>
                             </div>
                         </div>
-                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.password ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.password ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
                             <input
                                 type={passwordType}
                                 placeholder='Enter your password'
@@ -395,25 +395,9 @@ export default function SignUpForm() {
                         {formError.password && <p className='text-red-600 text-sm'>{formError.password}</p>}
                     </div>
 
-                    {/* confirm password */}
-                    {/* <InputBoxPassword
-                        type="password"
-                        icon={faLock}
-                        placeHolder="Confirm your password"
-                        name="confirmPassword"
-                        value={user.confirmPassword}
-                        onChange={UserHandler}
-                        onPaste={(e) => {
-                            e.preventDefault()
-                            return false;
-                        }} onCopy={(e) => {
-                            e.preventDefault()
-                            return false;
-                        }}
-                    /> */}
-                    <div className='flex flex-col gap-[0.5rem]'>
-                        <label className='ml-1 text-base text-mainBlack'>Confirm Password</label>
-                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.confirmPassword ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+                    <div className='flex flex-col gap-0.5'>
+                        <label className='ml-1 text-base text-mainBlack font-medium'>Confirm Password</label>
+                        <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.confirmPassword ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
                             <input
                                 type={passwordType}
                                 placeholder='Confirm your password'

@@ -157,9 +157,9 @@ export default function LoginForm() {
                 name='email'
                 onChange={UserHandler}
             /> */}
-        <div className='flex flex-col'>
-          <label className='text-base text-mainBlack ml-1'>Email</label>
-          <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.email ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+        <div className='flex flex-col gap-0.5'>
+          <label className='text-base text-mainBlack ml-1 font-medium'>Email</label>
+          <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.email ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
             <input
               type='text'
               placeholder='Enter your email'
@@ -185,9 +185,9 @@ export default function LoginForm() {
             return false;
           }}
         /> */}
-        <div className='flex flex-col'>
-          <label className='text-base text-mainBlack ml-1'>Password</label>
-          <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.password ? "border-2 border-red-700" : "border-2 border-zinc-400"}`}>
+        <div className='flex flex-col gap-0.5'>
+          <label className='text-base text-mainBlack ml-1 font-medium'>Password</label>
+          <div className={`w-full h-14 flex justify-between items-center bg-primary rounded-md ${formError.password ? "border-2 border-red-700" : "border-2 border-zinc-200"}`}>
             <input
               type={passwordType}
               placeholder='Enter your password'
