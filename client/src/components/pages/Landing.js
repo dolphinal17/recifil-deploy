@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
-import styles from '../../style'
 import { LandingNavbar, LandingFooter } from '../organisms/organisms.js'
 import { Link } from 'react-router-dom'
-import BG1 from '../../assets/asset-2.png'
-import Waves from '../../assets/wavesOpacity.svg'
-import Waves2 from '../../assets/wavesOpacity2.svg'
+import Asset from '../../assets/asset1.png'
+import Waves2 from '../../assets/waves2.svg'
 import DropFood from '../../assets/dropfood.png'
 import { FQA } from '../molecules/molecules.js'
 
@@ -23,7 +21,7 @@ const Landing = () => {
   //     });
   // }, []);
 
-  const [fqa, setFqa ] = useState([
+  const fqa = [
     {
       question: "Do you have recipes for vegetarians?",
       answer: "Yes, we have a variety of vegetarian and vegan recipes available on our website. Simply use the basket function and filter out meats and filter in only vegetable ingredients or browse our recipe categories to find them."
@@ -36,65 +34,37 @@ const Landing = () => {
       question: "Can I use your recipes for commercial purposes?",
       answer: "No, our recipes are for personal use only and may not be used for commercial purposes without our permission. If you're interested in using our recipes for a commercial venture, please contact us to discuss licensing options."
     },
-  ])
+  ]
+
   return (
-    <div className={`w-full min-h-screen flex flex-col justify-start items-center bg-bgColorTwo relative scrollbar-thin scrollbar-thumb-[#B2D33D] scrollbar-thumb-rounded-full scrollbar-track-[#B1B1B1] scrollbar-track-rounded-full`}>
-      <div className='w-full bg-primary laptop:min-h-screen relative flex flex-col laptop:flex-row items-center'>
-        <LandingNavbar />
+    <div className={`w-full flex flex-col justify-start items-center bg-[#181818] relative`}>
+      <LandingNavbar />
 
-        <img className='laptop:absolute top-0 right-0 object-cover w-[300px] laptop:w-[700px] mb-2 laptop:mb-0' src={BG1}/>
-        {/* shadow-[5px_0_10px_rgb(0,0,0,0.1)] */}
-        {/* <div className='desktop:w-[65rem] laptop:w-[58rem] tablet:w-[43rem] sm:w-[35rem] w-[20rem] laptop:h-[512px] h-auto border border-zinc-300 rounded-t-[2rem] m-auto flex flex-col'>
-          <div className='tablet:flex-row flex-col flex tablet:w-[80%] w-[100%] m-auto py-10 gap-[1rem]'>
-            <div className='tablet:w-[60%] w-[100%] flex flex-col items-center'>
-              <h1 className='text-2xl laptop:text-5xl text-textMainBlack font-medium tablet:font-semibold'>A Filipino  <span className='text-[#59981A]'> Recipe Builder</span></h1>
-              <h2 className='text-base laptop:text-3xl font-normal tablet:font-medium text-textMainBlack '>Discover your inner Filipino, with our app.</h2>
-            </div>
+      <div className='w-full bg-[#181818] flex flex-col relative'>
+        <div className='flex flex-col justify-center items-center gap-4 mt-32'>
+          <p className={`text-3xl tablet:text-5xl font-bold text-white leading-10`}>A Filipino <span className='text-secondary'>Recipe Builder</span></p>
 
-            <div className='m-auto'>
-              <img src="https://firebasestorage.googleapis.com/v0/b/firestore-328db.appspot.com/o/webimages%2FLandingImage.png?alt=media&token=4d4d6341-1804-400b-8589-810980dbdcc1" alt='landingimg' className='w-[12rem] tablet:w-[16rem]' />
-            </div>
-          </div>
+          <p className={`text-lg tablet:text-xl font-normal tablet:font-medium text-white`}>Discover your inner Filipino, with our app.</p>
 
-          <div className='w-full h-[4rem] sm:px-[2rem] px-[1rem] bg-bgColorTwo flex justify-between items-center'>
-            <div className=''>
-              <h1 className='laptop:text-[24px] tablet:text-[20px] sm:text-[15px] text-[10px] font-[400] text-primary'>Explore Trending recipe on <span className='text-secondary'> ReciFil</span></h1>
-            </div>
+          <Link to='/login' className={`mt-4`}>
+            <a href="#_" className="relative inline-block text-lg group">
+              <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-white transition-colors duration-300 ease-out border-2 border-secondary rounded-lg group-hover:text-mainBlack group-hover:border-white">
+              <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-secondary"></span>
 
-            <div className='flex justify-between items-center sm:gap-4 gap-1 '>
-              <div>
-                <h1 className='laptop:text-[18px] sm:text-[14px] text-[10px] text-primary font-[400]'>Let's get started</h1>
-              </div>
+              <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-white group-hover:-rotate-180 ease"></span>
+              <span className="relative">Get Started</span>
+              </span>
 
-              <div className='flex items-center'>
-                <Link to='/login'><button className='laptop:text-[18px] sm:text-[14px] text-[10px] text-primary font-[400] laptop:w-[146px] sm:w-[100px] w-[50px] laptop:h-[49px] sm:h-[30px] h-[20px] rounded-[10px] bg-gradient-to-r from-secondary to-[#59981A] hover:bg-gradient-to-l hover:from-[#59981A] hover:to-secondary duration-200'>Start</button></Link>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <div className='flex flex-col gap-3 laptop:gap-6 laptop:ml-12 mb-4 laptop:mb-0'>
-          <div className='max-w-[400px] flex flex-col gap-1'>
-            <p className='text-2xl tablet:text-3xl laptop:text-5xl font-bold text-mainBlack'>A Filipino <span className='text-secondary'>Recipe Builder</span></p>
-
-            <p className='text-base laptop:text-3xl font-normal tablet:font-medium text-textMainBlack '>Discover your inner Filipino, with our app.</p>
-          </div>
-
-
-          <Link to='/login'><a href="#" class="relative px-10 py-3 font-medium text-white transition duration-300 bg-bgColorTwo rounded-md hover:bg-secondary ease">
-            <span class="absolute bottom-0 left-0 h-full -ml-2">
-              <svg viewBox="0 0 487 487" class="w-auto h-full opacity-100 object-stretch" xmlns="http://www.w3.org/2000/svg"><path d="M0 .3c67 2.1 134.1 4.3 186.3 37 52.2 32.7 89.6 95.8 112.8 150.6 23.2 54.8 32.3 101.4 61.2 149.9 28.9 48.4 77.7 98.8 126.4 149.2H0V.3z" fill="#FFF" fill-rule="nonzero" fill-opacity=".1"></path></svg>
-            </span>
-
-            <span class="absolute top-0 right-0 w-12 h-full -mr-3">
-              <svg viewBox="0 0 487 487" class="object-cover w-full h-full" xmlns="http://www.w3.org/2000/svg"><path d="M487 486.7c-66.1-3.6-132.3-7.3-186.3-37s-95.9-85.3-126.2-137.2c-30.4-51.8-49.3-99.9-76.5-151.4C70.9 109.6 35.6 54.8.3 0H487v486.7z" fill="#FFF" fill-rule="nonzero" fill-opacity=".1"></path></svg>
-            </span>
-
-            <span class="relative">Get Started</span>
-          </a></Link>
+              <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+            </a>
+          </Link>
         </div>
+
+        <img src={Asset} className='mt-16 mb-6'/>
+        <div className='gradient_div w-full h-[551px] absolute bottom-0 opacity-60'></div>
       </div>
-      <img src={Waves} className='w-full h-[50px]'/>
-      <div className={`w-full max-w-[64rem] flex flex-col items-start justify-start bg-transparent py-[1rem] laptop:pt-[2rem] laptop:px-[1rem] desktop:px-0 relative`}>
+
+      <div className={`w-full max-w-[64rem] flex flex-col items-start justify-start bg-transparent py-[1rem] laptop:pt-[2rem] px-[1rem] desktop:px-0 relative`}>
         {/* about */}
         <div className='w-full flex tablet:flex-row tablet:gap-0 justify-between items-center px-[1rem] tablet:px-0 flex-col-reverse'>
           <div className='flex flex-col'>
@@ -102,10 +72,10 @@ const Landing = () => {
 
             <p className='text-base tablet:text-lg font-normal text-zinc-400 mt-1 tablet:mt-2'>Bring excitement on learning.</p>
 
-            <p className='text-base tablet:text-lg font-normal text-zinc-400 mt-6 tablet:mt-12 max-w-[600px]'>Founded in 2022, ReciFil goal to introduce Filipino food to the masses, By introducing, it will attract those who are interested on enhancing there skill on cooking.</p>
+            <p className='text-base tablet:text-lg font-normal text-zinc-400 mt-6 tablet:mt-12 max-w-[600px]'>Founded in 2022, ReciFil goal to introduce Filipino food to the masses. By introducing, it will attract those who are interested on enhancing there skill on cooking.</p>
           </div>
 
-          <img src={DropFood} className='w-[400px] object-cover'/>
+          <img src={DropFood} className='w-[300px] md:w-[400px] object-cover'/>
         </div>
         
         {/* features */}
